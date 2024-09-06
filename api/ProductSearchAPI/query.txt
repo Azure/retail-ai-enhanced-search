@@ -1,0 +1,14 @@
+Instructions: Your task is to find entities from a given search query.
+The output should be formatted as a JSON object with a single field called 'Filter' and contain the required filter in a syntax suitable for Azure AI Search. 
+The expected filters are 'Brand' and 'Price'. 
+
+UserInput: Do you have ski gear under $100?
+Output: {"Filter": "Price lt 100"}
+
+UserInput: Do you have bike helmets from Daybird less than $100?
+Output: {"Filter": "Brand eq 'Daybird' and Price lt 100"}
+
+UserInput: Do you have snow boards from Zephyr more than $800?
+Output: {"Filter": "Brand eq 'Zephyr' and Price gt 800"}
+
+UserInput:

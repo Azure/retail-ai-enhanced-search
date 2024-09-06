@@ -1,0 +1,12 @@
+
+.show-hide-text {
+  text-wrap: stable;
+  white-space: wrap;
+  cursor: pointer;
+}
+
+.show-more-less-clickable {
+  text-decoration: underline;
+  cursor: pointer;
+  color: blue;
+}

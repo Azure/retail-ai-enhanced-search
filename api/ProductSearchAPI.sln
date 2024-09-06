@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35027.167
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductSearchAPI", ".\ProductSearchAPI\ProductSearchAPI.csproj", "{116AD3D1-FEE5-47BB-A0FD-44C108C91F05}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductSearchAPITest", "ProductSearchAPITest\ProductSearchAPITest.csproj", "{2E483968-A8E5-4E5A-8A19-25F20A6BD6BD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{116AD3D1-FEE5-47BB-A0FD-44C108C91F05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{116AD3D1-FEE5-47BB-A0FD-44C108C91F05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{116AD3D1-FEE5-47BB-A0FD-44C108C91F05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{116AD3D1-FEE5-47BB-A0FD-44C108C91F05}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E483968-A8E5-4E5A-8A19-25F20A6BD6BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E483968-A8E5-4E5A-8A19-25F20A6BD6BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E483968-A8E5-4E5A-8A19-25F20A6BD6BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E483968-A8E5-4E5A-8A19-25F20A6BD6BD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {548B7889-26E8-418D-9300-3F5040BAAB58}
+	EndGlobalSection
+EndGlobal
