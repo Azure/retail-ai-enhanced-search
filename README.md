@@ -46,11 +46,12 @@ Components of the solution are as follows:
   - Azure PowerShell
 - [Key Concepts to Understand](./docs/01_Concepts.md)
 - [Solution Quickstart](./docs/02_Solution_Quickstart.md)
-  - <Gary, Varmar, Sam, Arun and Kris until 13th September>
+  > Gary, Varmar, Sam, Arun and Chris until 13th, September
 
 ## PoC Environment Detailed Guide
 
 Additional explanation for each configurations and usage pattern PoC environment is in [PoC Environment Guide](./docs/03_PoC_Environment_Guide.md) document.
+> Gary, Varmar, Sam, Arun and Kris until 27th, September
 
 ## Production Environment Detailed Guide
 
@@ -59,6 +60,7 @@ You can bring your own data or you can configure AI Search with your existing da
 Based on your data character / usage / pattern, you need to enable and configure necessary features & parameters correctly.
 
 Additional detail guidance is in [Production Environment Guide](./docs/04_PRD_Environment_Guide.md) document.
+> <in Phase 2>
 
 ## Other Resources
 

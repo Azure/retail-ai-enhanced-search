@@ -5,7 +5,7 @@ E-Retail Quickstart kit is...
 ## Table of Contents
 
 - [Resource Deployment](#resource-deployment--configurations)
-  - [PoC Environment](#poc-environment) -> <Gary, Varma, Sam and Kris until 13th, September>
+  - [PoC Environment](#poc-environment) -> <Gary, Varma, Sam and Chris until 13th, September>
   - [Production Environment](#production-environment) -> <Phase 2>
     - [Bring your own Data](#bring-your-own-data)
     - [Using your existing Data Sources](#using-your-existing-data-sources)
