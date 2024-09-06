@@ -51,7 +51,7 @@ Components of the solution are as follows:
 ## PoC Environment Detailed Guide
 
 Additional explanation for each configurations and usage pattern PoC environment is in [PoC Environment Guide](./docs/03_PoC_Environment_Guide.md) document.
-> Gary, Varmar, Sam, Arun and Kris until 27th, September
+> Gary, Varmar, Sam, Arun and Chris until 27th, September
 
 ## Production Environment Detailed Guide
 
