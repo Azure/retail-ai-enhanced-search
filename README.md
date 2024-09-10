@@ -42,15 +42,15 @@ Components of the solution are as follows:
 
 - Prerequisites
   - Azure Subscription
-  -[Azure PowerShell](https://docs.microsoft.com/en-us/powershell/azure/install-az-ps)
+  - [Azure PowerShell](https://docs.microsoft.com/en-us/powershell/azure/install-az-ps)
   - Bash shell
   - [Git](https://git-scm.com/downloads)
   - [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)
   - [VS Code](https://code.visualstudio.com/download)
   - [Node.js](https://nodejs.org/en/download/package-manager)
   - [Dotnet 8.0 Core](https://dotnet.microsoft.com/download)
-  - [Key Concepts to Understand](./docs/01_Concepts.md)
-  - [Solution Quickstart](./docs/02_Solution_Quickstart.md)
+- [Key Concepts to Understand](./docs/01_Concepts.md)
+- [Solution Quickstart](./docs/02_Solution_Quickstart.md)
 
 ## Local Development
 
