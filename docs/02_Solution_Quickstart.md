@@ -6,7 +6,7 @@ E-Retail Quickstart kit is...
 
 - [Resource Deployment](#resource-deployment--configurations)
   - [PoC Environment](#poc-environment) -> <Gary, Varma, Sam and Chris until 13th, September>
-  - [Production Environment](#production-environment) -> <Phase 2>
+  - [Production Environment](#production-environment) -> <Gary, Varma, Sam and Chris for Guide Document until 27th, September>
     - [Bring your own Data](#bring-your-own-data)
     - [Using your existing Data Sources](#using-your-existing-data-sources)
     - [AI Search Configuration](#ai-search-configuration)
