@@ -83,7 +83,7 @@ You can bring your own data or you can configure AI Search with your existing da
 Based on your data character / usage / pattern, you need to enable and configure necessary features & parameters correctly.
 
 Additional detail guidance is in [Production Environment Guide](./docs/04_PRD_Environment_Guide.md) document.
-> <in Phase 2>
+> Gary, Varmar, Sam, Arun and Chris for Guide Document until 27th, September
 
 ## Other Resources
 
