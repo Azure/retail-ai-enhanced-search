@@ -21,6 +21,46 @@ E-Retail Quickstart kit is...
 
 To deploy the E-Retail Quickstart kit in a PoC environment, follow these steps:
 
+#### (1) Follow [this link](https://github.com/Gary3207Lee/ai-hub?tab=readme-ov-file#enterprise-azure-openai-hub-reference-implementation) for resource deployment and click deploy link as below
+
+![Deploy to Azure](/media/02_Deploy_to_Azure.png)
+
+#### (2) Choose "Proof of Concept" with Single region option and type Azure OpenAI Hub Prefix for your resources as below
+
+![Architecture Setup](/media/02_Architecture_Setup.png)
+
+#### (3) Select your virtual network and subnet for the Key Vault resource, then select "No" for Customer-Managed Keys
+
+![KeyVault](/media/02_KeyVault.png)
+
+#### (4) Select your virtual network and subnet for the Storage Account resource as below
+
+![StorageAccount](/media/02_StorageAccount.png)
+
+#### (5) Select your virtual network and subnet for the Azure OpenAI resource as below
+
+![AOAI](/media/02_AOAI.png)
+
+#### (6) Select "GPT4o" for your model and type deployment name and content filter name
+
+![ModelDeployment](/media/02_ModelDeployment.png)
+
+#### (7) Select "Retail AI Enhanced Search" for the Use Case
+
+![Use Case](/media/02_UseCase.png)
+
+#### (8) Select "Retail AI Enhanced Search" for the Use Case
+
+![Embedding](/media/02_Embedding.png)
+
+#### (9) Select appropriate virtual network and subnet for Azure AI Search, Azure Cosmos DB and Azure Container Apps
+
+![Network_Subnet](/media/02_Network_Subnet.png)
+> Note! </br>
+The subnet for Azure Container Apps should be a subnet that is not used by any other resources in the Virtual Network.
+It need to have a minimum of 507 IP addresses available (/23) and Microsoft.App/environments need to be delegated.
+![Subnet Sample](/media/02_Subnet_Sample.png)
+
 ### Production Environment
 
 To deploy the E-Retail Quickstart kit in a production environment, follow these steps:
