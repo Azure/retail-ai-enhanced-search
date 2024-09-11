@@ -49,6 +49,7 @@ Components of the solution are as follows:
   - [VS Code](https://code.visualstudio.com/download)
   - [Node.js](https://nodejs.org/en/download/package-manager)
   - [Dotnet 8.0 Core](https://dotnet.microsoft.com/download)
+  - Virtual Network with subnet configurations for resources
 - [Key Concepts to Understand](./docs/01_Concepts.md)
 - [Solution Quickstart](./docs/02_Solution_Quickstart.md)
 
