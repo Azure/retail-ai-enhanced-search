@@ -6,17 +6,12 @@ Artificial Intelligence (AI) imitates human behavior by using machine learning t
 
 ## Vector Database
 
-A vector database is a database designed to store and manage vector embeddings, which are mathematical representations of data in a high-dimensional space. In this space, each dimension corresponds to a feature of the data, and tens of thousands of dimensions might be used to represent sophisticated data. A vector's position in this space represents its characteristics. Words, phrases, or entire documents, and images, audio, and other types of data can all be vectorized.
-
-A vector database that is integrated in a highly performant NoSQL or relational database provides additional capabilities. The integrated vector database in a NoSQL or relational database can store, index, and query embeddings alongside the corresponding original data.  
-
-In this repo we help you understand via working example how vectors are generated when data is inserted into Azure AI Search from Azure Cosmos DB and is used for vector searches.
-
-Users then ask natural language questions using the web-based search bar user interface (User Prompts). These prompts are then changed search query with vectorized data and used to search in Azure AI Search. The results are then sent back to the user. All of the User Search History are stored in a Cosmos DB container along with the number of tokens consumed by each user prompt. In a production environment users would only be able to see their own sessions but this solution shows all sessions from all users.
+A **vector database** is a database designed to store and manage vector embeddings, which are mathematical representations of data in a high-dimensional space. In this space, each dimension corresponds to a feature of the data, and tens of thousands of dimensions might be used to represent sophisticated data. A vector's position in this space represents its characteristics. Words, phrases, or entire documents, and images, audio, and other types of data can all be vectorized.A vector database that is **integrated** in a highly performant NoSQL or relational database provides additional capabilities. The **integrated vector database** in a NoSQL or relational database can store, index, and query embeddings alongside the corresponding original data. In this repo we help you understand via working example how vectors are generated when data is inserted into Azure AI Search from Azure Cosmos DB and is used for vector searches.
 
 ![RAGwithAzureAISearch](/media/01_RAGwithAISearch.png)
 
-There are a number of key concepts for building AI Enhanced Search Engine within this this solution: generating vectors, searching vectors, Semantic ranking, storing chat conversations. 
+Users then ask natural language questions using the web-based search bar user interface (User Prompts). These prompts are then changed search query with vectorized data and used to search in Azure AI Search. The results are then sent back to the user. All of the User Search History are stored in a Cosmos DB container along with the number of tokens consumed by each user prompt. In a production environment users would only be able to see their own sessions but this solution shows all sessions from all users.
+
 
 ## Generating & Searching vectors
 
