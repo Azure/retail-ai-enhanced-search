@@ -1,7 +1,6 @@
 # Overview
 
-E-Retail Quickstart kit is...
-This starter kit comes with API samples written in #CSharp language.
+This starter kit comes with API samples written in #CSharp language under the *api* folder. The sample data is under *data* folder. The quickstart specifically caters to E-Retail 
 
 ## Table of Contents
 

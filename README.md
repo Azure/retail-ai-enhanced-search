@@ -29,6 +29,8 @@ Overall, the e-retail industry is rapidly evolving, with product discovery playi
 
 ![Solution Architecture](./media/00_Solution_Architecture.png)
 
+## Key Components
+
 Components of the solution are as follows:
 
 - Azure Cosmos DB is a globally distributed database service. It is well suited for low latency applications like search engines.
@@ -40,7 +42,11 @@ Components of the solution are as follows:
 
 ## Getting Started
 
-- Prerequisites
+This repo assumes you are familiar with the basics of Generative AI and Integrated Vector databases. None the less its good if you refer the [Key Concepts to Understand](./docs/01_Concepts.md) section prior to deploying the solution available at [Solution Quickstart](./docs/02_Solution_Quickstart.md)
+
+### Prerequisites
+
+You need the following to be able to deploy the solution:
   - Azure Subscription
   - [Azure PowerShell](https://docs.microsoft.com/en-us/powershell/azure/install-az-ps)
   - Bash shell
@@ -50,8 +56,6 @@ Components of the solution are as follows:
   - [Node.js](https://nodejs.org/en/download/package-manager)
   - [Dotnet 8.0 Core](https://dotnet.microsoft.com/download)
   - Virtual Network with subnet configurations for resources
-- [Key Concepts to Understand](./docs/01_Concepts.md)
-- [Solution Quickstart](./docs/02_Solution_Quickstart.md)
 
 ## Local Development
 
