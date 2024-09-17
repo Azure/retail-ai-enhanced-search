@@ -33,16 +33,16 @@ Overall, the e-retail industry is rapidly evolving, with product discovery playi
 
 Components of the solution are as follows:
 
-- Azure Cosmos DB is a globally distributed database service. It is well suited for low latency applications like search engines.
-- AI Search is a cloud solution that provides a rich search experience with key word and vector store capabilities over private, heterogeneous content in web, mobile, and enterprise applications.
-- Azure App Service - Web Apps hosts web applications allowing auto scale and high availability without having to manage infrastructure.
-- Azure OpenAI Service provides REST API access to OpenAI's powerful language models including Embeddings model series. Users can access the service through REST APIs, Python SDK, or our web-based interface in the Azure OpenAI Studio.  
-- Azure Functions is a serverless solution that makes it possible for you to write less code, maintain less infrastructure, and save on costs.
-- Azure Content Safety is a service that helps you detect and filter harmful user-generated and AI-generated content in your applications and services. Content Safety includes text and image detection to find content that is offensive, risky, or undesirable, such as profanity, adult content, gore, violence, hate speech, and more.
+- **Azure Cosmos DB** - A globally distributed database service. It is well suited for low latency applications like search engines. This will be used to store Vector information
+- **AI Search** - A cloud solution that provides a rich search experience with key word and vector store capabilities over private, heterogeneous content in web, mobile, and enterprise applications. This will be used for vector search functionality.
+- **Azure App Service** - Web Apps hosts web applications allowing auto scale and high availability without having to manage infrastructure. This will be used as a web-front-end interface.
+- **Azure OpenAI Service** provides REST API access to OpenAI's powerful language models including Embeddings model series. Users can access the service through REST APIs, Python SDK, or our web-based interface in the Azure OpenAI Studio.  This will be used for embedding functionality.
+- **Azure Functions** is a serverless solution that makes it possible for you to write less code, maintain less infrastructure, and save on costs.This is used for handling incoming requests.
+- **Azure Content Safety** is a service that helps you detect and filter harmful user-generated and AI-generated content in your applications and services. Content Safety includes text and image detection to find content that is offensive, risky, or undesirable, such as profanity, adult content, gore, violence, hate speech, and more. This will be used to implement responsible generative AI measures.
 
 ## Getting Started
 
-This repo assumes you are familiar with the basics of Generative AI and Integrated Vector databases. None the less its good if you refer the [Key Concepts to Understand](./docs/01_Concepts.md) section prior to deploying the solution available at [Solution Quickstart](./docs/02_Solution_Quickstart.md)
+This repo assumes you are familiar with the basics of Generative AI and Integrated Vector databases. None the less its good if you refer the [Key Concepts to Understand](./docs/01_Concepts.md) section prior to deployment.
 
 ### Prerequisites
 
@@ -75,6 +75,8 @@ You need the following to be able to deploy the solution:
    - Run `$ npm run dev`
    - Access the React application in a browser at `http://localhost:5173`
 5. Test the application by searching for a product in the React app or access the Swagger UI at `http://localhost:60871/swagger`
+
+The deployment templates of the solution are available at [Solution Quickstart](./docs/02_Solution_Quickstart.md). This if further bifurcated into POC and Production Environment Detailed guides
 
 ## PoC Environment Detailed Guide
 
