@@ -10,7 +10,7 @@ Advent of GenAI LLM is revolutionizing the way product search and discovery work
 
 The following extract from an [IDC Research Report](https://www.idc.com/getdoc.jsp?containerId=US51940624&pageType=PRINTFRIENDLY) describes the use-case in detail.
 
-<img src='/media/00_Introduction.png' width='810' height='500'> 
+<img src='/media/00_Introduction.png' width='790' height='500'> 
 
 ## User Experience
 
@@ -27,7 +27,7 @@ Overall, the e-retail industry is rapidly evolving, with product discovery playi
 
 ## Solution Architecture
 
-| <img src='/media/00_Solution_Architecture.png' width='810' height='500'> |
+| <img src='/media/00_Solution_Architecture.png' width='790' height='500'> |
 | ---- |
 
 ## Key Components
