@@ -10,7 +10,7 @@ Advent of GenAI LLM is revolutionizing the way product search and discovery work
 
 The following extract from an [IDC Research Report](https://www.idc.com/getdoc.jsp?containerId=US51940624&pageType=PRINTFRIENDLY) describes the use-case in detail.
 
-![User Experience](./media/00_Introduction.png)
+<img src='/media/00_Introduction.png' width='810' height='500'> 
 
 ## User Experience
 
@@ -19,7 +19,7 @@ The following extract from an [IDC Research Report](https://www.idc.com/getdoc.j
 Product discovery is a crucial aspect of the e-retail experience, enabling shoppers to find the items they are looking for and exposing them to new products they may want. Effective product discovery can significantly enhance customer satisfaction, increase conversion rates, and boost customer loyalty.
 
 - Key Elements of Product Discovery:Search Functionality: Advanced search features, including text and visual search, help customers find products quickly and accurately.
-- Personalized Recommendations: Using data analytics, retailers can offer personalized product recommendations based on individual customer preferences and behaviours.
+- Personalized Recommendations: Using data analytics, retailers can offer personalized product recommendations based on individual customer preferences and behavior's.
 - Navigation and Filters: Well-organized navigation and filtering options make it easier for customers to browse and discover products.
 - Product Catalogue Enrichment: With LLM model, E-retailer can enrich their product catalogue for search accuracy and increasing semantic relevance.
 
@@ -27,7 +27,7 @@ Overall, the e-retail industry is rapidly evolving, with product discovery playi
 
 ## Solution Architecture
 
-| <img src='/media/00_Solution_Architecture.png' width='800' height='470'> |
+| <img src='/media/00_Solution_Architecture.png' width='810' height='500'> |
 | ---- |
 
 ## Key Components
