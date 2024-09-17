@@ -8,7 +8,7 @@ Artificial Intelligence (AI) imitates human behavior by using machine learning t
 
 A **vector database** is a database designed to store and manage vector embeddings, which are mathematical representations of data in a high-dimensional space. In this space, each dimension corresponds to a feature of the data, and tens of thousands of dimensions might be used to represent sophisticated data. A vector's position in this space represents its characteristics. Words, phrases, or entire documents, and images, audio, and other types of data can all be vectorized.A vector database that is **integrated** in a highly performant NoSQL or relational database provides additional capabilities. The **integrated vector database** in a NoSQL or relational database can store, index, and query embeddings alongside the corresponding original data. In this repo we help you understand via working example how vectors are generated when data is inserted into Azure AI Search from Azure Cosmos DB and is used for vector searches.
 
-<img src='/media/01_RAGwithAISearch.png' width='700' height='310'>
+<img src='/media/01_RAGwithAISearch.png' width='650' height='280'>
 
 Users then ask natural language questions using the web-based search bar user interface (User Prompts). These prompts are then changed search query with vectorized data and used to search in Azure AI Search. The results are then sent back to the user. All of the User Search History are stored in a Cosmos DB container along with the number of tokens consumed by each user prompt. In a production environment users would only be able to see their own sessions but this solution shows all sessions from all users.
 
@@ -22,7 +22,7 @@ Vectors are generated with [Azure OpenAI Embedding skill](https://learn.microsof
 
 The first step in training a transformer model is to decompose the training text into tokens - in other words, identify each unique text value.
 
-<img src='/media/01_Tokenization.png' width='580' height='200'>
+<img src='/media/01_Tokenization.png' width='580' height='180'>
 
 One of the more challenging aspects to building RAG Pattern solutions is managing the tokens to stay within the maximum number of tokens that can be consumed in a single request (prompt) and response (completion). It's possible to build a prompt that consumes all of the tokens in the requests and leaves too few to produce a useful response. It's also possible to generate an exception from the Azure OpenAI Service if the request itself is over the token limit. You will need a way to measure token usage before sending the request. This is handled in the [OptimizePromptSize()](https://github.com/Azure/BuildYourOwnCopilot/blob/main/src/SemanticKernel/Chat/ChatBuilder.cs#L107) method in the ChatBuilder class. This method uses the SemanticKernel tokenizer, [GPT3Tokenizer](https://github.com/Azure/BuildYourOwnCopilot/blob/main/src/SemanticKernel/Chat/SemanticKernelTokenizer.cs). The utility takes text and generates an array of vectors. The number of elements in the array represent the number of tokens that will be consumed. It can also do the reverse and take an array of vectors and output text. In this method here we first generate the vectors on the data returned from our vector search, then if necessary, reduce the amount of data by calculating the number of vectors we can safely pass in our request to Azure OpenAI Service. Here is the flow of this method.
 
