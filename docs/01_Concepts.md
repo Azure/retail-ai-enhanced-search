@@ -20,9 +20,9 @@ Vectors are generated with [Azure OpenAI Embedding skill](https://learn.microsof
 
 ## Token management
 
-The first step in training a transformer model is to decompose the training text into tokens - in other words, identify each unique text value. 
+The first step in training a transformer model is to decompose the training text into tokens - in other words, identify each unique text value.
 
-<img src='/media/01_Tokenization.png' width='700' height='300'>
+<img src='/media/01_Tokenization.png' width='600' height='250'>
 
 One of the more challenging aspects to building RAG Pattern solutions is managing the tokens to stay within the maximum number of tokens that can be consumed in a single request (prompt) and response (completion). It's possible to build a prompt that consumes all of the tokens in the requests and leaves too few to produce a useful response. It's also possible to generate an exception from the Azure OpenAI Service if the request itself is over the token limit. You will need a way to measure token usage before sending the request. This is handled in the [OptimizePromptSize()](https://github.com/Azure/BuildYourOwnCopilot/blob/main/src/SemanticKernel/Chat/ChatBuilder.cs#L107) method in the ChatBuilder class. This method uses the SemanticKernel tokenizer, [GPT3Tokenizer](https://github.com/Azure/BuildYourOwnCopilot/blob/main/src/SemanticKernel/Chat/SemanticKernelTokenizer.cs). The utility takes text and generates an array of vectors. The number of elements in the array represent the number of tokens that will be consumed. It can also do the reverse and take an array of vectors and output text. In this method here we first generate the vectors on the data returned from our vector search, then if necessary, reduce the amount of data by calculating the number of vectors we can safely pass in our request to Azure OpenAI Service. Here is the flow of this method.
 
@@ -37,11 +37,9 @@ Large language models such as ChatGPT do not keep any history of what prompts us
 
 Another concept surfaced with conversation management centers around tokens. All calls to Azure OpenAI Service are limited by the number of tokens in a request and response. The number of tokens is dependant on the model being used. You see each model and its token limit on OpenAI's website on their [Models Overview page](https://platform.openai.com/docs/models/overview).
 
-
-
 # References
 
-[Generative AI Fundamentals: Explore Fundamentals Of Generative AI (1 of 3)](https://learn.microsoft.com/shows/on-demand-instructor-led-training-series/generative-ai-module-1/)
-[Generative AI Fundamentals: Introduction To Azure OpenAI Service (2 of 3)](https://learn.microsoft.com/shows/on-demand-instructor-led-training-series/generative-ai-module-2/)
-[Generative AI Fundamentals: Explore Responsible Generative AI (3 of 3)](https://learn.microsoft.com/shows/on-demand-instructor-led-training-series/generative-ai-module-3/)
-[Retrieval Augmented Generation (RAG) and Vector Databases](https://learn.microsoft.com/shows/generative-ai-for-beginners/retrieval-augmented-generation-rag-and-vector-databases-generative-ai-for-beginners)
+* [Generative AI Fundamentals: Explore Fundamentals Of Generative AI (1 of 3)](https://learn.microsoft.com/shows/on-demand-instructor-led-training-series/generative-ai-module-1/)
+* [Generative AI Fundamentals: Introduction To Azure OpenAI Service (2 of 3)](https://learn.microsoft.com/shows/on-demand-instructor-led-training-series/generative-ai-module-2/)
+* [Generative AI Fundamentals: Explore Responsible Generative AI (3 of 3)](https://learn.microsoft.com/shows/on-demand-instructor-led-training-series/generative-ai-module-3/)
+* [Retrieval Augmented Generation (RAG) and Vector Databases](https://learn.microsoft.com/shows/generative-ai-for-beginners/retrieval-augmented-generation-rag-and-vector-databases-generative-ai-for-beginners)
