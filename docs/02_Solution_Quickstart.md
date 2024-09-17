@@ -1,6 +1,7 @@
 # Overview
 
 E-Retail Quickstart kit is...
+This starter kit comes with API samples written in #CSharp language.
 
 ## Table of Contents
 
