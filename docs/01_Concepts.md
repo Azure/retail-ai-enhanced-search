@@ -18,13 +18,11 @@ Vectors are generated with [Azure OpenAI Embedding skill](https://learn.microsof
 
 <img src='/media/01_Generating&SearchingVectors.PNG' width='750' height='300'>
 
-## Managing search context and history
-
-Large language models such as ChatGPT do not keep any history of what prompts users sent it, or what completions it generated. It is up to the developer to do this. Keeping this history is necessary for two reasons. First, it allows users to ask follow-up questions without having to provide any context, while also allowing the user to have a conversation with the model. Second, the conversation history is useful when performing vector searche on data as it provides additional detail on what the user is looking for. As an example, if I asked our Intelligent Retail Agent what bikes it had available, it would return for me all of the bikes in stock. If I then asked, "what colors are available?", if I did not pass the first prompt and completion, the vector search would not know that the user was asking about bike colors and would likely not produce an accurate or meaningful response.
-
-Another concept surfaced with conversation management centers around tokens. All calls to Azure OpenAI Service are limited by the number of tokens in a request and response. The number of tokens is dependant on the model being used. You see each model and its token limit on OpenAI's website on their [Models Overview page](https://platform.openai.com/docs/models/overview).
-
 ## Token management
+
+The first step in training a transformer model is to decompose the training text into tokens - in other words, identify each unique text value. 
+
+<img src='/media/01_Tokenization.png' width='700' height='300'>
 
 One of the more challenging aspects to building RAG Pattern solutions is managing the tokens to stay within the maximum number of tokens that can be consumed in a single request (prompt) and response (completion). It's possible to build a prompt that consumes all of the tokens in the requests and leaves too few to produce a useful response. It's also possible to generate an exception from the Azure OpenAI Service if the request itself is over the token limit. You will need a way to measure token usage before sending the request. This is handled in the [OptimizePromptSize()](https://github.com/Azure/BuildYourOwnCopilot/blob/main/src/SemanticKernel/Chat/ChatBuilder.cs#L107) method in the ChatBuilder class. This method uses the SemanticKernel tokenizer, [GPT3Tokenizer](https://github.com/Azure/BuildYourOwnCopilot/blob/main/src/SemanticKernel/Chat/SemanticKernelTokenizer.cs). The utility takes text and generates an array of vectors. The number of elements in the array represent the number of tokens that will be consumed. It can also do the reverse and take an array of vectors and output text. In this method here we first generate the vectors on the data returned from our vector search, then if necessary, reduce the amount of data by calculating the number of vectors we can safely pass in our request to Azure OpenAI Service. Here is the flow of this method.
 
@@ -32,3 +30,18 @@ One of the more challenging aspects to building RAG Pattern solutions is managin
 2. Measure the amount of tokens for the user prompt. This data is also used to capture what the user prompt tokens would be if processed without any additional data and stored in the user prompt message in the completions collection (more on that later).
 3. Calculate if the amount of tokens used by the `search results` plus the `user prompt` plus the `conversation` + `completion` is greater than what the model will accept. If it is greater, then calculate how much to reduce the amount of data and `decode` the vector array we generated from the search results, back into text.
 4. Finally, return the text from our search results as well as the number of tokens for the last User Prompt (this will get stored a bit later).
+
+## Managing search context and history
+
+Large language models such as ChatGPT do not keep any history of what prompts users sent it, or what completions it generated. It is up to the developer to do this. Keeping this history is necessary for two reasons. First, it allows users to ask follow-up questions without having to provide any context, while also allowing the user to have a conversation with the model. Second, the conversation history is useful when performing vector searche on data as it provides additional detail on what the user is looking for. As an example, if I asked our Intelligent Retail Agent what bikes it had available, it would return for me all of the bikes in stock. If I then asked, "what colors are available?", if I did not pass the first prompt and completion, the vector search would not know that the user was asking about bike colors and would likely not produce an accurate or meaningful response.
+
+Another concept surfaced with conversation management centers around tokens. All calls to Azure OpenAI Service are limited by the number of tokens in a request and response. The number of tokens is dependant on the model being used. You see each model and its token limit on OpenAI's website on their [Models Overview page](https://platform.openai.com/docs/models/overview).
+
+
+
+# References
+
+[Generative AI Fundamentals: Explore Fundamentals Of Generative AI (1 of 3)](https://learn.microsoft.com/shows/on-demand-instructor-led-training-series/generative-ai-module-1/)
+[Generative AI Fundamentals: Introduction To Azure OpenAI Service (2 of 3)](https://learn.microsoft.com/shows/on-demand-instructor-led-training-series/generative-ai-module-2/)
+[Generative AI Fundamentals: Explore Responsible Generative AI (3 of 3)](https://learn.microsoft.com/shows/on-demand-instructor-led-training-series/generative-ai-module-3/)
+[Retrieval Augmented Generation (RAG) and Vector Databases](https://learn.microsoft.com/shows/generative-ai-for-beginners/retrieval-augmented-generation-rag-and-vector-databases-generative-ai-for-beginners)
