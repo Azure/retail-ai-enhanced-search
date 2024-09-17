@@ -27,7 +27,8 @@ Overall, the e-retail industry is rapidly evolving, with product discovery playi
 
 ## Solution Architecture
 
-![Solution Architecture](./media/00_Solution_Architecture.png)
+<img src='/media/00_Solution_Architecture.png' width='750' height='500'>
+
 
 ## Key Components
 
