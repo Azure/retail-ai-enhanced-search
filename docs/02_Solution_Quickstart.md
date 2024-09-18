@@ -42,7 +42,7 @@ To deploy the E-Retail Quickstart kit in a PoC environment, follow these steps:
 
 #### (2) Choose "Proof of Concept" with Single region option and type Azure OpenAI Hub Prefix for your resources as below
 
-
+![ArchitectureSetup](../media/02_Architecture_Setup.png)
 
 #### (3) Select your virtual network and subnet for the Key Vault resource, then select "No" for Customer-Managed Keys
 
