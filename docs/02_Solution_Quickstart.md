@@ -19,9 +19,7 @@ This starter kit comes with API samples written in #CSharp language under the *a
 
 ### PoC Environment
 
-**Pre-requisites**
-
-For this POC deployment you will need a Virtual Network with 4 different subnets to cater to each of the following services:
+**Pre-requisites**:For this POC deployment you will need a Virtual Network with 4 different subnets to cater to each of the following services:
 
 1) KeyVault
 2) Storage Account
@@ -32,10 +30,9 @@ The Virtual Network does not require to be in the same region where you are depl
 ![Subnet Sample](/media/02_Subnet_Sample.png)
 
 > :memo: **Note:** The subnet for Azure Container Apps should be a subnet that is not used by any other resources in the Virtual Network. It needs to have a minimum of 507 IP addresses available (/23) and Microsoft.App/environments need to be delegated.
+> :bulb: **Tip:**: You may also choose the naming convention of 'prefix'-'region'-'resourcetype' where possible.
 
 To deploy the E-Retail Quickstart kit in a PoC environment, follow these steps:
-
-> :bulb: **Tip:**
 
 #### (1) Follow [this link](https://github.com/Gary3207Lee/ai-hub?tab=readme-ov-file#enterprise-azure-openai-hub-reference-implementation) for resource deployment and click deploy link as below
 
