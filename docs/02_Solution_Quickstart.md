@@ -55,7 +55,7 @@ To deploy the E-Retail Quickstart kit in a PoC environment, follow these steps:
 
 #### (5) Select your virtual network and subnet for the Azure OpenAI resource as below
 
-![AOAI](/media/02_AOAI.png)
+
 
 #### (6) Select "GPT4o" for your model and type deployment name and content filter name
 
