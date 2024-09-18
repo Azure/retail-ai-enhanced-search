@@ -24,7 +24,9 @@ This starter kit comes with API samples written in #CSharp language under the *a
 1) KeyVault - To use for Key Vault Configuration tab
 2) Storage Account - To use for Storage Configuration tab
 3) Azure OpenAI - To use for Azure OpenAI Configurati0n tab
-4) Azure AI Search, Azure Cosmos DB and Azure Container Apps - You may choose to create one subnet or 3 subnets for each of these services
+4) Azure AI Search - To use for Use Case and Additional Services tab
+5) Azure Cosmos DB - To use for Use Case and Additional Services tab
+6) Azure Container Apps - To use for Use Case and Additional Services tab
 
 The Virtual Network does not require to be in the same region where you are deploying the reference implementation, as the Private Endpoints can be in a different region compared to the Azure services that are created. However for ease of deployment we recommend you have a virtual network created in the same region. Here is what the subnet sample should looks like:
 
@@ -71,11 +73,17 @@ Once this is selected you will find a few more options to configure below
 
 ![Embedding](/media/02_Embedding.png)
 
-#### (9) Select appropriate virtual network and subnet for Azure AI Search, Azure Cosmos DB and Azure Container Apps
-
-For the purpose of POC we will use the subnet we created for Azure AI Search Service
+#### (9) Select appropriate virtual network and subnet for Azure AI Search.
 
 ![AzureAISearch](../media/02_AISearch.PNG)
+
+#### (10) Select appropriate virtual network and subnet for Azure Cosmos DB
+
+![CosmosDB](../media/02_CosmosDB.PNG)
+
+### (11) Select appropriate virtual network and subnet for Azure Container Apps
+
+![ContainerApp](../media/02_ContainerApp.PNG)
 
 ### Production Environment
 
