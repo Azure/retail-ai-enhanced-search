@@ -28,9 +28,14 @@ For this POC deployment you will need a Virtual Network with 4 different subnets
 3) Azure OpenAI
 4) Azure AI Search, Azure Cosmos DB and Azure Container Apps
 
-The Virtual Network does not require to be in the same region where you are deploying the reference implementation, as the Private Endpoints can be in a different region compared to the Azure services that are created. However for ease of deployment we recommend you have a virtual network created in the same region. We will be using the naming convention of 'prefix'-'region'-'resourcetype' where possible.
+The Virtual Network does not require to be in the same region where you are deploying the reference implementation, as the Private Endpoints can be in a different region compared to the Azure services that are created. However for ease of deployment we recommend you have a virtual network created in the same region. Here is what the subnet sample should look like
+![Subnet Sample](/media/02_Subnet_Sample.png)
+
+> :memo: **Note:** The subnet for Azure Container Apps should be a subnet that is not used by any other resources in the Virtual Network. It needs to have a minimum of 507 IP addresses available (/23) and Microsoft.App/environments need to be delegated.
 
 To deploy the E-Retail Quickstart kit in a PoC environment, follow these steps:
+
+> :bulb: **Tip:**
 
 #### (1) Follow [this link](https://github.com/Gary3207Lee/ai-hub?tab=readme-ov-file#enterprise-azure-openai-hub-reference-implementation) for resource deployment and click deploy link as below
 
@@ -67,10 +72,7 @@ To deploy the E-Retail Quickstart kit in a PoC environment, follow these steps:
 #### (9) Select appropriate virtual network and subnet for Azure AI Search, Azure Cosmos DB and Azure Container Apps
 
 ![Network_Subnet](/media/02_Network_Subnet.png)
-> Note! </br>
-The subnet for Azure Container Apps should be a subnet that is not used by any other resources in the Virtual Network.
-It need to have a minimum of 507 IP addresses available (/23) and Microsoft.App/environments need to be delegated.
-![Subnet Sample](/media/02_Subnet_Sample.png)
+
 
 ### Production Environment
 
