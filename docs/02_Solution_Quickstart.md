@@ -65,13 +65,15 @@ To deploy the E-Retail Quickstart kit in a PoC environment, follow these steps:
 
 ![Use Case](/media/02_UseCase.png)
 
+Once this is selected you will find a few more options to configure below
+
 #### (8) Select "Retail AI Enhanced Search" for the Use Case
 
 ![Embedding](/media/02_Embedding.png)
 
 #### (9) Select appropriate virtual network and subnet for Azure AI Search, Azure Cosmos DB and Azure Container Apps
 
-![Network_Subnet](/media/02_Network_Subnet.png)
+For the purpose of POC we will use the subnet we created for Azure AI Search Service
 
 
 ### Production Environment
