@@ -56,7 +56,7 @@ You need the following to be able to deploy the solution:
   - [VS Code](https://code.visualstudio.com/download)
   - [Node.js](https://nodejs.org/en/download/package-manager)
   - [Dotnet 8.0 Core](https://dotnet.microsoft.com/download)
-  - Virtual Network with subnet configurations for resources
+  - [Virtual Network with subnet configurations for resources](https://learn.microsoft.com/azure/ai-services/cognitive-services-virtual-networks?tabs=portal)
 
 ## Local Development
 
