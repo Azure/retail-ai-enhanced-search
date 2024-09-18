@@ -19,6 +19,8 @@ This starter kit comes with API samples written in #CSharp language under the *a
 
 ### PoC Environment
 
+**Pre-requisites**
+
 For this POC deployment you will need a Virtual Network with 4 different subnets to cater to each of the following services:
 
 1) KeyVault
@@ -26,11 +28,7 @@ For this POC deployment you will need a Virtual Network with 4 different subnets
 3) Azure OpenAI
 4) Azure AI Search, Azure Cosmos DB and Azure Container Apps
 
-The Virtual Network does not require to be in the same region where you are deploying the reference implementation, as the Private Endpoints can be in a different region compared to the Azure services that are created. However for ease of deployment we recommend you have a virtual network created in the same region.
-
-Provide a prefix for the naming convention that will be used for the resources.
-
-Note: the naming convention will primarily consist of 'prefix'-'region'-'resourcetype' where possible.
+The Virtual Network does not require to be in the same region where you are deploying the reference implementation, as the Private Endpoints can be in a different region compared to the Azure services that are created. However for ease of deployment we recommend you have a virtual network created in the same region. We will be using the naming convention of 'prefix'-'region'-'resourcetype' where possible.
 
 To deploy the E-Retail Quickstart kit in a PoC environment, follow these steps:
 

@@ -48,15 +48,16 @@ This repo assumes you are familiar with the basics of Generative AI and Integrat
 ### Prerequisites
 
 You need the following to be able to deploy the solution:
-  - Azure Subscription
-  - [Azure PowerShell](https://docs.microsoft.com/en-us/powershell/azure/install-az-ps)
-  - Bash shell
-  - [Git](https://git-scm.com/downloads)
-  - [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli)
-  - [VS Code](https://code.visualstudio.com/download)
-  - [Node.js](https://nodejs.org/en/download/package-manager)
-  - [Dotnet 8.0 Core](https://dotnet.microsoft.com/download)
-  - [Virtual Network with subnet configurations for resources](https://learn.microsoft.com/azure/ai-services/cognitive-services-virtual-networks?tabs=portal)
+
+- Azure Subscription : Ideally use a dedicated Azure subscription, where you have submitted the subscription ID into the form for [requesting access to Azure OpenAI](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUOFA5Qk1UWDRBMjg0WFhPMkIzTzhKQ1dWNyQlQCN0PWcu). This will ensure that the subscription is enabled for Azure OpenAI, including GTP-4.
+- The user who's deploying the reference implementation must be Owner of the subscription where the reference implementation will be deployed, as the deployment will be making role assignments for the managed identities that are created for the Azure services.
+- [Azure PowerShell](https://docs.microsoft.com/powershell/azure/install-az-ps)
+- Bash shell
+- [Git](https://git-scm.com/downloads)
+- [Azure CLI](https://docs.microsoft.com/cli/azure/install-azure-cli)
+- [VS Code](https://code.visualstudio.com/download)
+- [Node.js](https://nodejs.org/en/download/package-manager)
+- [Dotnet 8.0 Core](https://dotnet.microsoft.com/download)
 
 ## Local Development
 
