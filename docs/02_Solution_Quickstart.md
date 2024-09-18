@@ -81,9 +81,9 @@ Once this is selected you will find a few more options to configure below
 
 ![CosmosDB](../media/02_CosmosDB.PNG)
 
-### (11) Select appropriate virtual network and subnet for Azure Container Apps
+#### (11) Select appropriate virtual network and subnet for Azure Container Apps
 
-![ContainerApp](../media/02_ContainerApp.PNG)
+
 
 ### Production Environment
 
