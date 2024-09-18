@@ -47,11 +47,11 @@ To deploy the E-Retail Quickstart kit in a PoC environment, follow these steps:
 #### (3) Select your virtual network and subnet for the Key Vault resource, then select "No" for Customer-Managed Keys
 
 ![KeyVaultImage1](../media/02_KeyVault1.PNG)
-![alt text](../media/02_KeyVault2.PNG)
+![KeyVaultImage2](../media/02_KeyVault2.PNG)
 
 #### (4) Select your virtual network and subnet for the Storage Account resource as below
 
-![StorageAccount](/media/02_StorageAccount.png)
+![StorageAccount]
 
 #### (5) Select your virtual network and subnet for the Azure OpenAI resource as below
 
