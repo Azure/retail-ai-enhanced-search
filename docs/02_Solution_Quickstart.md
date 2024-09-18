@@ -30,6 +30,7 @@ The Virtual Network does not require to be in the same region where you are depl
 ![Subnet Sample](/media/02_Subnet_Sample.png)
 
 > :memo: **Note:** The subnet for Azure Container Apps should be a subnet that is not used by any other resources in the Virtual Network. It needs to have a minimum of 507 IP addresses available (/23) and Microsoft.App/environments need to be delegated.
+
 > :bulb: **Tip:**: You may also choose the naming convention of 'prefix'-'region'-'resourcetype' where possible.
 
 To deploy the E-Retail Quickstart kit in a PoC environment, follow these steps:
