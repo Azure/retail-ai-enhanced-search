@@ -75,6 +75,7 @@ Once this is selected you will find a few more options to configure below
 
 For the purpose of POC we will use the subnet we created for Azure AI Search Service
 
+![AzureAISearch](../media/02_AISearch.PNG)
 
 ### Production Environment
 
