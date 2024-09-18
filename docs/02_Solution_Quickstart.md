@@ -26,9 +26,7 @@ This starter kit comes with API samples written in #CSharp language under the *a
 3) Azure OpenAI - To use for Azure OpenAI Configurati0n tab
 4) Azure AI Search, Azure Cosmos DB and Azure Container Apps - You may choose to create one subnet or 3 subnets for each of these services
 
-The Virtual Network does not require to be in the same region where you are deploying the reference implementation, as the Private Endpoints can be in a different region compared to the Azure services that are created. However for ease of deployment we recommend you have a virtual network created in the same region. Here is what the subnet sample should looks like
-
-![SubnetSample](../media/02_Subnet_Sample.PNG)
+The Virtual Network does not require to be in the same region where you are deploying the reference implementation, as the Private Endpoints can be in a different region compared to the Azure services that are created. However for ease of deployment we recommend you have a virtual network created in the same region. Here is what the subnet sample should looks like:
 
 > :memo: **Note:** The subnet for Azure Container Apps should be a subnet that is not used by any other resources in the Virtual Network. It needs to have a minimum of 507 IP addresses available (/23) and Microsoft.App/environments need to be delegated.
 
