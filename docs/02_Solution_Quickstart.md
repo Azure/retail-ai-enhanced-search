@@ -51,7 +51,7 @@ To deploy the E-Retail Quickstart kit in a PoC environment, follow these steps:
 
 #### (4) Select your virtual network and subnet for the Storage Account resource as below
 
-![StorageAccount]
+![StorageAccunt](../media/02_StorageAccount.PNG)
 
 #### (5) Select your virtual network and subnet for the Azure OpenAI resource as below
 
