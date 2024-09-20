@@ -7,7 +7,9 @@ The **backend web API's** are in **.NET code** which run in the container app. T
 
 ![ContainerAppSecrets](../media/01_ContainerAppSecrets.PNG)
 
-The spa folder contains the **frontend React code**.
+The spa folder contains the **frontend React code**. This runs as a **static web application**. It has an API connection to the container app.
+
+![ConnectiontoConaitnerApp](../media/01_ConnectionContainerApp.PNG)
 
 The CosmosDB **Product** database gets created with a sample of 100 files and random images.
 There is a **Product Catalog** inside the **Product** database. 
@@ -23,3 +25,5 @@ There is also the **Indexer** which shows the date when the CosmosDB was indexed
 
 |![Indexer](../media/01_Indexer.PNG)| ![SemanticConfig](../media/01_IndexerDetails.PNG)|
 | ------ | ---- |
+
+**APIM** is public facing. 
