@@ -26,4 +26,7 @@ There is also the **Indexer** which shows the date when the CosmosDB was indexed
 |![Indexer](../media/01_Indexer.PNG)| ![SemanticConfig](../media/01_IndexerDetails.PNG)|
 | ------ | ---- |
 
-**APIM** is public facing.
+**APIM** is public facing. The frontend is reactive in its layout. Furthermore it has paging and filters which let's you perform key value search. It can also cater to interactive search.
+
+![KeyValueSearch](../media/01_Keyvaluesearch.png)
+![InteractiveSearch](../media/01_InteractiveSearch.png)
