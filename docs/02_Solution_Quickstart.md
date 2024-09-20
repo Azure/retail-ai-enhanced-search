@@ -21,20 +21,23 @@ This starter kit comes with API samples written in #CSharp language under the *a
 
 **Pre-requisites**:For this POC deployment you will need a Virtual Network with 4 different subnets to cater to each of the following services:
 
+> :bulb: **Tip:**: You may also choose the naming convention of 'prefix'-'region'-'resourcetype' where possible.
+
 1) KeyVault - To use for Key Vault Configuration tab
 2) Storage Account - To use for Storage Configuration tab
-3) Azure OpenAI - To use for Azure OpenAI Configurati0n tab
+3) Azure OpenAI - To use for Azure OpenAI Configuration tab
 4) Azure AI Search - To use for Use Case and Additional Services tab
 5) Azure Cosmos DB - To use for Use Case and Additional Services tab
 6) Azure Container Apps - To use for Use Case and Additional Services tab
 
+> :warning: **Warning:** The subnet for Azure Container Apps should be a subnet that is not used by any other resources in the Virtual Network. It needs to have a minimum of 507 IP addresses available (/23) and Microsoft.App/environments need to be delegated.
+
+![SubnetSize](../media/02_SubnetSize.PNG)
+![Subnet Delegation](../media/02_SubnetDelegation.PNG)
+
+Once configured the subnet configurations looks like this:
+
 The Virtual Network does not require to be in the same region where you are deploying the reference implementation, as the Private Endpoints can be in a different region compared to the Azure services that are created. However for ease of deployment we recommend you have a virtual network created in the same region. Here is what the subnet sample should looks like:
-
-![alt text](../media/02_Subnet_Sample.PNG)
-
-> :memo: **Note:** The subnet for Azure Container Apps should be a subnet that is not used by any other resources in the Virtual Network. It needs to have a minimum of 507 IP addresses available (/23) and Microsoft.App/environments need to be delegated.
-
-> :bulb: **Tip:**: You may also choose the naming convention of 'prefix'-'region'-'resourcetype' where possible.
 
 To deploy the E-Retail Quickstart kit in a PoC environment, follow these steps:
 
@@ -83,7 +86,9 @@ Once this is selected you will find a few more options to configure below
 
 #### (11) Select appropriate virtual network and subnet for Azure Container Apps
 
+![ContainerApp](../media/02_ContainerApp.PNG)
 
+Finally you will be taken to the Review+Create page and 
 
 ### Production Environment
 
