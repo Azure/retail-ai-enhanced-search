@@ -14,4 +14,10 @@ There is a **Product Catalog** inside the **Product** database.
 
 ![Products](../media/01_Products.PNG)
 
-The AI search components consists of **Index**
+The AI search components consists of **Index** that searches the cosmosDB for certain fields
+
+![SearchIndex](../media/01_SearchServiceIndex.PNG)
+
+and a Semantic configuration for generic searches.
+
+![SemanticConfig](../media/01_SemanticConfig.PNG)
