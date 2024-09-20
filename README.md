@@ -41,13 +41,9 @@ Components of the solution are as follows:
 - **Azure Functions** is a serverless solution that makes it possible for you to write less code, maintain less infrastructure, and save on costs.This is used for handling incoming requests.
 - **Azure Content Safety** is a service that helps you detect and filter harmful user-generated and AI-generated content in your applications and services. Content Safety includes text and image detection to find content that is offensive, risky, or undesirable, such as profanity, adult content, gore, violence, hate speech, and more. This will be used to implement responsible generative AI measures.
 
-## Workflow
-
-The infrastructure components get deployed with a Bicep template. The backend web API are in .NET code which run in the container app. The spa folder contains the frontend react code.
-
 ## Getting Started
 
-This repo assumes you are familiar with the basics of Generative AI and Integrated Vector databases. None the less its good if you refer the [Key Concepts to Understand](./docs/01_Concepts.md) section prior to deployment.
+This repo assumes you are familiar with the basics of Generative AI and Integrated Vector databases. None the less its good if you refer the [Key Concepts to Understand](./docs/00_Concepts.md) section prior to deployment.
 
 ### Prerequisites
 
