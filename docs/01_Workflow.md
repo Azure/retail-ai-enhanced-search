@@ -26,4 +26,4 @@ There is also the **Indexer** which shows the date when the CosmosDB was indexed
 |![Indexer](../media/01_Indexer.PNG)| ![SemanticConfig](../media/01_IndexerDetails.PNG)|
 | ------ | ---- |
 
-**APIM** is public facing. 
+**APIM** is public facing.
