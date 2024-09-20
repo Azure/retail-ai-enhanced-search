@@ -32,10 +32,11 @@ This starter kit comes with API samples written in #CSharp language under the *a
 
 > :warning: **Warning:** The subnet for Azure Container Apps should be a subnet that is not used by any other resources in the Virtual Network. It needs to have a minimum of 507 IP addresses available (/23) and Microsoft.App/environments need to be delegated.
 
-![SubnetSize](../media/02_SubnetSize.PNG)
-![Subnet Delegation](../media/02_SubnetDelegation.PNG)
-
+| ![SubnetSize](../media/02_SubnetSize.PNG) | ![Subnet Delegation](../media/02_SubnetDelegation.PNG)|
+| ----- | ------ |
 Once configured the subnet configurations looks like this:
+
+![Subnet Sample](../media/02_Subnet_Sample.PNG)
 
 The Virtual Network does not require to be in the same region where you are deploying the reference implementation, as the Private Endpoints can be in a different region compared to the Azure services that are created. However for ease of deployment we recommend you have a virtual network created in the same region. Here is what the subnet sample should looks like:
 
@@ -51,16 +52,11 @@ To deploy the E-Retail Quickstart kit in a PoC environment, follow these steps:
 
 #### (3) Select your virtual network and subnet for the Key Vault resource, then select "No" for Customer-Managed Keys
 
-![KeyVaultImage1](../media/02_KeyVault1.PNG)
-![KeyVaultImage2](../media/02_KeyVault2.PNG)
-
 #### (4) Select your virtual network and subnet for the Storage Account resource as below
 
-![StorageAccount](../media/02_StorageAccount.PNG)
 
 #### (5) Select your virtual network and subnet for the Azure OpenAI resource as below
 
-![AOAI](../media/02_AOAI.PNG)
 
 #### (6) Select "GPT4o" for your model and type deployment name and content filter name
 
@@ -78,15 +74,9 @@ Once this is selected you will find a few more options to configure below
 
 #### (9) Select appropriate virtual network and subnet for Azure AI Search.
 
-![AzureAISearch](../media/02_AISearch.PNG)
-
 #### (10) Select appropriate virtual network and subnet for Azure Cosmos DB
 
-![CosmosDB](../media/02_CosmosDB.PNG)
-
 #### (11) Select appropriate virtual network and subnet for Azure Container Apps
-
-![ContainerApp](../media/02_ContainerApp.PNG)
 
 Finally you will be taken to the Review+Create page and 
 
