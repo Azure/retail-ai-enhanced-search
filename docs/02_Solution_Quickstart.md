@@ -42,7 +42,7 @@ The Virtual Network does not require to be in the same region where you are depl
 
 To deploy the E-Retail Quickstart kit in a PoC environment, follow these steps:
 
-#### (1) Follow [this link](https://github.com/Gary3207Lee/ai-hub?tab=readme-ov-file#enterprise-azure-openai-hub-reference-implementation) for resource deployment and click deploy link as below
+#### (1) Follow [this link](https://ms.portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FIamVarma%2Fai-hub%2Fmain%2Finfrastructure%2Farm%2FaoaiArm.json/uiFormDefinitionUri/https%3A%2F%2Fraw.githubusercontent.com%2FIamVarma%2Fai-hub%2Fmain%2Finfrastructure%2Farm%2FEnterpriseAIPortal.json) for resource deployment and click deploy link as below
 
 ![Deploy to Azure](/media/02_Deploy_to_Azure.png)
 
@@ -88,7 +88,7 @@ To deploy the E-Retail Quickstart kit in a PoC environment, follow these steps:
 
 ![ContainerAppSubnet](../media/02_ContainerApp.PNG)
 
-Finally you will be taken to the Review+Create page 
+Finally you will be taken to the Review+Create  
 
 ### Production Environment
 
