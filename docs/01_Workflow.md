@@ -10,4 +10,8 @@ The **backend web API's** are in **.NET code** which run in the container app. T
 The spa folder contains the **frontend React code**.
 
 The CosmosDB **Product** database gets created with a sample of 100 files and random images.
-There is a **Product Catalog** inside the **Product** database. The AI search components consists of **Index**
+There is a **Product Catalog** inside the **Product** database. 
+
+![Products](../media/01_Products.PNG)
+
+The AI search components consists of **Index**
