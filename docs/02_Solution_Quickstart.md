@@ -34,8 +34,8 @@ This starter kit comes with API samples written in #CSharp language under the *a
 
 | ![SubnetSize](../media/02_SubnetSize.PNG) | ![Subnet Delegation](../media/02_SubnetDelegation.PNG)|
 | ----- | ------ |
-Once configured the subnet configurations looks like this:
 
+Once configured the subnet configurations looks like this:
 ![Subnet Sample](../media/02_Subnet_Sample.PNG)
 
 The Virtual Network does not require to be in the same region where you are deploying the reference implementation, as the Private Endpoints can be in a different region compared to the Azure services that are created. However for ease of deployment we recommend you have a virtual network created in the same region. Here is what the subnet sample should looks like:
@@ -50,13 +50,17 @@ To deploy the E-Retail Quickstart kit in a PoC environment, follow these steps:
 
 ![ArchitectureSetup](../media/02_Architecture_Setup.png)
 
-#### (3) Select your virtual network and subnet for the Key Vault resource, then select "No" for Customer-Managed Keys
+#### (3) Select your virtual network and subnet for the Key Vault resource, then select "No" for Customer-Managed Keys as shown below
 
-#### (4) Select your virtual network and subnet for the Storage Account resource as below
+![KeyVaultSubnet](../media/02_KeyVault.PNG)
 
+#### (4) Select your virtual network and subnet for the Storage Account resource as shown below
 
-#### (5) Select your virtual network and subnet for the Azure OpenAI resource as below
+![StorageAccountSubnet](../media/02_StorageAccount.PNG)
 
+#### (5) Select your virtual network and subnet for the Azure OpenAI resource as shown below
+
+![AOAISubnet](../media/02_AOAI.PNG)
 
 #### (6) Select "GPT4o" for your model and type deployment name and content filter name
 
@@ -66,19 +70,25 @@ To deploy the E-Retail Quickstart kit in a PoC environment, follow these steps:
 
 ![Use Case](/media/02_UseCase.png)
 
-Once this is selected you will find a few more options to configure below
+> :bulb: **Tip:**: Once this is selected you will find a few more options to configure options upon scrolling down further
 
 #### (8) Select "Retail AI Enhanced Search" for the Use Case
 
 ![Embedding](/media/02_Embedding.png)
 
-#### (9) Select appropriate virtual network and subnet for Azure AI Search.
+#### (9) Select appropriate virtual network and subnet for Azure AI Search as shown below
 
-#### (10) Select appropriate virtual network and subnet for Azure Cosmos DB
+![AISearchSubnet](../media/02_AISearch.PNG)
 
-#### (11) Select appropriate virtual network and subnet for Azure Container Apps
+#### (10) Select appropriate virtual network and subnet for Azure Cosmos DB as shown below
 
-Finally you will be taken to the Review+Create page and 
+![CosmosDBSubnet](../media/02_CosmosDB.PNG)
+
+#### (11) Select appropriate virtual network and subnet for Azure Container Apps as shown below
+
+![ContainerAppSubnet](../media/02_ContainerApp.PNG)
+
+Finally you will be taken to the Review+Create page 
 
 ### Production Environment
 
