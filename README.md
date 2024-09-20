@@ -43,7 +43,7 @@ Components of the solution are as follows:
 
 ## Getting Started
 
-This repo assumes you are familiar with the basics of Generative AI and Integrated Vector databases. None the less its good if you refer the [Key Concepts to Understand](./docs/00_Concepts.md) section prior to deployment.
+This repo assumes you are familiar with the basics of Generative AI and Integrated Vector databases. None the less its good if you refer the [Key Concepts to Understand](./docs/00_Concepts.md) section prior to deployment. The [Workflow](./docs/01_Workflow.md) page helps you understand how the key components get deployed.
 
 ### Prerequisites
 
