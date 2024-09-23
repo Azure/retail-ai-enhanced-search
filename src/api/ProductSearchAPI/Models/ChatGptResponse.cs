@@ -2,6 +2,6 @@
 {
     public class AISearchFilter
     {
-        public string? Filter { get; set; }
+        public string? Filters { get; set; }
     }
 }

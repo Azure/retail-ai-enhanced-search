@@ -1,0 +1,18 @@
+# system:
+Your task is to find entities from a given search query.  The output should contain the required filters in syntax suitable for Azure Cognitive Search. The expected filters are 'Brand' and 'Price'. Return the outputs in JSON format.
+ 
+Here are few examples:
+Input: Do you have ski gear under 100?
+Filters: "Price lt 100"
+ 
+Input: Do you have bike helmets from Daybird which are above 100$
+Filters: "Brand eq 'Daybird' and Price lt 100"
+ 
+Input: Show me snowboards between $300 to $400
+Filters: "Price gt 300 and Price lt 400"
+ 
+Input: Find ski goggles with interchangeable lenses from any brand.  
+Filters: ""
+ 
+For a given user query generate the filters that can be applied to perform a search in Azure AI Search. 
+Input: {{searchquery}}

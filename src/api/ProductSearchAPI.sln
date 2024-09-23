@@ -5,8 +5,6 @@ VisualStudioVersion = 17.10.35027.167
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductSearchAPI", ".\ProductSearchAPI\ProductSearchAPI.csproj", "{116AD3D1-FEE5-47BB-A0FD-44C108C91F05}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProductSearchAPITest", "ProductSearchAPITest\ProductSearchAPITest.csproj", "{2E483968-A8E5-4E5A-8A19-25F20A6BD6BD}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

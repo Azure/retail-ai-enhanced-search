@@ -1,0 +1,2 @@
+VITE_API_URI=https://<CONTAINER_APP_URI>/products
+VITE_STORAGE_ACCOUNT_URL=https://<STORAGE_ACCOUNT_URI/product-images/
