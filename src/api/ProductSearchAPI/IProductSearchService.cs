@@ -162,9 +162,10 @@ namespace ProductSearchAPI
                 await foreach (SearchResult<Product> result in response.Value.GetResultsAsync())
                 {
                     documentCount++;
-                    Product doc = result.Document;                    
-                    products.Add(doc);
-                    _logger.LogInformation("Product: {@Product}", doc);
+                    Product product = result.Document;                    
+                    products.Add(product);
+                    var serializedProduct = JsonSerializer.Serialize(product);
+                    _logger.LogInformation($"Product: {serializedProduct}");
                 }
 
                 _logger.LogInformation($"Found '{documentCount}' documents");
