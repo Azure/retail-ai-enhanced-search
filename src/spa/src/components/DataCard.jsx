@@ -12,20 +12,22 @@ export default function DataCard({ item, index }) {
 
     return (
         <Card class="m-0 max-w-72 bg-white rounded-md shadow-xl">
+
             <CardMedia
                 component="img"
-                image={`${storageAccountUrl}${item.imageName}`}
+                image={`${storageAccountUrl}${item.image}`}
                 alt="Product Image"
                 sx={{ 'border-radius': '6px 6px 0px 0px', padding: "0 0 0 0", margin: "0 0 0 0", minHeight: 0, objectFit: "fill" }}
             />
             <CardContent class="p-2">
+                <div class="h-20">
                 <Typography class="text-lg font-semibold">
                     {item.name}
                 </Typography>
                 <Typography class="text-sm text-cyan-700 font-semibold">
                     {item.brand}
                 </Typography>
-                <br />
+                </div>
                 <Typography color="text.secondary" class="font-light">
                     <ShowMoreText
                         lines={4}

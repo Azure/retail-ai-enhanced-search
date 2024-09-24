@@ -164,7 +164,7 @@ namespace ProductSearchAPI
                     documentCount++;
                     Product doc = result.Document;                    
                     products.Add(doc);
-                    _logger.LogInformation($"Name: {doc.Name}");
+                    _logger.LogInformation("Product: {@Product}", doc);
                 }
 
                 _logger.LogInformation($"Found '{documentCount}' documents");
