@@ -4,7 +4,6 @@ using Azure.Search.Documents.Models;
 using Azure.Search.Documents.Indexes.Models;
 using Azure;
 using Azure.AI.OpenAI;
-using OpenAI.Embeddings;
 using OpenAI.Chat;
 using System.Text.Json;
 
@@ -12,7 +11,7 @@ namespace ProductSearchAPI
 {
     public interface IProductSearchService
     {
-        Task<List<Product>> SearchProducts(string queryText, string semanticConfigName, string embeddingClientName, string vectorFieldName, string deploymentName, int nearestNeighbours, string systemPromptFilePath, List<string> fields);
+        Task<List<Product>> SearchProducts(string queryText, string semanticConfigName, string embeddingClientName, IList<string> vectorFieldNames, string deploymentName, int nearestNeighbours, string systemPromptFilePath, List<string> fields);
         Task<SearchServiceStatistics> GetSearchServiceStatistics();
         Task<long> GetDocumentIndexCount();
     }
@@ -32,21 +31,6 @@ namespace ProductSearchAPI
             _openAIClient = openAIClient;
         }
 
-        private ReadOnlyMemory<float> GetEmbeddings(string input, string embeddingClientName)
-        {
-            try
-            {
-                EmbeddingClient embeddingClient = _openAIClient.GetEmbeddingClient(embeddingClientName);
-                Embedding embedding = embeddingClient.GenerateEmbedding(input);
-                return embedding.Vector;
-            } 
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, $"Error generating embeddings for input: {input}", input);
-                return null;
-            }
-        }
-
         private async Task<System.ClientModel.ClientResult<ChatCompletion>> GetGPTChatResponse(string chatMessage, string systemPrompt, string chatDeploymentName)
         {
             ChatClient chatClient = _openAIClient.GetChatClient(chatDeploymentName);
@@ -58,16 +42,18 @@ namespace ProductSearchAPI
 
             var options = new ChatCompletionOptions
             {
-                Temperature = (float?)0.7,
+                Temperature = (float?)1.0,
                 FrequencyPenalty = 0,
                 PresencePenalty = 0,
+                MaxTokens = 256,
+                ResponseFormat = ChatResponseFormat.CreateJsonObjectFormat()
             };
 
             var chatResponse = await chatClient.CompleteChatAsync(chatMessages, options);
             return chatResponse;
         }
 
-        public async Task<List<Product>> SearchProducts(string queryText, string semanticConfigName, string embeddingClientName, string vectorFieldName, string chatGptDeploymentName, int nearestNeighbours, string systemPromptFileName, List<string> fields)
+        public async Task<List<Product>> SearchProducts(string queryText, string semanticConfigName, string embeddingClientName, IList<string> vectorFieldNames, string chatGptDeploymentName, int nearestNeighbours, string systemPromptFileName, List<string> fields)
         {
             string systemPrompt = string.Empty;
             string filter = string.Empty;
@@ -82,15 +68,7 @@ namespace ProductSearchAPI
                 throw new FileNotFoundException($"Required file '{systemPromptFileName}' not found: {ex.Message}");
             }
 
-            ReadOnlyMemory<float> vectorizedResult = GetEmbeddings(queryText, embeddingClientName);
-
-            if (vectorizedResult.IsEmpty || String.IsNullOrEmpty(queryText))
-            {
-                return new List<Product>();
-            }
-
             var chatGptResponse = await GetGPTChatResponse(queryText, systemPrompt, chatGptDeploymentName);
-
             if (chatGptResponse.Value.Content.Count <= 0 || String.IsNullOrEmpty(chatGptResponse.Value.Content[0].Text))
             {
                 _logger.LogInformation($"chatGptResponse is empty");
@@ -102,10 +80,16 @@ namespace ProductSearchAPI
 
                 try
                 {
-                    AISearchFilter chatGptSearchFilter = JsonSerializer.Deserialize<AISearchFilter>(
-                        chatGptResponse.Value.Content[0].Text
-                        );
-                    filter = chatGptSearchFilter.Filter.Trim();
+                    AISearchFilter chatGptSearchFilter = new AISearchFilter();
+                    if (chatGptResponse != null && !string.IsNullOrEmpty(chatGptResponse.Value.Content[0].Text))
+                    {
+                        chatGptSearchFilter = JsonSerializer.Deserialize<AISearchFilter>(chatGptResponse.Value.Content[0].Text);
+                    }
+
+                    if (chatGptSearchFilter != null && chatGptSearchFilter.Filters != null)
+                    {
+                        filter = chatGptSearchFilter.Filters.Trim();
+                    }
                 }
                 catch (JsonException e)
                 {
@@ -117,9 +101,10 @@ namespace ProductSearchAPI
                     VectorSearch = new()
                     {
                         Queries = {
-                            new VectorizedQuery(vectorizedResult) {
+                            new VectorizableTextQuery(queryText) {
                                 KNearestNeighborsCount = nearestNeighbours,
-                                Fields = { vectorFieldName }
+                                Weight = 1,
+                                Exhaustive = true,
                             }
                         }
                     },
@@ -132,9 +117,17 @@ namespace ProductSearchAPI
                     QueryType = SearchQueryType.Semantic
                 };
 
-                if (filter != null)
+                if (filter != null || filter != string.Empty || filter != "")
                 {
-                    options.Filter = filter;
+                    if (!string.IsNullOrEmpty(filter))
+                    {
+                        options.Filter = filter.ToLower();
+                    }
+                }
+
+                foreach (string vectorFieldName in vectorFieldNames)
+                {
+                    options.VectorSearch.Queries[0].Fields.Add(vectorFieldName);
                 }
 
                 foreach (string field in fields)
@@ -142,23 +135,33 @@ namespace ProductSearchAPI
                     options.SearchFields.Add(field);
                 }
 
-                SearchResults<Product> response = await _searchClient.SearchAsync<Product>(
-                    queryText,
-                    options);
-
-                _logger.LogInformation($"response count: {response.TotalCount}");
-
-                int documentCount = 0;
-                await foreach (SearchResult<Product> result in response.GetResultsAsync())
+                try
                 {
-                    documentCount++;
-                    Product doc = result.Document;
-                    products.Add(doc);
-                    _logger.LogInformation($"Name: {doc.Name}");
+                    var response = await _searchClient.SearchAsync<Product>(
+                        queryText,
+                        options);
+
+                    int documentCount = 0;
+
+                    await foreach (SearchResult<Product> result in response.Value.GetResultsAsync())
+                    {
+                        documentCount++;
+                        Product product = result.Document;
+                        products.Add(product);
+                        var serializedProduct = JsonSerializer.Serialize(product);
+                        _logger.LogInformation($"Product: {serializedProduct}");
+                    }
+
+                    _logger.LogInformation($"Found '{documentCount}' documents");
+                    return products;
+
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError(ex, $"Error searching products: {ex.Message}");
                 }
 
-                _logger.LogInformation($"Found '{documentCount}' documents");
-                return products;
+                return new List<Product>();
             }
         }
 

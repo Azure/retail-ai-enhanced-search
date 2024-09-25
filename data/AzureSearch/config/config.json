@@ -1,0 +1,58 @@
+
+{
+    "cosmos-config":{
+        "cosmos_db_name" : "catalogDb",
+        "cosmos_db_container_name" : "products",
+        "cosmos_db_partition_key" : "/id"
+    },
+    "ai-search-config":{
+        "data-source-config":{
+            "cosmos_db_data_source_name" : "cosmosdb-data-source"
+        },
+        "search-index-config": {
+            "name" : "contoso-product-index",
+            "all_fields" : [
+                {"field" :"id", "type": "string"},
+                {"field": "name","type" :"string"},
+                {"field": "price","type" :"double"},
+                {"field": "category","type" :"string"},
+                {"field": "brand","type" :"string"},
+                {"field": "image","type" :"string"},
+                {"field": "description","type" :"string"},
+                {"field": "description_vectorized","type" :"vector"},
+                {"field": "isDeleted","type" :"boolean"}
+            ],
+            "key_field" : "id",
+            "retrievable_fields" : ["id","name","category","description","price","image","isDeleted","description_vectorized"],
+            "filterable_fields" : ["name","category","brand","price"],
+            "sortable_fields" : ["price"],
+            "facetable_fields" : ["category","brand"],
+            "searchable_fields" : ["name","description","category","description_vectorized"],
+            "vector_fields" : ["description_vectorized"],
+            "semantic_configurations": {
+                "name": "product-semantic-config",
+                "isEnabled": true,
+                "title_field" : "name",
+                "content_fields" : ["description"],
+                "keyword_fields" : ["brand","category"]
+            }
+        },
+        "search-skillset-config":{
+            "name" : "open-ai-embedding",
+            "openai-embedding" :[
+                {                
+                    "name" : "skillset-contoso-openai-embedding_description",
+                    "input-column" : "/document/description",
+                    "output-column" : "description_vectorized"
+                }
+            ]
+        },
+        "search-indexer-config":{
+            "name" : "contoso-product-indexer"
+        }
+    },
+    "open_ai_config" : {
+        "embedding_deployment_name" : "text-embedding-ada-002",
+        "embedding_model_name": "text-embedding-ada-002"
+    }
+}
