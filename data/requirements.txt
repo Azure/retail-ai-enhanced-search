@@ -1,0 +1,8 @@
+azure-cosmos==4.7.0
+azure-identity==1.17.1
+azure-search-documents==11.5.1
+msal==1.30.0
+openai==1.42.0
+pandas==2.2.2
+python-dotenv==1.0.1
+azure-keyvault==4.2.0
