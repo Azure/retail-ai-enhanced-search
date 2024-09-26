@@ -388,7 +388,7 @@ if __name__ == "__main__":
         sys.exit(1)
 
     ##############################################
-    Step 1: Creating Cosmos DB
+    ## Step 1: Creating Cosmos DB
     ##############################################
 
     CONTAINER_NAME = config["cosmos-config"]["cosmos_db_container_name"]
@@ -412,7 +412,7 @@ if __name__ == "__main__":
         sys.exit(1)
 
     ##############################################
-    Step 2: Upload Data to Cosmos DB 
+    ## Step 2: Upload Data to Cosmos DB 
     ##############################################
 
     print("Uploading Data...")
@@ -437,7 +437,7 @@ if __name__ == "__main__":
             sys.exit(1)
 
     ##############################################
-    Step 3:  Create an Indexer
+    ## Step 3:  Create an Indexer
     ##############################################
 
     print("Creating Indexer...")
@@ -465,7 +465,7 @@ if __name__ == "__main__":
     open_ai_embedding_model_name = config["open_ai_config"]["embedding_model_name"]
     
     ##############################################
-    Step 4:  Create a Search Endpoint
+    ## Step 4:  Create a Search Endpoint
     ##############################################
     try:
         print(f"Creating Search client with endpoint: {SERVICE_ENDPOINT}")
@@ -493,7 +493,7 @@ if __name__ == "__main__":
         sys.exit(1)
 
     ##############################################
-    Step 5:  Create a Search Index
+    ## Step 5:  Create a Search Index
     ##############################################
     try:
         index = create_search_index(
@@ -523,7 +523,7 @@ if __name__ == "__main__":
         sys.exit(1)
     
     ##############################################
-    Step 6:  Create an OpenAI Embedding Skillset
+    ## Step 6:  Create an OpenAI Embedding Skillset
     ##############################################
     try:
         print("Creating OpenAI embedding skillset")
@@ -547,7 +547,7 @@ if __name__ == "__main__":
         sys.exit(1)
 
     ##############################################
-    Step 7:  Recreating Indexer
+    ## Step 7:  Recreating Indexer
     ##############################################
     try:
         print("Creating the indexer")
