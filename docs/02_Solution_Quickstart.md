@@ -17,6 +17,8 @@ This starter kit comes with API samples written in #CSharp language under the *a
 
 ## Resource Deployment & Configurations
 
+Prior to using deployment templates for any environment you need to create a few resources in your Azure subscription. This allows you at different stages in POC/Prod environment templates to select them from drop down list.
+
 ### PoC Environment
 
 **Pre-requisites**:For this POC deployment you will need a Virtual Network with 4 different subnets to cater to each of the following services:
