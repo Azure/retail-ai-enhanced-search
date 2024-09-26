@@ -53,7 +53,64 @@ We have two configurations files to update for Local Debugging.
         - For the _Agent_ who is running the script. If we are running it from the Local environment, then our Object ID needs to have access to the Cosmos DB. If we are running it from Azure VM or Azure Container App, then the VM or Container App Managed Identity needs to have access to the Cosmos DB.
     - [Cosmos DB Data Reader Role](https://learn.microsoft.com/en-us/azure/cosmos-db/how-to-setup-rbac#built-in-role-definitions)
         - For the _Azure AI Search managed Identity_
-- **Azure AI Search**gary
+    - Cosmos DB Account Reader Role (roleDefinitionId: `fbdf93bf-df7d-467e-a4d2-9458aa1360c8`)
+        - For the _Azure AI Search managed Identity_
+- **Azure AI Search**
+    - Search Service Contributor (roleDefinitionId: `7ca78c08-252a-4471-8644-bb5ff32d4ba0`)
+        - The _agent_ who is running the script. If we are running it from the Local environment, then our Object ID needs to have access to the Azure AI Search. If we are running it from Azure VM or Azure Container App, then the_ VM or Container App Managed Identity_ needs to have access to the Azure AI Search.
+        
 - **Azure Open AI**
-    - Azure AI Developer Role ( roleDefinitionId: '64702f94-c441-49e6-a78b-ef80e0188fee')
+    - Azure AI Developer Role ( roleDefinitionId: `64702f94-c441-49e6-a78b-ef80e0188fee`)
         - This is needed for the _Azure AI Search managed identity_ to access the Open AI Embedding model.
+
+To provide access to the Cosmos DB data Reader role and Cosmos DB Data Contributor Role, we can use the below code in the script. This code will assign the required roles to the Azure AI Search managed identity.
+
+```powershell
+$readOnlyRoleDefinitionId = "00000000-0000-0000-0000-000000000002" # Cosmos DB Data Contributor Role
+#$readOnlyRoleDefinitionId = "00000000-0000-0000-0000-000000000001" #- Cosmos DB Data Reader Role
+
+$principalId="<object ID of the Agent/Client ID>"
+$ResourceGroupName="< Resource Group name>"
+$accountName="< Cosmos DB Account Name>"
+
+# check if the role is present
+$roleAssignment = Get-AzCosmosDBSqlRoleAssignment -AccountName $accountName -ResourceGroupName $resourceGroupName | Where-Object { $_.PrincipalId -eq $principalId -and $_.RoleDefinitionId -match $readOnlyRoleDefinitionId }
+if (!$roleAssignment) {
+    Write-Output "Assigning role to the service principal"
+    New-AzCosmosDBSqlRoleAssignment -AccountName $accountName -ResourceGroupName $resourceGroupName -RoleDefinitionId $readOnlyRoleDefinitionId -Scope "/" -PrincipalId $principalId  
+}
+
+```
+## Network configurations
+
+Please ignore this section if you the services in the public endpoint. If you are using the private endpoint for the network connectivity between the resources make sure that the below configurations are done.
+1. You are using the Azure AI Search service with SKU Standard2 or above. This is required because we are using the AI Enrichment and skills in the Azure AI Search. [[details](https://learn.microsoft.com/en-us/azure/search/search-indexer-howto-access-private?tabs=portal-create#prerequisites)]
+2. The private Link is created for the outbound connectivity from the Azure AI Search to the Cosmos DB, and Azure AI Search to the Azure Open AI Service. [[details](https://learn.microsoft.com/en-us/azure/search/search-indexer-howto-access-private?tabs=portal-create#supported-resource-types)]
+![alt text](.\images\PrivateLink_image.png)
+
+## Running the script
+
+If we are running the script in the local environment, we can run the script using the below command.
+
+```bash
+python data\AzureSearch\createIndex.py
+```
+
+The script does the following high level steps. 
+
+1. Read the configurations from the `config.json` file.
+2. Read the environment variables from the `.env` file.
+3. Create the Cosmos DB client and upload the data to the Cosmos DB container from the file `data\AzureSearch\data\products.csv`.
+4. Create the Azure AI Search client and create the Azure AI Search artifacts.
+5. creating the Azure AI Search Data Source pointing to the Cosmos DB container. This uses the managed identity of Azure Search for the authentication. 
+6. creating the Azure AI Search Index. The Index definition is created based on the fields mentioned in the `config.json` file. We also create [Vectorizer](https://learn.microsoft.com/en-us/azure/search/vector-search-how-to-configure-vectorizer) and enable [Semantic Configurations](https://learn.microsoft.com/en-us/azure/search/semantic-how-to-configure?tabs=portal) based on the configurations mentioned in the config file.
+7. creating the Azure AI Search Skillset. This skillset uses the Open AI Embedding model to enrich the data. The Open AI Embedding model is used to get the embeddings of the text data. The embeddings are used to improve the search relevance.
+8. creating the Azure AI Search Indexer. The indexer is used to scan the data from the Cosmos DB and push the data to the Azure AI Search Index. 
+
+
+
+
+
+
+
+

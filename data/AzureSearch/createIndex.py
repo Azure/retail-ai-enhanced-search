@@ -307,6 +307,7 @@ def create_search_indexer(
                                                     image_action=None,
                                                     allow_skillset_to_read_file_data=None,
                                                     pdf_text_rotation_algorithm=None,
+                                                    execution_environment="private" 
                                                     )
 
     parameters = IndexingParameters(configuration=configuration)
