@@ -7,7 +7,7 @@ The **backend web API's** are in **.NET code** which run in the container app. T
 
 ![ContainerAppSecrets](../media/01_ContainerAppSecrets.PNG)
 
-The spa folder contains the **frontend React code**. This runs as a **static web application**. It has an API connection to the container app.
+The spa folder contains the **frontend React code**. This runs as a **static web application**. It has an API connection to the container app. No image search functionality
 
 ![ConnectiontoConaitnerApp](../media/01_ConnectionContainerApp.PNG)
 
