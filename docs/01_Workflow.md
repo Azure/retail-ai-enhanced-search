@@ -2,12 +2,11 @@
 
 Under the SRC folder you will find **[api](../src/api/)** and **[data](../src/data/)** which contains the application and data code. The repo uses the [products.csv](../data/AzureSearch/data/products.csv) as sample data. It looks as follows
 
-![ProductSample](../media/01_Productsample.PNG)
+![ProductSample](media/01_Productsample.PNG)
 
 Using this sample data a search index is created on the following fields
 
 ![SearchIndex](../media/01_SearchIndexStructure.PNG)
-
 
 The CosmosDB **catalogDb** database gets created with a sample of 101 files and random images.
 This resides under the **products** container within Cosmos DB. Cosmos DB version azure-cosmos==4.7.0

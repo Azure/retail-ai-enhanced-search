@@ -4,6 +4,7 @@
 In this example, we will upload sample data into Cosmos DB and create an index in Azure AI Search to scan the data from Cosmos DB. While creating the Azure AI Search Index, we will also set up other associated resources such as Skillset, Indexer, Data Source, and Vectorizer. The below guidance will focus on the local development through VS Code.
 
 ## Prerequisites
+
 1. You already have an Active Azure Subscription.
 2. You have a python virtual environment where the required modules are already installed (requirements.txt). If you do not have the virtual environment, you can create one using the below command.
 
