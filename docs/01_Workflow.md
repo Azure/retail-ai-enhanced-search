@@ -1,5 +1,7 @@
 # Overview
 
+Under the SRC folder you will find **[api](../src/api/)** and **[data](../src/data/)** which contains the application and data code.
+
 ## Workflow
 
 The infrastructure components get deployed with a **Bicep template**.
