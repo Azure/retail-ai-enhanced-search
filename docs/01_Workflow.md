@@ -2,7 +2,7 @@
 
 Under the SRC folder you will find **[api](../src/api/)** and **[data](../src/data/)** which contains the application and data code. The repo uses the [products.csv](../data/AzureSearch/data/products.csv) as sample data. It looks as follows
 
-<img src='/media/01_Productsample.PNG' width='950' height='200'>
+<img src='/media/01_Productsample.PNG' width='950' height='170'>
 
 Using this sample data a search index is created on the following fields
 
@@ -10,7 +10,7 @@ Using this sample data a search index is created on the following fields
 
 Based on the above structure various fields are called to integrate filtering, sorting, vectorization capabilities and dedicate how the search results will look like. This is done using [Search Index](https://learn.microsoft.com/azure/search/search-what-is-an-index) and [Indexer](https://learn.microsoft.com/azure/search/search-indexer-overview) capabilities of Azure AI Search.
 
-![SearchFields](../media/01_SearchFields.PNG)
+<img src='/media/01_SearchFields.PNG' width='750' height='350'>
 
 The CosmosDB **catalogDb** database gets created with a sample of 101 files and random images.
 This resides under the **products** container within Cosmos DB. Cosmos DB version azure-cosmos==4.7.0
