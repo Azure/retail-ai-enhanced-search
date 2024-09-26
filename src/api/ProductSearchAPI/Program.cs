@@ -24,12 +24,26 @@ builder.Services.AddAzureClients(clientBuilder =>
 {
     clientBuilder.AddClient<SearchClient, SearchClientOptions>((_, _, ServiceProvider) =>
     {
-        return new SearchClient(new Uri(config.AISearchClient.Endpoint), config.AISearchClient.IndexName, new DefaultAzureCredential());
+        if (config.AISearchClient != null && config.AISearchClient.Endpoint != null && config.AISearchClient.IndexName != null)
+        {
+            return new SearchClient(new Uri(config.AISearchClient.Endpoint), config.AISearchClient.IndexName, new DefaultAzureCredential());
+        }
+        else
+        {
+            throw new Exception("Search client configuration is missing.");
+        }
     });
 
     clientBuilder.AddClient<SearchIndexClient, SearchClientOptions>((_, _, ServiceProvider) =>
     {
-        return new SearchIndexClient(new Uri(config.AISearchClient.Endpoint), new DefaultAzureCredential());
+        if (config.AISearchClient != null && config.AISearchClient.Endpoint != null)
+        {
+            return new SearchIndexClient(new Uri(config.AISearchClient.Endpoint), new DefaultAzureCredential());
+        }
+        else
+        {
+            throw new Exception("Search index client configuration is missing.");
+        }
     });
 });
 
@@ -102,16 +116,15 @@ app.MapGet("/products", async Task<Results<Ok<List<Product>>, NotFound>> (
     [FromServices] IProductSearchService productService
     ) =>
 {
-        List<Product> products = await productService.SearchProducts(
-         query,
-         config.AISearchClient.SemanticConfigName,
-         config.OpenAIClient.EmbeddingClientName,
-         config.AISearchClient.VectorFieldNames,
-         config.OpenAIClient.Model,
-         config.AISearchClient.NearestNeighbours,
-         config.OpenAIClient.SystemPromptFileName,
-         config.AISearchClient.Fields
-     );
+    List<Product> products = await productService.SearchProducts(
+     query,
+     config.AISearchClient.SemanticConfigName,
+     config.AISearchClient.VectorFieldNames,
+     config.OpenAIClient.ChatDeploymentName,
+     config.AISearchClient.NearestNeighbours,
+     config.OpenAIClient.SystemPromptFileName,
+     config.AISearchClient.Fields
+ );
 
     if (products.Count <= 0)
     {
@@ -119,22 +132,6 @@ app.MapGet("/products", async Task<Results<Ok<List<Product>>, NotFound>> (
     }
 
     return TypedResults.Ok(products);
-});
-
-app.MapGet("/stats", (
-    [FromServices] IProductSearchService productService)
-    =>
-{
-    Task<SearchServiceStatistics> stats = productService.GetSearchServiceStatistics();
-    return stats.Result;
-});
-
-app.MapGet("/count", (
-    [FromServices] IProductSearchService productService)
-    =>
-{
-    Task<long> documentCount = productService.GetDocumentIndexCount();
-    return documentCount.Result;
 });
 
 app.Run();
