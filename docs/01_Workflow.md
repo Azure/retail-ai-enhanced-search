@@ -8,25 +8,31 @@ Using this sample data a search index is created on the following fields
 
 ![SearchIndex](../media/01_SearchIndexStructure.PNG)
 
-Based on the above structure various fields are called to integrate filtering, sorting, vectorization capabilities and dedicate how the search results will look like. This is done using [Search Index](https://learn.microsoft.com/azure/search/search-what-is-an-index), [Indexer](https://learn.microsoft.com/azure/search/search-indexer-overview) & [Vector Store](https://learn.microsoft.com/azure/search/vector-store)capabilities of Azure AI Search.
+Based on the above structure various fields are called to integrate filtering, sorting, vectorization capabilities and dedicate how the search results will look like. This is done using [Search Index](https://learn.microsoft.com/azure/search/search-what-is-an-index), [Indexer](https://learn.microsoft.com/azure/search/search-indexer-overview) & [Vector Store](https://learn.microsoft.com/azure/search/vector-store)capabilities of Azure AI Search. This is leveraged for creating an [Open AI Embedding](https://learn.microsoft.com/azure/search/cognitive-search-skill-azure-openai-embedding)
 
 <img src='/media/01_SearchFields.PNG' width='850' height='550'>
 
 These configurations get called in the [createIndex.py](/src/data/AzureSearch/createIndex.py)
 It creates the following resources
 1) A Cosmos Endpoint
-2) A Cosmos Database
-3) An Azure Client ID
-4) An Azure Search Endpoint
-5) A Cosmos Connection String
-6) An Open AI Endpoint
-7) An Open AI Embedding Deployment
+2) A Cosmos Database with partitioned data
+3) A Cosmos Connection String
+4) An Azure AI Search Index
+5) An Azure AI Search Indexer
+6) An Azure Search Endpoint
+7) An Open AI Endpoint
+8) An Open AI Embedding Skillset 
+9) Recreating the indexer
 
-All of these are executed using a default Azure credential from Azure Identity. It first creates a Cosmos container, database and a database partition key(In this sample the **id** field is used).
+The code is executed using a [Default Azure Credential](https://learn.microsoft.com/python/api/azure-identity/azure.identity.defaultazurecredential?view=azure-python) from Azure Identity. 
 
-> :bulb: **Tip:** If configured through same sample set the result should print the following :
+Step 1: It first creates a Cosmos container, database and a database partition key(In this sample the **id** field is used).
+> :bulb: **Tip:** Sample dataset should print the following result:
 "Getting Database: catalogDB", "Getting client for container: products"
 
+Step 2: It then uploads the data in the CSV file to the newly created Cosmos database 
+> :bulb: **Tip:**  Sample dataset should print the following result:
+"Uploading Data...", "Inserting product ID: {each product ID should get displayed here} to Cosmos DB","Product {each product ID should get displayed here} uploaded to Cosmos DB". It will iterate through all 101 items in the CSV file
 
 The CosmosDB **catalogDb** database gets created with a sample of 101 files and random images.
 This resides under the **products** container within Cosmos DB. Cosmos DB version azure-cosmos==4.7.0
