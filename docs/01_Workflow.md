@@ -10,7 +10,7 @@ Using this sample data a search index is created on the following fields
 
 Based on the above structure various fields are called to integrate filtering, sorting, vectorization capabilities and dedicate how the search results will look like. This is done using [Search Index](https://learn.microsoft.com/azure/search/search-what-is-an-index) and [Indexer](https://learn.microsoft.com/azure/search/search-indexer-overview) capabilities of Azure AI Search.
 
-<img src='/media/01_SearchFields.PNG' width='750' height='350'>
+<img src='/media/01_SearchFields.PNG' width='850' height='550'>
 
 The CosmosDB **catalogDb** database gets created with a sample of 101 files and random images.
 This resides under the **products** container within Cosmos DB. Cosmos DB version azure-cosmos==4.7.0
