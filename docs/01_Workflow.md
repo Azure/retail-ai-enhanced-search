@@ -2,7 +2,7 @@
 
 Under the SRC folder you will find **[api](../src/api/)** and **[data](../src/data/)** which contains the application and data code. The repo uses the [products.csv](../data/AzureSearch/data/products.csv) as sample data. It looks as follows
 
-<img src='/media/01_Productsample.PNG' width='550' height='350'>
+<img src='/media/01_Productsample.PNG' width='550' height='250'>
 
 Using this sample data a search index is created on the following fields
 
