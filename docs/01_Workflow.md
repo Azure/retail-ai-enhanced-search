@@ -2,15 +2,31 @@
 
 Under the SRC folder you will find **[api](../src/api/)** and **[data](../src/data/)** which contains the application and data code. The repo uses the [products.csv](../data/AzureSearch/data/products.csv) as sample data. It looks as follows
 
-<img src='/media/01_Productsample.PNG' width='950' height='170'>
+<img src='/media/01_Productsample.PNG' width='950' height='150'>
 
 Using this sample data a search index is created on the following fields
 
 ![SearchIndex](../media/01_SearchIndexStructure.PNG)
 
-Based on the above structure various fields are called to integrate filtering, sorting, vectorization capabilities and dedicate how the search results will look like. This is done using [Search Index](https://learn.microsoft.com/azure/search/search-what-is-an-index) and [Indexer](https://learn.microsoft.com/azure/search/search-indexer-overview) capabilities of Azure AI Search.
+Based on the above structure various fields are called to integrate filtering, sorting, vectorization capabilities and dedicate how the search results will look like. This is done using [Search Index](https://learn.microsoft.com/azure/search/search-what-is-an-index), [Indexer](https://learn.microsoft.com/azure/search/search-indexer-overview) & [Vector Store](https://learn.microsoft.com/azure/search/vector-store)capabilities of Azure AI Search.
 
 <img src='/media/01_SearchFields.PNG' width='850' height='550'>
+
+These configurations get called in the [createIndex.py](/src/data/AzureSearch/createIndex.py)
+It creates the following resources
+1) A Cosmos Endpoint
+2) A Cosmos Database
+3) An Azure Client ID
+4) An Azure Search Endpoint
+5) A Cosmos Connection String
+6) An Open AI Endpoint
+7) An Open AI Embedding Deployment
+
+All of these are executed using a default Azure credential from Azure Identity. It first creates a Cosmos container, database and a database partition key(In this sample the **id** field is used).
+
+> :bulb: **Tip:** If configured through same sample set the result should print the following :
+"Getting Database: catalogDB", "Getting client for container: products"
+
 
 The CosmosDB **catalogDb** database gets created with a sample of 101 files and random images.
 This resides under the **products** container within Cosmos DB. Cosmos DB version azure-cosmos==4.7.0

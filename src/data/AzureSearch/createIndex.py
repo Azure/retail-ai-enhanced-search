@@ -1,3 +1,6 @@
+####################################
+#  Importing Libraries
+####################################
 import os
 import sys
 import json
@@ -41,6 +44,9 @@ from azure.search.documents.indexes.models import (
     FieldMapping
 )
 
+####################################
+#  Defining Data Sources
+####################################
 def create_data_source(
     service_endpoint: str,
     credential: DefaultAzureCredential,
@@ -85,7 +91,9 @@ def create_data_source(
         print(f"Error occurred during data source creation: {error}")
         sys.exit(1)
 
-# create Indexes
+########################################################################
+#  Defining Search Index with Vector Search and Semantic Configuration
+########################################################################
 def create_search_index(
         credential: DefaultAzureCredential,
         config: Dict,
@@ -118,7 +126,7 @@ def create_search_index(
         field = search_index_field["field"]
         datatype = search_index_field["type"]
 
-        # check if the field is present vector fields list
+        # Check if the field is present vector fields list
         if field in vector_fields:
             # print(f"Vector Field {field}")
             srch = SearchField(
@@ -152,7 +160,7 @@ def create_search_index(
             else:
                 srch = SimpleField(name=field, type=type)
 
-            # setting up the different flags in the index definition
+            # Setting up the different flags in the index definition
             if field == search_index_key_field:
                 srch.key = True
             else:
@@ -175,9 +183,8 @@ def create_search_index(
 
         fields.append(srch)
 
-    # create the semantic configuration
+    # Create the semantic configuration
     if (semantic_config_isEnabled):
-
         prioritized_fields = SemanticPrioritizedFields()
 
         # title field
@@ -190,7 +197,7 @@ def create_search_index(
             semantic_keyword_fields.append(SemanticField(field_name=field))
         prioritized_fields.keywords_fields = semantic_keyword_fields
 
-        # content field
+        # content fields
         semantic_content_fields = []
         for field in semantic_config_content_fields:
             semantic_content_fields.append(SemanticField(field_name=field))
@@ -200,7 +207,7 @@ def create_search_index(
         semantic_config = SemanticConfiguration(
             name=semantic_config_name, prioritized_fields=semantic_config_prioritized_fields)
 
-    # create the vector configuration
+    # Create the vector configuration
     vector_search = VectorSearch(
         algorithms=[
             HnswAlgorithmConfiguration(
@@ -254,7 +261,9 @@ def create_search_index(
     client.create_or_update_index(index)
     return index
 
-
+####################################
+#  Defining Open AI Embedding
+####################################
 def create_open_ai_embedding_skillset(
     service_endpoint: str,
     # credential can be a type of DefaultAzureCredential or ClientSecretCredential
@@ -287,7 +296,9 @@ def create_open_ai_embedding_skillset(
     result = client.create_or_update_skillset(skillset)
     return result
 
-
+####################################
+#  Defining Search Indexer
+####################################
 def create_search_indexer(
     service_endpoint: str,
     credential: DefaultAzureCredential,
@@ -297,7 +308,8 @@ def create_search_indexer(
     search_skillset_openai_embedding_config: Dict,
     open_ai_embedding_skillset_name: str
 ):
-    # we pass the data source, skillsets and targeted index to build an indexer
+    # Note: we pass the data source, skillsets and targeted index to build an indexer
+
     configuration = IndexingParametersConfiguration(parsing_mode=None, query_timeout=None, excluded_file_name_extensions=None,
                                                     indexed_file_name_extensions=None, fail_on_unsupported_content_type=None,
                                                     fail_on_unprocessable_document=None,
@@ -331,9 +343,9 @@ def create_search_indexer(
     indexer_client.create_or_update_indexer(indexer)
     return indexer
 
-####################################
-#  Main Script
-####################################
+########################################################################
+#  Main Script which calls the previous definitions
+########################################################################
 
 if __name__ == "__main__":
     print(f"Running 'AzureSearch/combinedScript.py'...")
@@ -396,7 +408,7 @@ if __name__ == "__main__":
         sys.exit(1)
 
     ###############################
-    # Upload Data to Cosmos DB
+    ## Upload Data to Cosmos DB ##
     ###############################
 
     print("Uploading Data...")
@@ -418,9 +430,9 @@ if __name__ == "__main__":
             print(f"Exception inserting product {product['id']} into database. {error}")
             sys.exit(1)
 
-    #######################################
-    # Create Indexer
-    #######################################
+    ########################
+    ## Create Indexer ##
+    ########################
 
     print("Creating Indexer...")
 
@@ -445,8 +457,10 @@ if __name__ == "__main__":
     semantic_config_content_fields = config["ai-search-config"]["search-index-config"]["semantic_configurations"]["content_fields"]
     open_ai_embedding_deployment_name = OPEN_AI_EMBEDDING_DEPLOYMENT_NAME
     open_ai_embedding_model_name = config["open_ai_config"]["embedding_model_name"]
-
-    # create the search client
+    
+    #################################
+    ## Create the Search Endpoint ##
+    #################################
     try:
         print(f"Creating Search client with endpoint: {SERVICE_ENDPOINT}")
         search_index_client = SearchIndexClient(SERVICE_ENDPOINT, default_credential)
@@ -472,7 +486,9 @@ if __name__ == "__main__":
         print(f"Error occurred during data source creation: {error}")
         sys.exit(1)
 
-    # create the search index
+    #################################
+    ## Create the Search Index ##
+    #################################
     try:
         index = create_search_index(
             credential=default_credential,
@@ -499,8 +515,10 @@ if __name__ == "__main__":
     except Exception as error:
         print(f"Error occurred during search index creation: {error}")
         sys.exit(1)
-
-    # create Azure Open AI Embedding skillset
+    
+    ##############################################
+    ## Create Azure Open AI Embedding Skillset ##
+    ##############################################
     try:
         print("Creating OpenAI embedding skillset")
         search_skillset_openai_embedding_config = config["ai-search-config"]["search-skillset-config"]["openai-embedding"]
@@ -522,7 +540,9 @@ if __name__ == "__main__":
             f"Error occurred during open ai embedding skillset creation: {error}")
         sys.exit(1)
 
-    # create an Indexer
+    ##########################
+    ## Create an Indexer ##
+    ##########################
     try:
         print("Creating the indexer")
         search_indexer_name = config["ai-search-config"]["search-indexer-config"]["name"]
@@ -540,3 +560,7 @@ if __name__ == "__main__":
     except Exception as error:
         print(f"Error occurred during search indexer creation: {error}")
         sys.exit(1)
+        
+########################################################################
+#  Main Script End
+########################################################################
