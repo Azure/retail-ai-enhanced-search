@@ -1,6 +1,17 @@
 # Overview
 
-Under the SRC folder you will find **[api](../src/api/)** and **[data](../src/data/)** which contains the application and data code.
+Under the SRC folder you will find **[api](../src/api/)** and **[data](../src/data/)** which contains the application and data code. The repo uses the [products.csv](../data/AzureSearch/data/products.csv) as sample data. It looks as follows
+
+![ProductSample](../media/01_Productsample.PNG)
+
+Using this sample data a search index is created on the following fields
+
+![SearchIndex](../media/01_SearchIndexStructure.PNG)
+
+
+The CosmosDB **catalogDb** database gets created with a sample of 101 files and random images.
+This resides under the **products** container within Cosmos DB. Cosmos DB version azure-cosmos==4.7.0
+
 
 ## Workflow
 
@@ -13,11 +24,8 @@ The spa folder contains the **frontend React code**. This runs as a **static web
 
 ![ConnectiontoConaitnerApp](../media/01_ConnectionContainerApp.PNG)
 
-The [products.csv](../data/AzureSearch/data/products.csv) is the sample set used for this repo
-The CosmosDB **catalogDb** database gets created with a sample of 101 files and random images.
-This resides under the **products** container within Cosmos DB. Cosmos DB version azure-cosmos==4.7.0
 
-![ProductSample](../media/01_Productsample.PNG)
+
 
 The AI search components consists of **Index** that searches the cosmosDB for certain fields and a Semantic configuration for generic searches. 
 
