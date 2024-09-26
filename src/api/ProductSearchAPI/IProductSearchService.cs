@@ -11,9 +11,7 @@ namespace ProductSearchAPI
 {
     public interface IProductSearchService
     {
-        Task<List<Product>> SearchProducts(string queryText, string semanticConfigName, string embeddingClientName, IList<string> vectorFieldNames, string deploymentName, int nearestNeighbours, string systemPromptFilePath, List<string> fields);
-        Task<SearchServiceStatistics> GetSearchServiceStatistics();
-        Task<long> GetDocumentIndexCount();
+        Task<List<Product>> SearchProducts(string queryText, string semanticConfigName, IList<string> vectorFieldNames, string deploymentName, int nearestNeighbours, string systemPromptFilePath, List<string> fields);
     }
 
     public class ProductSearchService : IProductSearchService
@@ -53,7 +51,7 @@ namespace ProductSearchAPI
             return chatResponse;
         }
 
-        public async Task<List<Product>> SearchProducts(string queryText, string semanticConfigName, string embeddingClientName, IList<string> vectorFieldNames, string chatGptDeploymentName, int nearestNeighbours, string systemPromptFileName, List<string> fields)
+        public async Task<List<Product>> SearchProducts(string queryText, string semanticConfigName, IList<string> vectorFieldNames, string chatGptDeploymentName, int nearestNeighbours, string systemPromptFileName, List<string> fields)
         {
             string systemPrompt = string.Empty;
             string filter = string.Empty;
@@ -84,6 +82,7 @@ namespace ProductSearchAPI
                     if (chatGptResponse != null && !string.IsNullOrEmpty(chatGptResponse.Value.Content[0].Text))
                     {
                         chatGptSearchFilter = JsonSerializer.Deserialize<AISearchFilter>(chatGptResponse.Value.Content[0].Text);
+                        _logger.LogInformation($"chatGptSearchFilter: {chatGptSearchFilter}");
                     }
 
                     if (chatGptSearchFilter != null && chatGptSearchFilter.Filters != null)
@@ -135,6 +134,8 @@ namespace ProductSearchAPI
                     options.SearchFields.Add(field);
                 }
 
+                _logger.LogInformation($"Search options: {options}");
+
                 try
                 {
                     var response = await _searchClient.SearchAsync<Product>(
@@ -163,18 +164,6 @@ namespace ProductSearchAPI
 
                 return new List<Product>();
             }
-        }
-
-        public async Task<SearchServiceStatistics> GetSearchServiceStatistics()
-        {
-            Response<SearchServiceStatistics> stats = await _searchIndexClient.GetServiceStatisticsAsync();
-            return stats;
-        }
-
-        public async Task<long> GetDocumentIndexCount()
-        {
-            Response<long> count = await _searchClient.GetDocumentCountAsync();
-            return count;
         }
     }
 }

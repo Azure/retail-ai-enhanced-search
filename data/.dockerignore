@@ -1,2 +1,5 @@
 **/.env
 **/README.md
+misc.ps1
+AzureSearch/entityExtraction.py
+upload_envfile_akv-secrets.py

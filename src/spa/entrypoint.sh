@@ -1,0 +1,31 @@
+#!/bin/bash
+
+echo "Authenticating to Azure with User-Managed Identity: '${USER_MANAGED_IDENTITY_CLIENT_ID}'"
+az login --identity --username $USER_MANAGED_IDENTITY_CLIENT_ID --tenant $TENANT_ID
+
+echo "enabling static website"
+az storage blob service-properties update \
+    --account-name $STORAGE_ACCOUNT_NAME \
+    --static-website \
+    --404-document error.html \
+    --index-document index.html \
+    --auth-mode login
+
+echo "setting environment variables"
+touch ./.env
+echo "VITE_API_URI=$API_URI/products" > ./.env
+echo "VITE_STORAGE_ACCOUNT_URL=${STORAGE_ACCOUNT_URI}${CONTAINER_NAME}/" >> ./.env
+
+echo "compiling Javascript"
+npm install
+npm run build
+
+echo "copying error.html to dist"
+cp ./error.html ./dist/
+
+echo "copying built javascript to storage account"
+az storage container create --name 'product-images' --account-name $STORAGE_ACCOUNT_NAME --auth-mode login
+az storage blob upload-batch -s ./dist/ -d '$web' --account-name $STORAGE_ACCOUNT_NAME --overwrite --auth-mode login
+
+echo "copying images to storage account"
+az storage blob upload-batch -s ./images -d 'product-images' --account-name $STORAGE_ACCOUNT_NAME --overwrite --auth-mode login
