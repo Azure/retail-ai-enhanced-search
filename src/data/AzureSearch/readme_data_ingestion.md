@@ -1,6 +1,7 @@
 # Data Ingestion And Azure Search Metadata creation
 
 ## objective
+
 In this example, we will upload sample data into Cosmos DB and create an index in Azure AI Search to scan the data from Cosmos DB. While creating the Azure AI Search Index, we will also set up other associated resources such as Skillset, Indexer, Data Source, and Vectorizer. The below guidance will focus on the local development through VS Code.
 
 ## Prerequisites
