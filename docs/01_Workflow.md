@@ -11,10 +11,11 @@ The spa folder contains the **frontend React code**. This runs as a **static web
 
 ![ConnectiontoConaitnerApp](../media/01_ConnectionContainerApp.PNG)
 
-The CosmosDB **Product** database gets created with a sample of 100 files and random images.
-There is a **Product Catalog** inside the **Product** database. 
+The [products.csv](../data/AzureSearch/data/products.csv) is the sample set used for this repo
+The CosmosDB **catalogDb** database gets created with a sample of 101 files and random images.
+This resides under the **products** container within Cosmos DB. Cosmos DB version azure-cosmos==4.7.0
 
-![Products](../media/01_Products.PNG)
+![ProductSample](../media/01_Productsample.PNG)
 
 The AI search components consists of **Index** that searches the cosmosDB for certain fields and a Semantic configuration for generic searches. 
 
