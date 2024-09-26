@@ -40,7 +40,7 @@ We have two configurations files to update for Local Debugging.
 
 `AzureSearch\config\config.json`
 
-![alt text](.\images\config_image.png)
+![alt text](./images/config_image.png)
 
 - **Cosmos config** : this portion contains the cosmos db configurations like cosmos db name, container name, partition key, and the fields which we want to index.
 - **Search config** : This portion contains the Azure AI Search configurations like search service name, index name, indexer name, skillset name, and the fields which we want to index.
@@ -86,7 +86,7 @@ if (!$roleAssignment) {
 Please ignore this section if you the services in the public endpoint. If you are using the private endpoint for the network connectivity between the resources make sure that the below configurations are done.
 1. You are using the Azure AI Search service with SKU Standard2 or above. This is required because we are using the AI Enrichment and skills in the Azure AI Search. [[details](https://learn.microsoft.com/en-us/azure/search/search-indexer-howto-access-private?tabs=portal-create#prerequisites)]
 2. The private Link is created for the outbound connectivity from the Azure AI Search to the Cosmos DB, and Azure AI Search to the Azure Open AI Service. [[details](https://learn.microsoft.com/en-us/azure/search/search-indexer-howto-access-private?tabs=portal-create#supported-resource-types)]
-![alt text](.\images\PrivateLink_image.png)
+![alt text](./images/PrivateLink_image.png)
 
 ## Running the script
 
