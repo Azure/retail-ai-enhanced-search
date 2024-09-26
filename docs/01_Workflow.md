@@ -16,13 +16,13 @@ These configurations get called in the [createIndex.py](/src/data/AzureSearch/cr
 It creates the following resources
 1) A Cosmos Endpoint
 2) A Cosmos Database with partitioned data
-3) A Cosmos Connection String
+3) A Cosmos Connection String with default Azure Credentials
 4) An Azure AI Search Index
 5) An Azure AI Search Indexer
 6) An Azure Search Endpoint
 7) An Open AI Endpoint
 8) An Open AI Embedding Skillset 
-9) Recreating the indexer
+9) A One-time Run of Indexer
 
 The code is executed using a [Default Azure Credential](https://learn.microsoft.com/python/api/azure-identity/azure.identity.defaultazurecredential?view=azure-python) from Azure Identity. 
 
