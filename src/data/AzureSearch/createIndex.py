@@ -1,6 +1,6 @@
-####################################
+########################################################################
 #  Importing Libraries
-####################################
+########################################################################
 import os
 import sys
 import json
@@ -44,9 +44,9 @@ from azure.search.documents.indexes.models import (
     FieldMapping
 )
 
-####################################
+########################################################################
 #  Defining Data Sources
-####################################
+########################################################################
 def create_data_source(
     service_endpoint: str,
     credential: DefaultAzureCredential,
@@ -261,9 +261,9 @@ def create_search_index(
     client.create_or_update_index(index)
     return index
 
-####################################
+########################################################################
 #  Defining Open AI Embedding
-####################################
+########################################################################
 def create_open_ai_embedding_skillset(
     service_endpoint: str,
     # credential can be a type of DefaultAzureCredential or ClientSecretCredential
@@ -296,9 +296,9 @@ def create_open_ai_embedding_skillset(
     result = client.create_or_update_skillset(skillset)
     return result
 
-####################################
+########################################################################
 #  Defining Search Indexer
-####################################
+########################################################################
 def create_search_indexer(
     service_endpoint: str,
     credential: DefaultAzureCredential,
@@ -387,6 +387,10 @@ if __name__ == "__main__":
         print(f"Error occurred reading config file: {error}")
         sys.exit(1)
 
+    ##############################################
+    Step 1: Creating Cosmos DB
+    ##############################################
+
     CONTAINER_NAME = config["cosmos-config"]["cosmos_db_container_name"]
     COSMOS_DB_PARTITION_KEY = config["cosmos-config"]["cosmos_db_partition_key"]
 
@@ -407,14 +411,16 @@ if __name__ == "__main__":
         print(f"Error creating container: {error}")
         sys.exit(1)
 
-    ###############################
-    ## Upload Data to Cosmos DB ##
-    ###############################
+    ##############################################
+    Step 2: Upload Data to Cosmos DB 
+    ##############################################
 
     print("Uploading Data...")
 
-    # read the products.csv file from (AzureSearch\data\products.csv), remove spaces and new lines from the column values
-    # convert the id column from int to string before uploading to Cosmos DB
+    # This read the products.csv file from (AzureSearch\data\products.csv) 
+    # It also remove spaces and new lines from the column values
+    # It converts the id column from int to string before uploading to Cosmos DB
+
     products_df = pd.read_csv(f"{os.getcwd()}/AzureSearch/data/products.csv")
     products_df["id"] = products_df["id"].astype(str)
     products_df = products_df.apply(lambda x: x.str.strip() if x.dtype == "object" else x)
@@ -430,9 +436,9 @@ if __name__ == "__main__":
             print(f"Exception inserting product {product['id']} into database. {error}")
             sys.exit(1)
 
-    ########################
-    ## Create Indexer ##
-    ########################
+    ##############################################
+    Step 3:  Create an Indexer
+    ##############################################
 
     print("Creating Indexer...")
 
@@ -458,9 +464,9 @@ if __name__ == "__main__":
     open_ai_embedding_deployment_name = OPEN_AI_EMBEDDING_DEPLOYMENT_NAME
     open_ai_embedding_model_name = config["open_ai_config"]["embedding_model_name"]
     
-    #################################
-    ## Create the Search Endpoint ##
-    #################################
+    ##############################################
+    Step 4:  Create a Search Endpoint
+    ##############################################
     try:
         print(f"Creating Search client with endpoint: {SERVICE_ENDPOINT}")
         search_index_client = SearchIndexClient(SERVICE_ENDPOINT, default_credential)
@@ -486,9 +492,9 @@ if __name__ == "__main__":
         print(f"Error occurred during data source creation: {error}")
         sys.exit(1)
 
-    #################################
-    ## Create the Search Index ##
-    #################################
+    ##############################################
+    Step 5:  Create a Search Index
+    ##############################################
     try:
         index = create_search_index(
             credential=default_credential,
@@ -517,7 +523,7 @@ if __name__ == "__main__":
         sys.exit(1)
     
     ##############################################
-    ## Create Azure Open AI Embedding Skillset ##
+    Step 6:  Create an OpenAI Embedding Skillset
     ##############################################
     try:
         print("Creating OpenAI embedding skillset")
@@ -540,9 +546,9 @@ if __name__ == "__main__":
             f"Error occurred during open ai embedding skillset creation: {error}")
         sys.exit(1)
 
-    ##########################
-    ## Create an Indexer ##
-    ##########################
+    ##############################################
+    Step 7:  Recreating Indexer
+    ##############################################
     try:
         print("Creating the indexer")
         search_indexer_name = config["ai-search-config"]["search-indexer-config"]["name"]
@@ -560,7 +566,7 @@ if __name__ == "__main__":
     except Exception as error:
         print(f"Error occurred during search indexer creation: {error}")
         sys.exit(1)
-        
+
 ########################################################################
 #  Main Script End
 ########################################################################
