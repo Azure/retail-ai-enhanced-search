@@ -30,7 +30,9 @@ It creates the following resources
 
 The code is executed using a [Default Azure Credential](https://learn.microsoft.com/python/api/azure-identity/azure.identity.defaultazurecredential?view=azure-python) from Azure Identity. 
 
-Step 1: It first creates a Cosmos container, database and a database partition key(In this sample the **id** field is used).
+### Step 1
+
+It first creates a Cosmos container, database and a database partition key(In this sample the **id** field is used).
 > :bulb: **Tip:** Sample dataset should print the following result:
 "Getting Database: catalogDB", "Getting client for container: products"
 
