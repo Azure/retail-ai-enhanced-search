@@ -437,10 +437,10 @@ if __name__ == "__main__":
             sys.exit(1)
 
     ##############################################
-    ## Step 3:  Create an Indexer
+    ## Step 3:  Setting Indexer Configuration 
     ##############################################
 
-    print("Creating Indexer...")
+    print("Setting Indexer Variables...")
 
     # get index configuration details
     search_indexer_data_source_name = config["ai-search-config"]["data-source-config"]["cosmos_db_data_source_name"]
@@ -468,7 +468,7 @@ if __name__ == "__main__":
     ## Step 4:  Create a Search Endpoint
     ##############################################
     try:
-        print(f"Creating Search client with endpoint: {SERVICE_ENDPOINT}")
+        print(f"Creating Search Client with Endpoint: {SERVICE_ENDPOINT}")
         search_index_client = SearchIndexClient(SERVICE_ENDPOINT, default_credential)
     except Exception as error:
         print(f"Error occurred during search client creation: {error}")
@@ -483,7 +483,7 @@ if __name__ == "__main__":
             search_indexer_data_source_name=search_indexer_data_source_name,
         )
 
-        print("Data source created successfully")
+        print("Data Source created successfully.")
     except Exception as error:
         print(f"Error occurred during data source creation: {error}")
         sys.exit(1)
@@ -513,7 +513,7 @@ if __name__ == "__main__":
             open_ai_embedding_deployment_name=open_ai_embedding_deployment_name,
             open_ai_embedding_model_name=open_ai_embedding_model_name
         )
-        print("Search index created successfully")
+        print("Search Index created successfully")
     except Exception as error:
         print(f"Error occurred during search index creation: {error}")
         sys.exit(1)
@@ -522,10 +522,10 @@ if __name__ == "__main__":
     ## Step 6:  Create an OpenAI Embedding Skillset
     ##############################################
     try:
-        print("Creating OpenAI embedding skillset")
+        print("Creating OpenAI Embedding Skillset")
         search_skillset_openai_embedding_config = config["ai-search-config"]["search-skillset-config"]["openai-embedding"]
         open_ai_embedding_skillset_name = config["ai-search-config"]["search-skillset-config"]["name"]
-        print("Creating the skillset")
+        print("Creating the Skillset")
         open_ai_embedding_skillset = create_open_ai_embedding_skillset(
             service_endpoint=SERVICE_ENDPOINT,
             credential=default_credential,
@@ -543,7 +543,7 @@ if __name__ == "__main__":
         sys.exit(1)
 
     ##############################################
-    ## Step 7:  Recreating Indexer
+    ## Step 7:  Creating the Indexer
     ##############################################
     try:
         print("Creating the indexer")
@@ -558,7 +558,7 @@ if __name__ == "__main__":
             open_ai_embedding_skillset_name=open_ai_embedding_skillset_name
         )
 
-        print("Indexer created successfully")
+        print("Indexer created successfully.")
     except Exception as error:
         print(f"Error occurred during search indexer creation: {error}")
         sys.exit(1)
