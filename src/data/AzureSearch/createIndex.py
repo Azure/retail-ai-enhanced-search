@@ -546,7 +546,7 @@ if __name__ == "__main__":
     ## Step 7:  Creating the Indexer
     ##############################################
     try:
-        print("Creating the indexer")
+        print("Creating the Indexer")
         search_indexer_name = config["ai-search-config"]["search-indexer-config"]["name"]
         indexer = create_search_indexer(
             service_endpoint=SERVICE_ENDPOINT,
