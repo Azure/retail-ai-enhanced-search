@@ -1,6 +1,10 @@
 # Overview
 
-Under the SRC folder you will find **[api](../src/api/)** and **[data](../src/data/)** which contains the application and data code. The repo uses the [products.csv](../data/AzureSearch/data/products.csv) as sample data. It looks as follows
+Under the SRC folder you will find **[api](../src/api/)** and **[data](../src/data/)** which contains the application and data code.
+
+## Cosmos DB, Azure Search and Open AI Components Deployment
+
+The repo uses the [products.csv](../data/AzureSearch/data/products.csv) as sample data. It looks as follows
 
 <img src='/media/01_Productsample.PNG' width='950' height='150'>
 
@@ -22,7 +26,7 @@ It creates the following resources
 6) An Azure Search Endpoint
 7) An Open AI Endpoint
 8) An Open AI Embedding Skillset 
-9) A One-time Run of Indexer
+9) A One-time Run of Indexer 
 
 The code is executed using a [Default Azure Credential](https://learn.microsoft.com/python/api/azure-identity/azure.identity.defaultazurecredential?view=azure-python) from Azure Identity. 
 
@@ -30,15 +34,20 @@ Step 1: It first creates a Cosmos container, database and a database partition k
 > :bulb: **Tip:** Sample dataset should print the following result:
 "Getting Database: catalogDB", "Getting client for container: products"
 
-Step 2: It then uploads the data in the CSV file to the newly created Cosmos database 
+Step 2: It then uploads the data in the CSV file to the newly created Cosmos database.
 > :bulb: **Tip:**  Sample dataset should print the following result:
 "Uploading Data...", "Inserting product ID: {each product ID should get displayed here} to Cosmos DB","Product {each product ID should get displayed here} uploaded to Cosmos DB". It will iterate through all 101 items in the CSV file
 
-The CosmosDB **catalogDb** database gets created with a sample of 101 files and random images.
-This resides under the **products** container within Cosmos DB. Cosmos DB version azure-cosmos==4.7.0
+Step 3: An index is then craated on the CosmosDB container first and then on the AI Search service.
+> :bulb: **Tip:**  Sample dataset should print the following result:
+"Creating Indexer..."
 
+Step 4: A service endpoint is created pointing the database container name. It uses the [search service managed identity connection string](https://learn.microsoft.com/azure/search/search-howto-index-cosmosdb#supported-credentials-and-connection-strings) to connect to CosmosDB
 
 ## Workflow
+
+The CosmosDB **catalogDb** database gets created with a sample of 101 files and random images.
+This resides under the **products** container within Cosmos DB. Cosmos DB version azure-cosmos==4.7.0
 
 The infrastructure components get deployed with a **Bicep template**.
 The **backend web API's** are in **.NET code** which run in the container app. This gets created with secrets which get auto-populated during deployment through the Bicep template.
@@ -48,8 +57,6 @@ The **backend web API's** are in **.NET code** which run in the container app. T
 The spa folder contains the **frontend React code**. This runs as a **static web application**. It has an API connection to the container app. No image search functionality
 
 ![ConnectiontoConaitnerApp](../media/01_ConnectionContainerApp.PNG)
-
-
 
 
 The AI search components consists of **Index** that searches the cosmosDB for certain fields and a Semantic configuration for generic searches. 

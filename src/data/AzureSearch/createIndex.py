@@ -474,10 +474,6 @@ if __name__ == "__main__":
         print(f"Error occurred during search client creation: {error}")
         sys.exit(1)
 
-    # create the datasource connecting to the cosmosdb
-    # The authentication will be done using the search service managed identity.
-    # https://learn.microsoft.com/en-us/azure/search/search-howto-index-cosmosdb#supported-credentials-and-connection-strings
-   
     try:
         data_source = create_data_source(
             service_endpoint=SERVICE_ENDPOINT,
