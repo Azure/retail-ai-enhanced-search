@@ -1,8 +1,8 @@
 # Overview
 
-Under the SRC folder you will find **[api](../src/api/)** and **[data](../src/data/)** which contains the application and data code.
+Under the SRC folder you will find **[api](../src/api/)** and **[data](../src/data/)** which contains the application and data code. These contain the logic for Backend and Frontend services used to create the Retail AI Search deployment.
 
-## Cosmos DB, Azure Search and Open AI Components Deployment
+## Backend Flow - Cosmos DB, Azure Search and Open AI Components
 
 The repo uses the [products.csv](../data/AzureSearch/data/products.csv) as sample data. It looks as follows
 
