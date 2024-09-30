@@ -30,6 +30,11 @@ It creates the following resources
 
 The code is executed using a [Default Azure Credential](https://learn.microsoft.com/python/api/azure-identity/azure.identity.defaultazurecredential?view=azure-python) from Azure Identity. 
 
+[Diagram to explain the workflow of creating components]
+
+Based on the environment you are deploying please refer to the [POC Environment] & [Prod Environment] guides accordingly. They contains specific sections to modify the front end API calls and backend data sources.
+
+<!---
 ### Step 1
 It first creates a Cosmos container, database and a database partition key(In this sample the **id** field is used).
 > :bulb: **Tip:** Sample dataset should print the following result:
@@ -105,3 +110,5 @@ There is also the **Indexer** which shows the date when the CosmosDB was indexed
 
 ![KeyValueSearch](../media/01_Keyvaluesearch.png)
 ![InteractiveSearch](../media/01_InteractiveSearch.png)
+
+-->
