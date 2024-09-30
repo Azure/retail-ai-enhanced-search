@@ -19,12 +19,12 @@
    - Rename ./api/ProductSearchAPI/appsettings.template to appsettings.json
    - Enter the required values in appsettings.json from the AI-Hib deployment output
    - Run `$ dotnet run`
-   - The API will be running on `http://localhost:60871`
+   - The API will be running on `http://localhost:60872` or verify the port from the output of above command.
    - Logs can be viewed live in the VS Code Terminal
-   - Test the API by searching for a product using the Swagger UI at `http://localhost:60871/swagger`
+   - Test the API by searching for a product using the Swagger UI at `http://localhost:60872/swagger`
 4. Open a new Terminal within VSCode and navigate to the '/spa' folder
    - Create a file named `/.env` & add a line with the following text
-     - `REACT_APP_API_URL=http://localhost:5173`
+     - `REACT_APP_API_URL=http://localhost:60872`
    - Run `$ npm install`
    - Run `$ npm run dev`
    - Access the React application in a browser at `http://localhost:5173`
