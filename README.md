@@ -78,7 +78,7 @@ You need the following to be able to deploy the solution:
    - Run `$ npm run dev`
    - Access the React application in a browser at `http://localhost:5173`
 5. Test the application by searching for a product in the React app or access the Swagger UI at `http://localhost:60871/swagger`
-
+-->
 The deployment templates of the solution are available at [Solution Quickstart](./docs/02_Solution_Quickstart.md). This if further bifurcated into POC and Production Environment Detailed guides
 
 ## PoC Environment Detailed Guide
@@ -94,7 +94,7 @@ Based on your data character / usage / pattern, you need to enable and configure
 
 Additional detail guidance is in [Production Environment Guide](./docs/04_PRD_Environment_Guide.md) document.
 > Gary, Varmar, Sam, Arun and Chris for Guide Document until 27th, September
--->
+
 
 ## Contributing
 
