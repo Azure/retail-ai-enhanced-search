@@ -59,6 +59,7 @@ You need the following to be able to deploy the solution:
 - [Node.js](https://nodejs.org/en/download/package-manager)
 - [Dotnet 8.0 Core](https://dotnet.microsoft.com/download)
 
+<!---
 ## Local Development
 
 1. Clone this repository to your local machine
@@ -93,6 +94,7 @@ Based on your data character / usage / pattern, you need to enable and configure
 
 Additional detail guidance is in [Production Environment Guide](./docs/04_PRD_Environment_Guide.md) document.
 > Gary, Varmar, Sam, Arun and Chris for Guide Document until 27th, September
+-->
 
 ## Contributing
 
