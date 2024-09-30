@@ -67,7 +67,7 @@ namespace ProductSearchAPI
             }
 
             var chatGptResponse = await GetGPTChatResponse(queryText, systemPrompt, chatGptDeploymentName);
-            if (chatGptResponse.Value.Content.Count <= 0 || String.IsNullOrEmpty(chatGptResponse.Value.Content[0].Text))
+            if (chatGptResponse.Value.Content.Count <= 0 || String.IsNullOrEmpty(chatGptResponse.Value.Content.Last().Text))
             {
                 _logger.LogInformation($"chatGptResponse is empty");
                 return new List<Product>();
@@ -79,9 +79,9 @@ namespace ProductSearchAPI
                 try
                 {
                     AISearchFilter chatGptSearchFilter = new AISearchFilter();
-                    if (chatGptResponse != null && !string.IsNullOrEmpty(chatGptResponse.Value.Content[0].Text))
+                    if (chatGptResponse != null && !string.IsNullOrEmpty(chatGptResponse.Value.Content.Last().Text))
                     {
-                        chatGptSearchFilter = JsonSerializer.Deserialize<AISearchFilter>(chatGptResponse.Value.Content[0].Text);
+                        chatGptSearchFilter = JsonSerializer.Deserialize<AISearchFilter>(chatGptResponse.Value.Content.Last().Text);
                         _logger.LogInformation($"chatGptSearchFilter: {chatGptSearchFilter}");
                     }
 

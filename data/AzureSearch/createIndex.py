@@ -336,7 +336,7 @@ def create_search_indexer(
 ####################################
 
 if __name__ == "__main__":
-    print(f"Running 'AzureSearch/combinedScript.py'...")
+    print(f"Running 'AzureSearch/createIndex.py'...")
 
     COSMOS_ENDPOINT = os.environ["COSMOS_ENDPOINT"]
     print(f"COSMOS_ENDPOINT: {COSMOS_ENDPOINT}")
