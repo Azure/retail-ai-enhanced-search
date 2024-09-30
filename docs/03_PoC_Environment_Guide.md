@@ -74,4 +74,5 @@ Finally we create the [Indexer](https://learn.microsoft.com/azure/search/search-
 On an initial run, when the index is empty, an indexer will read in all of the data provided in the table or container. On subsequent runs, the indexer can usually detect and retrieve just the data that has changed. Since we are using Azure CosmosDB we have already enabled the change detection. This is to enable the different stages of indexing.
 ![alt text](../media/01_indexer-stages.png)
 
-## Front-End - Cosmos DB, Azure Search and Open AI Components
+## Front-End - API calls and React Website
+
