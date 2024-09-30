@@ -15,7 +15,7 @@ az storage blob service-properties update \
 
 echo "setting environment variables"
 touch ./.env
-echo "VITE_API_URI=$API_URI/products" > ./.env
+echo "VITE_API_URI=https://${API_URI}/products" > ./.env
 echo "VITE_STORAGE_ACCOUNT_URL=${STORAGE_ACCOUNT_URI}${CONTAINER_NAME}/" >> ./.env
 
 echo "compiling Javascript"
