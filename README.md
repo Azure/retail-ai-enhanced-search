@@ -10,7 +10,7 @@ Advent of GenAI LLM is revolutionizing the way product search and discovery work
 
 The following extract from an [IDC Research Report](https://www.idc.com/getdoc.jsp?containerId=US51940624&pageType=PRINTFRIENDLY) describes the use-case in detail.
 
-<img src='/media/00_Introduction.png' width='790' height='500'> 
+<img src='./media/00_Introduction.png' width='790' height='500'> 
 
 ## User Experience
 
@@ -27,14 +27,14 @@ Overall, the e-retail industry is rapidly evolving, with product discovery playi
 
 ## Solution Architecture
 
-| <img src='/media/00_Solution_Architecture.png' width='790' height='500'> |
+| <img src='./media/00_Solution_Architecture.png' width='790' height='500'> |
 | ---- |
 
 ## Key Components
 
 Components of the solution are as follows:
 
-- **Azure Cosmos DB** - A globally distributed database service. It is well suited for low latency applications like search engines. This will be used to store Vector information
+- **Azure Cosmos DB** - A globally distributed database service. It is well suited for low latency applications. This will be used to store product catalog information and search history.
 - **AI Search** - A cloud solution that provides a rich search experience with key word and vector store capabilities over private, heterogeneous content in web, mobile, and enterprise applications. This will be used for vector search functionality.
 - **Azure App Service** - Web Apps hosts web applications allowing auto scale and high availability without having to manage infrastructure. This will be used as a web-front-end interface.
 - **Azure OpenAI Service** provides REST API access to OpenAI's powerful language models including Embeddings model series. Users can access the service through REST APIs, Python SDK, or our web-based interface in the Azure OpenAI Studio.  This will be used for embedding functionality.
@@ -43,7 +43,7 @@ Components of the solution are as follows:
 
 ## Getting Started
 
-This repo assumes you are familiar with the basics of Generative AI and Integrated Vector databases. None the less its good if you refer the [Key Concepts to Understand](./docs/00_Concepts.md) section prior to deployment. The [Workflow](./docs/01_Workflow.md) page helps you understand how the key components get deployed.
+This repo assumes you are familiar with the basics of Generative AI and Integrated Vector databases. None the less its good if you refer the [Key Concepts to Understand](./docs/00_Concepts.md) section prior to deployment.
 
 ### Prerequisites
 
@@ -59,40 +59,21 @@ You need the following to be able to deploy the solution:
 - [Node.js](https://nodejs.org/en/download/package-manager)
 - [Dotnet 8.0 Core](https://dotnet.microsoft.com/download)
 
-## Local Development
+### Solution Quickstart
 
-1. Clone this repository to your local machine
-2. Deploy base infrastructure using AI-Hub ARM templates
-3. Compile & run the back-end API
-   - Navigate to the '/api/ProductSearchAPI' folder
-   - Rename ./api/ProductSearchAPI/appsettings.template to appsettings.json
-   - Enter the required values in appsettings.json from the AI-Hib deployment output
-   - Run `$ dotnet run`
-   - The API will be running on `http://localhost:60871`
-   - Logs can be viewed live in the VS Code Terminal
-4. Open a new Terminal within VSCode and navigate to the '/spa' folder
-   - Create a file named `/.env` & add a line with the following text
-     - `REACT_APP_API_URL=http://localhost:5173`
-   - Run `$ npm install`
-   - Run `$ npm run dev`
-   - Access the React application in a browser at `http://localhost:5173`
-5. Test the application by searching for a product in the React app or access the Swagger UI at `http://localhost:60871/swagger`
+You can follow step by step guide in the [Quickstart Guide](./docs/02_Solution_Quickstart.md) document to deploy the solution.
 
-The deployment templates of the solution are available at [Solution Quickstart](./docs/02_Solution_Quickstart.md). This if further bifurcated into POC and Production Environment Detailed guides
+## Solution Detailed Guide & Explanation
 
-## PoC Environment Detailed Guide
+Additional explanation for each configurations and usage pattern is in [Solution Guide](./docs/03_Solution_Guide.md) document.
 
-Additional explanation for each configurations and usage pattern PoC environment is in [PoC Environment Guide](./docs/03_PoC_Environment_Guide.md) document.
-> Gary, Varmar, Sam, Arun and Chris until 27th, September
+## Security Considerations and Guidelines
 
-## Production Environment Detailed Guide
+Security is a key aspect of any solution. The [Security Considerations](./docs/04_Security_Guide.md) document provides a detailed explanation of the security aspects of the solution.
 
-You can bring your own data or you can configure AI Search with your existing data sources such as Azure Cosmos DB, Azure SQL Database or existing Storage Account.
+## Responsible AI
 
-Based on your data character / usage / pattern, you need to enable and configure necessary features & parameters correctly.
-
-Additional detail guidance is in [Production Environment Guide](./docs/04_PRD_Environment_Guide.md) document.
-> Gary, Varmar, Sam, Arun and Chris for Guide Document until 27th, September
+## AI Design Workshop
 
 ## Contributing
 
