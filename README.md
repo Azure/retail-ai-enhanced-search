@@ -10,7 +10,7 @@ Advent of GenAI LLM is revolutionizing the way product search and discovery work
 
 The following extract from an [IDC Research Report](https://www.idc.com/getdoc.jsp?containerId=US51940624&pageType=PRINTFRIENDLY) describes the use-case in detail.
 
-<img src='/media/00_Introduction.png' width='790' height='500'> 
+<img src='./media/00_Introduction.png' width='790' height='500'> 
 
 ## User Experience
 
@@ -27,14 +27,14 @@ Overall, the e-retail industry is rapidly evolving, with product discovery playi
 
 ## Solution Architecture
 
-| <img src='/media/00_Solution_Architecture.png' width='790' height='500'> |
+| <img src='./media/00_Solution_Architecture.png' width='790' height='500'> |
 | ---- |
 
 ## Key Components
 
 Components of the solution are as follows:
 
-- **Azure Cosmos DB** - A globally distributed database service. It is well suited for low latency applications like search engines. This will be used to store Vector information
+- **Azure Cosmos DB** - A globally distributed database service. It is well suited for low latency applications. This will be used to store product catalog information and search history.
 - **AI Search** - A cloud solution that provides a rich search experience with key word and vector store capabilities over private, heterogeneous content in web, mobile, and enterprise applications. This will be used for vector search functionality.
 - **Azure App Service** - Web Apps hosts web applications allowing auto scale and high availability without having to manage infrastructure. This will be used as a web-front-end interface.
 - **Azure OpenAI Service** provides REST API access to OpenAI's powerful language models including Embeddings model series. Users can access the service through REST APIs, Python SDK, or our web-based interface in the Azure OpenAI Studio.  This will be used for embedding functionality.
@@ -83,7 +83,6 @@ The deployment templates of the solution are available at [Solution Quickstart](
 ## PoC Environment Detailed Guide
 
 Additional explanation for each configurations and usage pattern PoC environment is in [PoC Environment Guide](./docs/03_PoC_Environment_Guide.md) document.
-> Gary, Varmar, Sam, Arun and Chris until 27th, September
 
 ## Production Environment Detailed Guide
 
@@ -92,7 +91,6 @@ You can bring your own data or you can configure AI Search with your existing da
 Based on your data character / usage / pattern, you need to enable and configure necessary features & parameters correctly.
 
 Additional detail guidance is in [Production Environment Guide](./docs/04_PRD_Environment_Guide.md) document.
-> Gary, Varmar, Sam, Arun and Chris for Guide Document until 27th, September
 
 ## Contributing
 
