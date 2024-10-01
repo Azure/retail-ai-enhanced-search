@@ -67,6 +67,10 @@ You can follow step by step guide in the [Quickstart Guide](./docs/02_Solution_Q
 
 Additional explanation for each configurations and usage pattern is in [Solution Guide](./docs/03_Solution_Guide.md) document.
 
+## Security Considerations and Guidelines
+
+Security is a key aspect of any solution. The [Security Considerations](./docs/04_Security_Guide.md) document provides a detailed explanation of the security aspects of the solution.
+
 ## Responsible AI
 
 ## AI Design Workshop
