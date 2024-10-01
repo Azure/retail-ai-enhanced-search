@@ -1,7 +1,9 @@
 #!/bin/bash
+export APPSETTING_WEBSITE_SITE_NAME=DUMMY
 
-echo "Authenticating to Azure with User-Managed Identity: '${USER_MANAGED_IDENTITY_CLIENT_ID}'"
-az login --identity --username $USER_MANAGED_IDENTITY_CLIENT_ID --tenant $TENANT_ID
+echo "Authenticating to Azure with User-Managed Identity: '${AZURE_CLIENT_ID}'"
+az login --identity --username $AZURE_CLIENT_ID
+az account set --subscription $AZURE_SUBSCRIPTION_ID
 
 echo "enabling static website"
 az storage blob service-properties update \
@@ -13,7 +15,7 @@ az storage blob service-properties update \
 
 echo "setting environment variables"
 touch ./.env
-echo "VITE_API_URI=$API_URI/products" > ./.env
+echo "VITE_API_URI=https://${API_URI}/products" > ./.env
 echo "VITE_STORAGE_ACCOUNT_URL=${STORAGE_ACCOUNT_URI}${CONTAINER_NAME}/" >> ./.env
 
 echo "compiling Javascript"
