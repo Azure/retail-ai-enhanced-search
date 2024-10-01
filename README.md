@@ -63,9 +63,9 @@ You need the following to be able to deploy the solution:
 
 You can follow step by step guide in the [Quickstart Guide](./docs/02_Solution_Quickstart.md) document to deploy the solution.
 
-## Environment Detailed Guide
+## Solution Detailed Guide & Explanation
 
-Additional explanation for each configurations and usage pattern is in [Environment Guide](./docs/03_Environment_Guide.md) document.
+Additional explanation for each configurations and usage pattern is in [Solution Guide](./docs/03_Solution_Guide.md) document.
 
 ## Contributing
 
