@@ -67,6 +67,10 @@ You can follow step by step guide in the [Quickstart Guide](./docs/02_Solution_Q
 
 Additional explanation for each configurations and usage pattern is in [Solution Guide](./docs/03_Solution_Guide.md) document.
 
+## Responsible AI
+
+## AI Design Workshop
+
 ## Contributing
 
 This project welcomes contributions and suggestions.  Most contributions require you to agree to a
