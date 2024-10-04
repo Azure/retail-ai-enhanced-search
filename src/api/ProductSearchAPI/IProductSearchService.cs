@@ -82,7 +82,7 @@ namespace ProductSearchAPI
                     if (chatGptResponse != null && !string.IsNullOrEmpty(chatGptResponse.Value.Content.Last().Text))
                     {
                         chatGptSearchFilter = JsonSerializer.Deserialize<AISearchFilter>(chatGptResponse.Value.Content.Last().Text);
-                        _logger.LogInformation($"chatGptSearchFilter: {chatGptSearchFilter}");
+                        _logger.LogInformation($"chatGptSearchFilter: {chatGptSearchFilter.Filters}");
                     }
 
                     if (chatGptSearchFilter != null && chatGptSearchFilter.Filters != null)
