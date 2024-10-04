@@ -1,11 +1,11 @@
 using ProductSearchAPI;
 using Microsoft.Extensions.Azure;
 using Microsoft.AspNetCore.Mvc;
-using Azure.Search.Documents.Indexes.Models;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Azure.Identity;
 using Azure.Search.Documents;
 using Azure.Search.Documents.Indexes;
+using System.Text.Json;
 
 var builder = WebApplication.CreateBuilder(args);
 var config = new AppConfiguration();
@@ -13,7 +13,6 @@ var config = new AppConfiguration();
 builder.Configuration.GetSection("AppConfiguration").Bind(config);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.AddAzureOpenAIClient("OpenAI");
 builder.Services.AddScoped<IProductSearchService, ProductSearchService>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -22,10 +21,27 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddAzureClients(clientBuilder =>
 {
+    clientBuilder.AddClient<Azure.AI.OpenAI.AzureOpenAIClient, Azure.AI.OpenAI.AzureOpenAIClientOptions>((_, _, ServiceProvider) =>
+    {
+        if (config.OpenAIClient != null && config.OpenAIClient.Deployment != null)
+        {
+            Console.WriteLine("Creating OpenAI client for chat GPT deployment: '{0}'", config.OpenAIClient.Deployment);
+            return new Azure.AI.OpenAI.AzureOpenAIClient(new Uri(config.OpenAIClient.Endpoint), new DefaultAzureCredential(), null);
+        } 
+        else 
+        {
+            throw new Exception("Azure OpenAI client configuration is missing.");
+        }
+    });
+});
+
+builder.Services.AddAzureClients(clientBuilder =>
+{
     clientBuilder.AddClient<SearchClient, SearchClientOptions>((_, _, ServiceProvider) =>
     {
         if (config.AISearchClient != null && config.AISearchClient.Endpoint != null && config.AISearchClient.IndexName != null)
         {
+            Console.WriteLine("Creating search client with Endpoint: '{0}' and IndexName: '{1}'", config.AISearchClient.Endpoint, config.AISearchClient.IndexName);
             return new SearchClient(new Uri(config.AISearchClient.Endpoint), config.AISearchClient.IndexName, new DefaultAzureCredential());
         }
         else
@@ -38,6 +54,7 @@ builder.Services.AddAzureClients(clientBuilder =>
     {
         if (config.AISearchClient != null && config.AISearchClient.Endpoint != null)
         {
+            Console.WriteLine("Creating search index client with Endpoint: {0}", config.AISearchClient.Endpoint);
             return new SearchIndexClient(new Uri(config.AISearchClient.Endpoint), new DefaultAzureCredential());
         }
         else
@@ -72,6 +89,7 @@ builder.Services.AddCors(options =>
 });
 
 var app = builder.Build();
+app.Logger.LogInformation("Application Configuration: {0}", JsonSerializer.Serialize(config));
 
 app.UseStatusCodePages(statusCodeHandlerApp =>
 {
@@ -120,9 +138,9 @@ app.MapGet("/products", async Task<Results<Ok<List<Product>>, NotFound>> (
      query,
      config.AISearchClient.SemanticConfigName,
      config.AISearchClient.VectorFieldNames,
-     config.OpenAIClient.ChatDeploymentName,
+     config.OpenAIClient.Deployment,
      config.AISearchClient.NearestNeighbours,
-     config.OpenAIClient.SystemPromptFileName,
+     config.OpenAIClient.SystemPromptFile,
      config.AISearchClient.Fields
  );
 
@@ -131,7 +149,8 @@ app.MapGet("/products", async Task<Results<Ok<List<Product>>, NotFound>> (
         return TypedResults.NotFound();
     }
 
-    return TypedResults.Ok(products);
+    var sortedProducts = products.OrderByDescending(p => p.Price).ToList();
+    return TypedResults.Ok(sortedProducts);
 });
 
 app.Run();

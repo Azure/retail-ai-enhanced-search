@@ -43,7 +43,7 @@ namespace ProductSearchAPI
                 Temperature = (float?)1.0,
                 FrequencyPenalty = 0,
                 PresencePenalty = 0,
-                MaxTokens = 256,
+                //MaxTokens = 256,
                 ResponseFormat = ChatResponseFormat.CreateJsonObjectFormat()
             };
 
@@ -74,7 +74,7 @@ namespace ProductSearchAPI
             }
             else
             {
-                _logger.LogInformation($"chatGptResponse: {chatGptResponse.Value.Content[0]}");
+                _logger.LogInformation($"chatGptResponse: {chatGptResponse.Value.Content.Last().Text}");
 
                 try
                 {

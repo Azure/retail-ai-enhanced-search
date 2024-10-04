@@ -1,8 +1,8 @@
 #!/bin/bash
 export APPSETTING_WEBSITE_SITE_NAME=DUMMY
 
-echo "Authenticating to Azure with User-Managed Identity: '${AZURE_CLIENT_ID}'"
-az login --identity --username $AZURE_CLIENT_ID
+echo "Authenticating to Azure with Managed Identity..."
+az login --identity
 az account set --subscription $AZURE_SUBSCRIPTION_ID
 
 echo "enabling static website"
@@ -26,8 +26,7 @@ echo "copying error.html to dist"
 cp ./error.html ./dist/
 
 echo "copying built javascript to storage account"
-az storage container create --name 'product-images' --account-name $STORAGE_ACCOUNT_NAME --auth-mode login
-az storage blob upload-batch -s ./dist/ -d '$web' --account-name $STORAGE_ACCOUNT_NAME --overwrite --auth-mode login
+az storage blob upload-batch -s ./dist/ -d '$web' --account-name $STORAGE_ACCOUNT_NAME --overwrite --auth-mode login 
 
 echo "copying images to storage account"
-az storage blob upload-batch -s ./images -d 'product-images' --account-name $STORAGE_ACCOUNT_NAME --overwrite --auth-mode login
+az storage blob upload-batch -s ./images -d $CONTAINER_NAME --account-name $STORAGE_ACCOUNT_NAME --overwrite --auth-mode login

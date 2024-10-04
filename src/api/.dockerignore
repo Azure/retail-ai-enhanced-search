@@ -28,3 +28,5 @@ README.md
 !.git/config
 !.git/packed-refs
 !.git/refs/heads/**
+**/appsettings.json
+**/appsettings.Development.json
