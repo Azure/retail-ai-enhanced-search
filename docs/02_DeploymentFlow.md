@@ -175,7 +175,8 @@ It gets created with the following environment variables which stick the FrontEn
 
 ### **Data Ingestion Job**
 
-![DataJob](../media/02_DataJob.PNG)
+<img src='../media/02_DataJob.PNG' width='200' height='150'>
+
 
 The first job is responsible for ingesting the data into CosmosDB calling the CreateIndex.py script for data ingestion. Once the network approvals is done manually go to the job and run it.
 
@@ -214,7 +215,7 @@ Web job basically runs following steps:
 
 > :warning: Tip : We recommend you to leverage the same sample API's and React code provided under the API & SPA folders respectively at least once so as to get the hang of the flow. We recommend you not to change the context for POC at least however you are not restricted for the same.
 
-$${\color{blue} FOR PROD}$$
+$${\color{red} FOR PROD}$$
 
 If you have your own container apps with custom data then you will have to come and change the environment variables below.
 
