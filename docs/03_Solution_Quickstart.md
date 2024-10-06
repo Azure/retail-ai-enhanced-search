@@ -90,7 +90,6 @@ Goes to the Azure Cosmos DB resource in Azure Portal and in the network settings
 
 You need to give necessary RBAC permissions and create .env file for data ingestion. Please refer to the [Deployment Flow - Backend](../docs/02_DeploymentFlow.md/#backend-flow---cosmos-db-azure-search-and-open-ai-components). Run the container job responsible for ingesting data in CosmosDB using Python script.
 
-
 ### Production Environment
 
 **Pre-requisites**: For this Production deployment you will need a Virtual Network. Production deployment doesn't create container app so you don't need a Microsoft.App/environments need to be delegated subnet.

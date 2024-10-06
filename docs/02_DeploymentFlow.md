@@ -4,15 +4,15 @@ Under the SRC folder you will find **[api](../src/api/)** , **[spa](../src/spa/)
 
 ## Table of Contents
 
-- [Backend Flow](#backend-flow---cosmos-db-azure-search-and-open-ai-components)
+- [Backend Flow](#backend-flow---cosmos-db-azure-search-components-and-open-ai-components)
   - [Customizable options](#customizable-options)
   - [RBAC permissions](#rbac-permissions)
   - [Network considerations](#network-considerations)
 - [Frontend Flow](#frontend-flow---ai-search-service-storage-accounts-container-apps-network)
   - [Network approvals](#network-approvals)
   - [Container Environment](#container-environment)
-      1. [Ingestion Job](#ingestion-job)
-      1. [Static WebApp Creation](#static-webapp-creation)
+      1. [Data Ingestion Job](#data-ingestion-job)
+      1. [Static WebApp Creation Job](#static-webapp-creation-job)
 
 ## Backend Flow - Cosmos DB, Azure Search Components and Open AI Components
 
@@ -166,7 +166,7 @@ A container apps environment is created hosting 3 container applications. One is
 
 ![ContainerAppSecrets](../media/02_ContainerSecrets.PNG)
 
-### **Ingestion Job**
+### **Data Ingestion Job**
 
 The first job is responsible for ingesting the data into CosmosDB calling the CreateIndex.py script for data ingestion. Once the network approvals is done manually go to the job and run it.
 
@@ -184,7 +184,7 @@ You should also be able to validate the AI Search Service reflecting an index cr
 | ![Indexer](/media/02_IndexerSuccess.PNG)|![Indexer Run](/media/02_IndexerRun.PNG)
 | ----- | ----- |
 
-### **Static WebApp Creation**
+### **Static WebApp Creation Job**
 
 Web job basically runs following steps:
 
@@ -197,7 +197,6 @@ Web job basically runs following steps:
 | ----- | ----- |
 
 ![StaticWebsite](../media/02_StaticWebsite.PNG)
-
 
 <!---
 ## Workflow
