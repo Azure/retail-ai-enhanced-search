@@ -10,9 +10,10 @@ Under the SRC folder you will find **[api](../src/api/)** , **[spa](../src/spa/)
   - [Network considerations](#network-considerations)
 - [Frontend Flow](#frontend-flow---ai-search-service-storage-accounts-container-apps-network)
   - [Network approvals](#network-approvals)
-  - [Container Environment]()
+  - [Container Environment](#container-environment)
+      1. [Ingestion Job](#ingestion-job)
+      1. [Static WebApp Creation](#static-webapp-creation)
 
-  
 ## Backend Flow - Cosmos DB, Azure Search Components and Open AI Components
 
 Here we are going to focus mainly on **[data](../src/data/)** folder. The **[requirements.txt](../src/data/requirements.txt)** contain some pre-requisite information. We have two configurations files here
@@ -65,9 +66,9 @@ The code is executed using a [Default Azure Credential](https://learn.microsoft.
 
 ![CreateIndex.py workflow](../media/02_createindexPyFlow.PNG)
 
-Based on the environment you are deploying please refer to the [POC Environment] & [Prod Environment] guides accordingly. 
+Based on the environment you are deploying please refer to the [POC Environment] & [Prod Environment] guides accordingly.
 
-### Customizable Options
+## Customizable Options
 
 $${\color{blue} FOR POC}$$
 
@@ -95,10 +96,10 @@ There are two ways to implement a soft delete strategy:
 > :memo: **Note:**
 Modifying the source for data or content of data might need the implementor to manually take care of the dependencies in the config.json file and createIndex.py file. The images shown earlier reflect the fields to consider in config.json file. The createIndex.py file will have to be modified at various locations pointing to the right source and definitions. The Search & OpenAI endpoints for client will also change accordingly.
 
-### RBAC permissions
+## RBAC permissions
 
 - **Cosmos DB**
-  - [Cosmos DB Data Contributor Role](https://learn.microsoft.com/azure/cosmos-db/how-to-setup-rbac#built-in-role-definitions) 
+  - [Cosmos DB Data Contributor Role](https://learn.microsoft.com/azure/cosmos-db/how-to-setup-rbac#built-in-role-definitions)
         - For the _Agent_ who is running the script. If we are running it from the Local environment, then our Object ID needs to have access to the Cosmos DB. If we are running it from Azure VM or Azure Container App, then the VM or Container App Managed Identity needs to have access to the Cosmos DB.
     - [Cosmos DB Data Reader Role](https://learn.microsoft.com/azure/cosmos-db/how-to-setup-rbac#built-in-role-definitions)
       - For the _Azure AI Search managed Identity_
@@ -130,7 +131,7 @@ if (!$roleAssignment) {
 
 ```
 
-### Network considerations
+## Network considerations
 
 Please ignore this section if you the services in the public endpoint. If you are using the private endpoint for the network connectivity between the resources make sure that the below configurations are done.
 
@@ -143,10 +144,12 @@ Please ignore this section if you the services in the public endpoint. If you ar
 The arm template is responsible for creating the resources based on the selection made for "Intent to Deploy". The infrastructure components get deployed with a **Bicep template**. It creates a search service with Indexes and Indexers and Data source pointing to CosmosDB.
 
 The index name and indexer name are hard-coded for POC
+
 | ![Index](../media/02_IndexName.PNG) | ![Indexer](../media/02_IndexerName.PNG)|
 | ----- | ------ |
 
 It connects to the data source and uses skillset we created using the scripts in the Backend flow
+
 | ![Datasource](../media/02_DataSource.PNG) | ![Skillset](../media/02_Skillset.PNG)|
 | ----- | ------ |
 
@@ -157,13 +160,13 @@ There are implicit calls from Azure AI Search to Azure Open AI [for skillset] an
 | ![Datasource](../media/02_ApproveSQL.PNG) |
 | ----- |
 
-### Container Environment
+## Container Environment
 
 A container apps environment is created hosting 3 container applications. One is the container app itself and the other 2 are container jobs. The container app gets created with the default secrets it needs to link to each of the backend component.
 
 ![ContainerAppSecrets](../media/02_ContainerSecrets.PNG)
 
-1. **Ingestion Job**
+### **Ingestion Job**
 
 The first job is responsible for ingesting the data into CosmosDB calling the CreateIndex.py script for data ingestion. Once the network approvals is done manually go to the job and run it.
 
@@ -171,9 +174,9 @@ The first job is responsible for ingesting the data into CosmosDB calling the Cr
 
 Usually it takes about a few seconds to succeed. Once succeeded you will be able to verify the loaded data navigating to the CosmosDB account -> Data Explorer
 
-![IngestionJobRunning](../media//02_Dataloaded.PNG)
+![IngestionJobRunning](../media/02_Dataloaded.PNG)
 
-You should also be able to validate the AI Search Service reflecting an index created with random name and the indexer and the run for indexer 
+You should also be able to validate the AI Search Service reflecting an index created with random name and the indexer and the run for indexer
 
 | ![Index](/media/02_SearchIndexField.PNG)|![IndexSemanticConfig](/media/02_SearchIndex.PNG)
 | ----- | ----- |
@@ -181,27 +184,17 @@ You should also be able to validate the AI Search Service reflecting an index cr
 | ![Indexer](/media/02_IndexerSuccess.PNG)|![Indexer Run](/media/02_IndexerRun.PNG)
 | ----- | ----- |
 
+### **Static WebApp Creation**
+
 <!---
 ## Workflow
 
 The infrastructure components get deployed with a **Bicep template**.
 The **backend web API's** are in **.NET code** which run in the container app. This gets created with secrets which get auto-populated during deployment through the Bicep template.
 
-![ContainerAppSecrets](../media/01_ContainerAppSecrets.PNG)
-
 The spa folder contains the **frontend React code**. This runs as a **static web application**. It has an API connection to the container app. No image search functionality
 
 ![ConnectiontoConaitnerApp](../media/01_ConnectionContainerApp.PNG)
-
-The AI search components consists of **Index** that searches the cosmosDB for certain fields and a Semantic configuration for generic searches. 
-
-|![SearchIndex](../media/01_SearchServiceIndex.PNG)| ![SemanticConfig](../media/01_SemanticConfig.PNG)|
-| ------ | ---- |
-
-There is also the **Indexer** which shows the date when the CosmosDB was indexed.
-
-|![Indexer](../media/01_Indexer.PNG)| ![SemanticConfig](../media/01_IndexerDetails.PNG)|
-| ------ | ---- |
 
 **APIM** is public facing. The frontend is reactive in its layout. Furthermore it has paging and filters which let's you perform key value search. It can also cater to interactive search.
 
