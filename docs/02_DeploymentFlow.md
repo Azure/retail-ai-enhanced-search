@@ -175,8 +175,7 @@ It gets created with the following environment variables which stick the FrontEn
 
 ### **Data Ingestion Job**
 
-<img src='../media/02_DataJob.PNG' width='200' height='150'>
-
+<img src='../media/02_DataJob.PNG' width='400' height='150'>
 
 The first job is responsible for ingesting the data into CosmosDB calling the CreateIndex.py script for data ingestion. Once the network approvals is done manually go to the job and run it.
 
