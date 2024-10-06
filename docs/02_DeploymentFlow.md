@@ -34,7 +34,7 @@ The code is executed using a [Default Azure Credential](https://learn.microsoft.
 
 Based on the environment you are deploying please refer to the [POC Environment] & [Prod Environment] guides accordingly. They contains specific sections to modify the front end API calls and backend data sources.
 
-## For POC
+$${\color{blue}FOR POC}$$
 
 **Azure CosmosDB**
 We recommend you to leverage the same sample data provided under the data folder at least once so as to get the hang of the flow. In the script we are setting the "dataChangeDetectionPolicy" property in your data source definition. This is done to enable [incremental indexing](https://learn.microsoft.com/azure/search/search-howto-index-cosmosdb#indexing-new-and-changed-documents). The property tells the indexer which change tracking mechanism is used on your data.
