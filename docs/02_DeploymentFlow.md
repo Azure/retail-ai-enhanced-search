@@ -8,6 +8,7 @@ Under the SRC folder you will find **[api](../src/api/)** , **[spa](../src/spa/)
   - [Customizable options](#customizable-options)
   - [RBAC permissions](#rbac-permissions)
   - [Network considerations](#network-considerations)
+- [Frontend Flow](#frontend-flow---ai-search-service-storage-accounts-container-apps-network)
 
 ## Backend Flow - Cosmos DB, Azure Search Components and Open AI Components
 
@@ -146,7 +147,11 @@ It connects to the data source and uses skillset we created using the scripts in
 | ![Datasource](../media/02_DataSource.PNG) | ![Skillset](../media/02_Skillset.PNG)|
 | ----- | ------ |
 
-There are implicit calls from Azure AI Search to Azure Open AI [for skillset] and Azure AI Search to Azure CosmosDB [for indexer and indexing], both these calls happen over a private network using the shared private link access
+There are implicit calls from Azure AI Search to Azure Open AI [for skillset] and Azure AI Search to Azure CosmosDB [for indexer and indexing], both these calls happen over a private network using the shared private link access. The deployment scripts are responsible for creating the link but approval process is manual. For this you manually have to go to Azure AI Search service - > Network -> Shared Link Access -> Approve. Once approved the status would reflect as follows:
+
+| ![Datasource](../media/02_ApproveSQL.PNG) |
+| ----- |
+
 <!---
 ## Workflow
 
