@@ -13,7 +13,8 @@ Under the SRC folder you will find **[api](../src/api/)** , **[spa](../src/spa/)
   - [Container Environment](#container-environment)
       1. [Data Ingestion Job](#data-ingestion-job)
       1. [Static WebApp Creation Job](#static-webapp-creation-job)
-
+  - [Customizable Options](#customizable-options-for-website)
+ 
 ## Backend Flow - Cosmos DB, Azure Search Components and Open AI Components
 
 Here we are going to focus mainly on **[data](../src/data/)** folder. The **[requirements.txt](../src/data/requirements.txt)** contain some pre-requisite information. We have two configurations files here
@@ -70,10 +71,12 @@ Based on the environment you are deploying please refer to the [POC Environment]
 
 ## Customizable Options
 
+> :warning: Tip : We recommend you to leverage the same sample data provided under the data folder at least once so as to get the hang of the flow.
+
 $${\color{blue} FOR POC}$$
 
 **Azure CosmosDB**
-We recommend you to leverage the same sample data provided under the data folder at least once so as to get the hang of the flow. In the script we are setting the "dataChangeDetectionPolicy" property in your data source definition. This is done to enable [incremental indexing](https://learn.microsoft.com/azure/search/search-howto-index-cosmosdb#indexing-new-and-changed-documents). The property tells the indexer which change tracking mechanism is used on your data.
+ In the script we are setting the "dataChangeDetectionPolicy" property in your data source definition. This is done to enable [incremental indexing](https://learn.microsoft.com/azure/search/search-howto-index-cosmosdb#indexing-new-and-changed-documents). The property tells the indexer which change tracking mechanism is used on your data.
 
 - For Azure Cosmos DB indexers, the only supported policy is the "HighWaterMarkChangeDetectionPolicy" using the “_ts (timestamp)” property provided by Azure Cosmos DB.
 
@@ -199,6 +202,17 @@ Web job basically runs following steps:
 
 |![ProductImages](../media/02_ProductImageFiles.PNG) | ![StaticWebsite](../media/02_StaticWebsite.PNG) |
 | ----- | ----- |
+
+## Customizable Options for Website
+
+> :warning: Tip : We recommend you to leverage the same sample API's and React code provided under the API & SPA folders respectively at least once so as to get the hang of the flow. We recommend you not to change the context for POC at least however you are not restricted for the same.
+
+$${\color{blue} FOR PROD}$$
+
+If you have your own container apps with custom data then you will have to come and change the environment variables below.
+
+![Environmentvariables](../media/02_ContainerEnvironmentVariables.PNG)
+You know one is the Azure search endpoint, Cosmos DB endpoint name of the Cosmos database, Cosmos DB connection string, open AI endpoint URL and then the open AI em.
 
 <!---
 ## Workflow
