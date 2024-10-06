@@ -103,7 +103,7 @@ To deploy the E-Retail Quickstart kit in a production environment, follow the sa
 
 You can ingest your own data into the E-Retail Quickstart kit by following these steps:
 
-##### (1) Please refer to the [guideline](../data/AzureSearch/readme_data_ingestion.md) and you need to create .env file, modify [createIndex.py](../data/AzureSearch/createIndex.py) script and [config.json](../data/AzureSearch/config/config.json) file to ingest your own data
+##### (1) Please refer to the [guideline](../docs/02_DeploymentFlow.md) and you need to create .env file, modify [createIndex.py](../data/AzureSearch/createIndex.py) script and [config.json](../data/AzureSearch/config/config.json) file to ingest your own data
 
 ##### (2) Create .env file with the following content
 
@@ -133,7 +133,7 @@ AZURE_CLIENT_ID="" - The user managed identity of the Azure agent who is running
 
 ##### (5) Modify from the line 12 to 39 in [config.json](../data/AzureSearch/config/config.json) script based on your data structure and your search pattern
 
-[Search Indexes in Azure AI Search](https://learn.microsoft.com/en-us/azure/search/search-what-is-an-index#field-attributes)
+[Search Indexes in Azure AI Search](https://learn.microsoft.com/azure/search/search-what-is-an-index#field-attributes)
 
 ```json
         "search-index-config": {

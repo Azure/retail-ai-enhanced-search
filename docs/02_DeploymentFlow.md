@@ -9,7 +9,10 @@ Under the SRC folder you will find **[api](../src/api/)** , **[spa](../src/spa/)
   - [RBAC permissions](#rbac-permissions)
   - [Network considerations](#network-considerations)
 - [Frontend Flow](#frontend-flow---ai-search-service-storage-accounts-container-apps-network)
+  - [Network approvals](#network-approvals)
+  - [Container Environment]()
 
+  
 ## Backend Flow - Cosmos DB, Azure Search Components and Open AI Components
 
 Here we are going to focus mainly on **[data](../src/data/)** folder. The **[requirements.txt](../src/data/requirements.txt)** contain some pre-requisite information. We have two configurations files here
@@ -147,10 +150,18 @@ It connects to the data source and uses skillset we created using the scripts in
 | ![Datasource](../media/02_DataSource.PNG) | ![Skillset](../media/02_Skillset.PNG)|
 | ----- | ------ |
 
+### Network approvals
+
 There are implicit calls from Azure AI Search to Azure Open AI [for skillset] and Azure AI Search to Azure CosmosDB [for indexer and indexing], both these calls happen over a private network using the shared private link access. The deployment scripts are responsible for creating the link but approval process is manual. For this you manually have to go to Azure AI Search service - > Network -> Shared Link Access -> Approve. Once approved the status would reflect as follows:
 
 | ![Datasource](../media/02_ApproveSQL.PNG) |
 | ----- |
+
+### Container Environment
+
+A container apps environment is created hosting 3 container applications. One is the container app itself and the other 2 are container jobs. The first job is responsible for ingesting the data into CosmosDB calling the CreateIndex.py script for data ingestion. Once the network approvals is done manually go to the job and run it.
+
+![IngestionJobRunning](../media/02_CallJobforIngestion.PNG)
 
 <!---
 ## Workflow
