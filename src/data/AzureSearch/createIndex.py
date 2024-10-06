@@ -1,3 +1,6 @@
+########################################################################
+#  Importing Libraries
+########################################################################
 import os
 import sys
 import json
@@ -41,6 +44,9 @@ from azure.search.documents.indexes.models import (
     FieldMapping
 )
 
+########################################################################
+#  Defining Data Sources
+########################################################################
 def create_data_source(
     service_endpoint: str,
     credential: DefaultAzureCredential,
@@ -85,7 +91,9 @@ def create_data_source(
         print(f"Error occurred during data source creation: {error}")
         sys.exit(1)
 
-# create Indexes
+########################################################################
+#  Defining Search Index with Vector Search and Semantic Configuration
+########################################################################
 def create_search_index(
         credential: DefaultAzureCredential,
         config: Dict,
@@ -118,7 +126,7 @@ def create_search_index(
         field = search_index_field["field"]
         datatype = search_index_field["type"]
 
-        # check if the field is present vector fields list
+        # Check if the field is present vector fields list
         if field in vector_fields:
             # print(f"Vector Field {field}")
             srch = SearchField(
@@ -152,7 +160,7 @@ def create_search_index(
             else:
                 srch = SimpleField(name=field, type=type)
 
-            # setting up the different flags in the index definition
+            # Setting up the different flags in the index definition
             if field == search_index_key_field:
                 srch.key = True
             else:
@@ -175,9 +183,8 @@ def create_search_index(
 
         fields.append(srch)
 
-    # create the semantic configuration
+    # Create the semantic configuration
     if (semantic_config_isEnabled):
-
         prioritized_fields = SemanticPrioritizedFields()
 
         # title field
@@ -190,7 +197,7 @@ def create_search_index(
             semantic_keyword_fields.append(SemanticField(field_name=field))
         prioritized_fields.keywords_fields = semantic_keyword_fields
 
-        # content field
+        # content fields
         semantic_content_fields = []
         for field in semantic_config_content_fields:
             semantic_content_fields.append(SemanticField(field_name=field))
@@ -200,7 +207,7 @@ def create_search_index(
         semantic_config = SemanticConfiguration(
             name=semantic_config_name, prioritized_fields=semantic_config_prioritized_fields)
 
-    # create the vector configuration
+    # Create the vector configuration
     vector_search = VectorSearch(
         algorithms=[
             HnswAlgorithmConfiguration(
@@ -254,7 +261,9 @@ def create_search_index(
     client.create_or_update_index(index)
     return index
 
-
+########################################################################
+#  Defining Open AI Embedding
+########################################################################
 def create_open_ai_embedding_skillset(
     service_endpoint: str,
     # credential can be a type of DefaultAzureCredential or ClientSecretCredential
@@ -287,7 +296,9 @@ def create_open_ai_embedding_skillset(
     result = client.create_or_update_skillset(skillset)
     return result
 
-
+########################################################################
+#  Defining Search Indexer
+########################################################################
 def create_search_indexer(
     service_endpoint: str,
     credential: DefaultAzureCredential,
@@ -297,7 +308,8 @@ def create_search_indexer(
     search_skillset_openai_embedding_config: Dict,
     open_ai_embedding_skillset_name: str
 ):
-    # we pass the data source, skillsets and targeted index to build an indexer
+    # Note: we pass the data source, skillsets and targeted index to build an indexer
+
     configuration = IndexingParametersConfiguration(parsing_mode=None, query_timeout=None, excluded_file_name_extensions=None,
                                                     indexed_file_name_extensions=None, fail_on_unsupported_content_type=None,
                                                     fail_on_unprocessable_document=None,
@@ -331,12 +343,12 @@ def create_search_indexer(
     indexer_client.create_or_update_indexer(indexer)
     return indexer
 
-####################################
-#  Main Script
-####################################
+########################################################################
+#  Main Script which calls the previous definitions
+########################################################################
 
 if __name__ == "__main__":
-    print(f"Running 'AzureSearch/createIndex.py'...")
+    print(f"Running 'AzureSearch/combinedScript.py'...")
 
     COSMOS_ENDPOINT = os.environ["COSMOS_ENDPOINT"]
     print(f"COSMOS_ENDPOINT: {COSMOS_ENDPOINT}")
@@ -375,6 +387,10 @@ if __name__ == "__main__":
         print(f"Error occurred reading config file: {error}")
         sys.exit(1)
 
+    ##############################################
+    ## Step 1: Creating Cosmos DB
+    ##############################################
+
     CONTAINER_NAME = config["cosmos-config"]["cosmos_db_container_name"]
     COSMOS_DB_PARTITION_KEY = config["cosmos-config"]["cosmos_db_partition_key"]
 
@@ -395,14 +411,16 @@ if __name__ == "__main__":
         print(f"Error creating container: {error}")
         sys.exit(1)
 
-    ###############################
-    # Upload Data to Cosmos DB
-    ###############################
+    ##############################################
+    ## Step 2: Upload Data to Cosmos DB 
+    ##############################################
 
     print("Uploading Data...")
 
-    # read the products.csv file from (AzureSearch\data\products.csv), remove spaces and new lines from the column values
-    # convert the id column from int to string before uploading to Cosmos DB
+    # This read the products.csv file from (AzureSearch\data\products.csv) 
+    # It also remove spaces and new lines from the column values
+    # It converts the id column from int to string before uploading to Cosmos DB
+
     products_df = pd.read_csv(f"{os.getcwd()}/AzureSearch/data/products.csv")
     products_df["id"] = products_df["id"].astype(str)
     products_df = products_df.apply(lambda x: x.str.strip() if x.dtype == "object" else x)
@@ -418,11 +436,11 @@ if __name__ == "__main__":
             print(f"Exception inserting product {product['id']} into database. {error}")
             sys.exit(1)
 
-    #######################################
-    # Create Indexer
-    #######################################
+    ##############################################
+    ## Step 3:  Setting Indexer Configuration 
+    ##############################################
 
-    print("Creating Indexer...")
+    print("Setting Indexer Variables...")
 
     # get index configuration details
     search_indexer_data_source_name = config["ai-search-config"]["data-source-config"]["cosmos_db_data_source_name"]
@@ -445,19 +463,17 @@ if __name__ == "__main__":
     semantic_config_content_fields = config["ai-search-config"]["search-index-config"]["semantic_configurations"]["content_fields"]
     open_ai_embedding_deployment_name = OPEN_AI_EMBEDDING_DEPLOYMENT_NAME
     open_ai_embedding_model_name = config["open_ai_config"]["embedding_model_name"]
-
-    # create the search client
+    
+    ##############################################
+    ## Step 4:  Create a Search Endpoint
+    ##############################################
     try:
-        print(f"Creating Search client with endpoint: {SERVICE_ENDPOINT}")
+        print(f"Creating Search Client with Endpoint: {SERVICE_ENDPOINT}")
         search_index_client = SearchIndexClient(SERVICE_ENDPOINT, default_credential)
     except Exception as error:
         print(f"Error occurred during search client creation: {error}")
         sys.exit(1)
 
-    # create the datasource connecting to the cosmosdb
-    # The authentication will be done using the search service managed identity.
-    # https://learn.microsoft.com/en-us/azure/search/search-howto-index-cosmosdb#supported-credentials-and-connection-strings
-   
     try:
         data_source = create_data_source(
             service_endpoint=SERVICE_ENDPOINT,
@@ -467,12 +483,14 @@ if __name__ == "__main__":
             search_indexer_data_source_name=search_indexer_data_source_name,
         )
 
-        print("Data source created successfully")
+        print("Data Source created successfully.")
     except Exception as error:
         print(f"Error occurred during data source creation: {error}")
         sys.exit(1)
 
-    # create the search index
+    ##############################################
+    ## Step 5:  Create a Search Index
+    ##############################################
     try:
         index = create_search_index(
             credential=default_credential,
@@ -495,17 +513,19 @@ if __name__ == "__main__":
             open_ai_embedding_deployment_name=open_ai_embedding_deployment_name,
             open_ai_embedding_model_name=open_ai_embedding_model_name
         )
-        print("Search index created successfully")
+        print("Search Index created successfully")
     except Exception as error:
         print(f"Error occurred during search index creation: {error}")
         sys.exit(1)
-
-    # create Azure Open AI Embedding skillset
+    
+    ##############################################
+    ## Step 6:  Create an OpenAI Embedding Skillset
+    ##############################################
     try:
-        print("Creating OpenAI embedding skillset")
+        print("Creating OpenAI Embedding Skillset")
         search_skillset_openai_embedding_config = config["ai-search-config"]["search-skillset-config"]["openai-embedding"]
         open_ai_embedding_skillset_name = config["ai-search-config"]["search-skillset-config"]["name"]
-        print("Creating the skillset")
+        print("Creating the Skillset")
         open_ai_embedding_skillset = create_open_ai_embedding_skillset(
             service_endpoint=SERVICE_ENDPOINT,
             credential=default_credential,
@@ -522,9 +542,11 @@ if __name__ == "__main__":
             f"Error occurred during open ai embedding skillset creation: {error}")
         sys.exit(1)
 
-    # create an Indexer
+    ##############################################
+    ## Step 7:  Creating the Indexer
+    ##############################################
     try:
-        print("Creating the indexer")
+        print("Creating the Indexer")
         search_indexer_name = config["ai-search-config"]["search-indexer-config"]["name"]
         indexer = create_search_indexer(
             service_endpoint=SERVICE_ENDPOINT,
@@ -536,7 +558,11 @@ if __name__ == "__main__":
             open_ai_embedding_skillset_name=open_ai_embedding_skillset_name
         )
 
-        print("Indexer created successfully")
+        print("Indexer created successfully.")
     except Exception as error:
         print(f"Error occurred during search indexer creation: {error}")
         sys.exit(1)
+
+########################################################################
+#  Main Script End
+########################################################################
