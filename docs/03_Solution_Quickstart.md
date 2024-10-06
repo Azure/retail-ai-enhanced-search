@@ -48,59 +48,59 @@ There is also the **Indexer** which shows the date when the CosmosDB was indexed
 
 **Pre-requisites**: For this POC deployment you will need a Virtual Network with a subnet that is not used by any other resources in the Virtual Network. It needs to have a minimum of 507 IP addresses available (/23) and Microsoft.App/environments need to be delegated.
 
-| ![SubnetSize](../media/02_SubnetSize.PNG) | ![Subnet Delegation](../media/02_SubnetDelegation.PNG)|
+| ![SubnetSize](../media/03_SubnetSize.PNG) | ![Subnet Delegation](../media/03_SubnetDelegation.PNG)|
 | ----- | ------ |
 
 Once configured the subnet configurations looks like this:
-![Subnet Sample](../media/02_Subnet_Sample.PNG)
+![Subnet Sample](../media/03_Subnet_Sample.PNG)
 
 To deploy the E-Retail Quickstart kit in a PoC environment, follow these steps:
 
 #### (1) Follow [this link](https://ms.portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FIamVarma%2Fai-hub%2Fmain%2Finfrastructure%2Farm%2FaoaiArm.json/uiFormDefinitionUri/https%3A%2F%2Fraw.githubusercontent.com%2FIamVarma%2Fai-hub%2Fmain%2Finfrastructure%2Farm%2FEnterpriseAIPortal.json) for resource deployment and click deploy link as below
 
-![Deploy to Azure](../media/02_Deploy_to_Azure.png)
+![Deploy to Azure](../media/03_Deploy_to_Azure.png)
 
 #### (2) Choose "Proof of Concept" with Single region option and type Azure OpenAI Hub Prefix for your resources as below
 
-![ArchitectureSetup](../media/02_Architecture_Setup.png)
+![ArchitectureSetup](../media/03_Architecture_Setup.png)
 
 #### (3) Select your virtual network and subnet for the Key Vault resource, then select "No" for Customer-Managed Keys as shown below
 
-![KeyVaultSubnet](../media/02_KeyVault.PNG)
+![KeyVaultSubnet](../media//03_KeyVault.PNG)
 
 #### (4) Select your virtual network and subnet for the Storage Account resource as shown below
 
-![StorageAccountSubnet](../media/02_StorageAccount.PNG)
+![StorageAccountSubnet](../media/03_StorageAccount.PNG)
 
 #### (5) Select your virtual network and subnet for the Azure OpenAI resource as shown below
 
-![AOAISubnet](../media/02_AOAI.PNG)
+![AOAISubnet](../media/03_AOAI.PNG)
 
 #### (6) Select "GPT4o" for your model and type deployment name and content filter name
 
-![ModelDeployment](../media/02_ModelDeployment.png)
+![ModelDeployment](../media/03_ModelDeployment.png)
 
 #### (7) Select "Retail AI Enhanced Search" for the Use Case
 
-![Use Case](../media/02_UseCase.png)
+![Use Case](../media/03_UseCase.png)
 
 > :bulb: **Tip:**: Once this is selected you will find a few more options to configure options upon scrolling down further
 
 #### (8) Select "Retail AI Enhanced Search" for the Use Case
 
-![Embedding](../media/02_Embedding.png)
+![Embedding](../media/03_Embedding.png)
 
 #### (9) Select appropriate virtual network and subnet for Azure AI Search as shown below
 
-![AISearchSubnet](../media/02_AISearch.PNG)
+![AISearchSubnet](../media/03_AISearch.PNG)
 
 #### (10) Select appropriate virtual network and subnet for Azure Cosmos DB as shown below
 
-![CosmosDBSubnet](../media/02_CosmosDB.PNG)
+![CosmosDBSubnet](../media/03_CosmosDB.PNG)
 
 #### (11) Select appropriate virtual network and subnet for Azure Container Apps as shown below
 
-![ContainerAppSubnet](../media/02_ContainerApp.PNG)
+![ContainerAppSubnet](../media/03_ContainerApp.PNG)
 
 Finally you will be taken to the Review+Create  
 
@@ -108,23 +108,18 @@ Finally you will be taken to the Review+Create
 
 Goes to the Azure OpenAI resource in Azure Portal and in the network settings, approve the private endpoint connection.
 
-![PrivateEndpoint](../media/02_Approve_PE_AOAI.png)
+![PrivateEndpoint](../media/03_Approve_PE_AOAI.png)
 
 #### (13) Approve the private endpoint connection for Azure Cosmos DB
 
 Goes to the Azure Cosmos DB resource in Azure Portal and in the network settings, approve the private endpoint connection.
 
-![PrivateEndpoint](../media/02_Approve_PE_Cosmos.png)
+![PrivateEndpoint](../media/03_Approve_PE_Cosmos.png)
 
 #### (14) Create configuration file for Data Ingestion
 
-You need to give necessary RBAC permissions and create .env file for data ingestion. Please refer to the [guideline](../data/AzureSearch/readme_data_ingestion.md).
+You need to give necessary RBAC permissions and create .env file for data ingestion. Please refer to the [Deployment Flow - Backend](../docs/02_DeploymentFlow.md/#backend-flow---cosmos-db-azure-search-and-open-ai-components).
 
-#### (15) Run the data ingestion script
-
-```bash
-python data\AzureSearch\createIndex.py
-```
 
 ### Production Environment
 

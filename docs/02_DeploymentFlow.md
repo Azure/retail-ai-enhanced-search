@@ -9,7 +9,7 @@ Under the SRC folder you will find **[api](../src/api/)** , **[spa](../src/spa/)
   - [RBAC permissions](#rbac-permissions)
   - [Network considerations](#network-considerations)
 
-## Backend Flow - Cosmos DB, Azure Search and Open AI Components
+## Backend Flow - Cosmos DB, Azure Search Components and Open AI Components
 
 Here we are going to focus mainly on **[data](../src/data/)** folder. The **[requirements.txt](../src/data/requirements.txt)** contain some pre-requisite information. We have two configurations files here
 
@@ -134,8 +134,21 @@ Please ignore this section if you the services in the public endpoint. If you ar
 2. The private Link is created for the outbound connectivity from the Azure AI Search to the Cosmos DB, and Azure AI Search to the Azure Open AI Service. [[details](https://learn.microsoft.com/azure/search/search-indexer-howto-access-private?tabs=portal-create#supported-resource-types)]
 ![Private Link](/media/02_PrivateLink_image.png)
 
-## Frontend Flow - Cosmos DB, Azure Search and Open AI Components
+## Frontend Flow - AI Search Service, Storage Accounts, Container Apps, Network
 
+The arm template is responsible for creating the resources based on the selection made for "Intent to Deploy". It creates a search service with Indexes and Indexers and Data source pointing to CosmosDB. 
+
+The index name and indexer name are hard-coded for POC
+| ![Index](../media/02_IndexName.PNG) | ![Indexer](../media/02_IndexerName.PNG)|
+| ----- | ------ |
+
+These leverage the 
+
+The [arm template]() is used to deploy all the resources they need to manually go into, go into Azure, open AI and approve the pending, you know spread private link coming from AI search and also go to Cosmos DB and approve the shared private link coming
+The infrastructure components get deployed with a **Bicep template**.
+The **backend web API's** are in **.NET code** which run in the container app. This gets created with secrets which get auto-populated during deployment through the Bicep template.
+
+<!---
 ## Workflow
 
 The CosmosDB **catalogDb** database gets created with a sample of 101 files and random images.
