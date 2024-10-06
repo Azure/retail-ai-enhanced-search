@@ -196,8 +196,8 @@ Web job basically runs following steps:
 | ![WebsiteContainers](../media/02_WebsiteContainers.PNG) | ![WebContents](../media/02_WebContainerfiles.PNG) |
 | ----- | ----- |
 
-![StaticWebsite](../media/02_StaticWebsite.PNG)
-
+|![ProductImages](../media/02_ProductImageFiles.PNG) | ![StaticWebsite](../media/02_StaticWebsite.PNG) |
+| ----- | ----- |
 <!---
 ## Workflow
 
