@@ -186,6 +186,16 @@ You should also be able to validate the AI Search Service reflecting an index cr
 
 ### **Static WebApp Creation**
 
+Web job basically runs following steps:
+
+1. It executes the scripts to compile the React Web app  
+2. It then upload the outputs of that compilation into that dollar web folder for the storage account 
+3. It enable static web apps on the storage container.
+4. Finally it also upload the images into that product-images folder.
+
+| ![WebsiteContainers](../media/02_WebsiteContainers.PNG) | ![StaticWebsite](../media/02_StaticWebsite.PNG)|
+| ----- | ----- |
+
 <!---
 ## Workflow
 
