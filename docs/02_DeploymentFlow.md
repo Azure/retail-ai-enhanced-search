@@ -174,6 +174,7 @@ It gets created with the following environment variables which stick the FrontEn
 
 ### **Data Ingestion Job**
 
+![DataJob](../media/02_DataJob.PNG)
 The first job is responsible for ingesting the data into CosmosDB calling the CreateIndex.py script for data ingestion. Once the network approvals is done manually go to the job and run it.
 
 ![IngestionJobRunning](../media/02_CallJobforIngestion.PNG)
@@ -192,6 +193,7 @@ You should also be able to validate the AI Search Service reflecting an index cr
 
 ### **Static WebApp Creation Job**
 
+![ContainerJob](../media/02_ContainerJob.PNG)
 Web job basically runs following steps:
 
 1. It executes the scripts to compile the React Web app  
