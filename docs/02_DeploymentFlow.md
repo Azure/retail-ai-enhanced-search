@@ -7,15 +7,15 @@ Under the SRC folder you will find **[api](../src/api/)** and **[data](../src/da
 
 The repo uses the [products.csv](../data/AzureSearch/data/products.csv) as sample data. It looks as follows
 
-<img src='/media/01_Productsample.PNG' width='950' height='150'>
+<img src='/media/02_Productsample.PNG' width='950' height='150'>
 
 Using this sample data a search index is created on the following fields
 
-![SearchIndex](../media/01_SearchIndexStructure.PNG)
+![SearchIndex](/media/02_SearchIndexStructure.PNG)
 
 Based on the above structure various fields are called to integrate filtering, sorting, vectorization capabilities and dedicate how the search results will look like. This is done using [Search Index](https://learn.microsoft.com/azure/search/search-what-is-an-index), [Indexer](https://learn.microsoft.com/azure/search/search-indexer-overview) & [Vector Store](https://learn.microsoft.com/azure/search/vector-store)capabilities of Azure AI Search. This is leveraged for creating an [Open AI Embedding](https://learn.microsoft.com/azure/search/cognitive-search-skill-azure-openai-embedding)
 
-<img src='/media/01_SearchFields.PNG' width='850' height='550'>
+<img src='/media/02_SearchFields.PNG' width='850' height='550'>
 
 These configurations get called in the [createIndex.py](/src/data/AzureSearch/createIndex.py)
 It creates the following resources
@@ -35,7 +35,7 @@ The code is executed using a [Default Azure Credential](https://learn.microsoft.
 
 Based on the environment you are deploying please refer to the [POC Environment] & [Prod Environment] guides accordingly. They contains specific sections to modify the front end API calls and backend data sources.
 
-
+<!---
 ### Step 1
 It first creates a Cosmos container, database and a database partition key(In this sample the **id** field is used).
 > :bulb: **Tip:** Sample dataset should print the following result:
@@ -112,3 +112,4 @@ There is also the **Indexer** which shows the date when the CosmosDB was indexed
 ![KeyValueSearch](../media/01_Keyvaluesearch.png)
 ![InteractiveSearch](../media/01_InteractiveSearch.png)
 
+-->
