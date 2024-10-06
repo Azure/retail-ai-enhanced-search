@@ -2,18 +2,23 @@
 
 Under the SRC folder you will find **[api](../src/api/)** , **[spa](../src/spa/)** and **[data](../src/data/)** which contains the application and data code. These contain the logic for Backend and Frontend services used to create the Retail AI Search deployment.
 
-## Backend Flow - Cosmos DB, Azure Search and Open AI Components
-Here we are going to focus mainly on **[data](../src/data/)** folder. The **[requirements.txt](../src/data/requirements.txt) contain some pre-requisite information. 
+## Table of Contents
 
-We have two configurations files to update for Local Debugging.  
+- [Backend Flow](#backend-flow---cosmos-db-azure-search-and-open-ai-components)
+  - [Customizable Options](#customizable-options)
+  - [RBAC Permissions](#rbac-permissions)
+
+## Backend Flow - Cosmos DB, Azure Search and Open AI Components
+
+Here we are going to focus mainly on **[data](../src/data/)** folder. The **[requirements.txt](../src/data/requirements.txt)** contain some pre-requisite information. We have two configurations files here
 
 ### .env file
 
-- **COSMOS_ENDPOINT**="https://XXXXXXXXXXXXXX-cosmosdb.documents.azure.com/"
+- **COSMOS_ENDPOINT**="<https://XXXXXXXXXXXXXX-cosmosdb.documents.azure.com/>"
 - **COSMOS_DATABASE**="catalogDb" - The name of the database in Cosmos DB
-- **AZURE_SEARCH_ENDPOINT**="https://XXXXXX-search1.search.windows.net"
+- **AZURE_SEARCH_ENDPOINT**="<https://XXXXXX-search1.search.windows.net>"
 - **COSMOS_DB_CONNECTION_STRING**="ResourceId=/subscriptions/XXXXX/resourceGroups/XXXXXXXXXXXXXX/providers/Microsoft.DocumentDB/databaseAccounts/XXXXXX;Database=catalogDb;IdentityAuthType=AccessToken"
-- **OPEN_AI_ENDPOINT**="https://XXXXXX-openai.openai.azure.com/"
+- **OPEN_AI_ENDPOINT**="<https://XXXXXX-openai.openai.azure.com/>"
 - **OPEN_AI_EMBEDDING_DEPLOYMENT_NAME** = "embedding" - the deployment name of the Open AI Embedding model
 - **AZURE_CLIENT_ID**="" - The user managed identity of the Azure agent who is running the script ( E.g. VM or Azure container app job). If we are running the script in the local environment, we can leave it blank.
 
@@ -39,7 +44,6 @@ Based on the above structure various fields are called to integrate filtering, s
 
 <img src='/media/02_SearchFields.PNG' width='850' height='550'>
 
-
 These configurations get called in the [createIndex.py](/src/data/AzureSearch/createIndex.py)
 It creates the following resources
 
@@ -58,6 +62,8 @@ The code is executed using a [Default Azure Credential](https://learn.microsoft.
 
 Based on the environment you are deploying please refer to the [POC Environment] & [Prod Environment] guides accordingly. They contains specific sections to modify the front end API calls and backend data sources.
 
+### Customizable Options
+
 $${\color{blue} FOR POC}$$
 
 **Azure CosmosDB**
@@ -65,7 +71,7 @@ We recommend you to leverage the same sample data provided under the data folder
 
 - For Azure Cosmos DB indexers, the only supported policy is the "HighWaterMarkChangeDetectionPolicy" using the “_ts (timestamp)” property provided by Azure Cosmos DB.
 
-However you can also choose to place the [products.csv](../data/AzureSearch/data/products.csv) inside Azure SQL (when working with structured data) or Storage Account (when working with unstructured data). 
+However you can also choose to place the [products.csv](../data/AzureSearch/data/products.csv) inside Azure SQL (when working with structured data) or Storage Account (when working with unstructured data).
 
 **Azure SQL**
 When using Azure SQL provided change tracking is enabled, a search indexer can pick up just the new and updated content on subsequent indexer runs. [To enable incremental indexing](https://learn.microsoft.com/azure/search/search-howto-connecting-azure-sql-database-to-azure-search-using-indexers#CaptureChangedRows), set the "dataChangeDetectionPolicy" property in your data source definition. This property tells the indexer which change tracking mechanism is used on your table or view.
@@ -83,6 +89,10 @@ There are two ways to implement a soft delete strategy:
 
 > :memo: **Note:**
 Modifying the source for data or content of data might need the implementor to manually take care of the dependencies in the config.json file and createIndex.py file. The images shown earlier reflect the fields to consider in config.json file. The createIndex.py file will have to be modified at various locations pointing to the right source and definitions. The Search & OpenAI endpoints for client will also change accordingly.
+
+### RBAC Permissions
+
+### Network Considerations
 
 ## Frontend Flow - Cosmos DB, Azure Search and Open AI Components
 <!---
@@ -145,7 +155,6 @@ The **backend web API's** are in **.NET code** which run in the container app. T
 The spa folder contains the **frontend React code**. This runs as a **static web application**. It has an API connection to the container app. No image search functionality
 
 ![ConnectiontoConaitnerApp](../media/01_ConnectionContainerApp.PNG)
-
 
 The AI search components consists of **Index** that searches the cosmosDB for certain fields and a Semantic configuration for generic searches. 
 
