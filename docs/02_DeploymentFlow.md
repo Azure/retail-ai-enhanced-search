@@ -230,7 +230,7 @@ The container app itself needs the following permisisons :
 - [Search Index Data Reader](https://learn.microsoft.com/azure/role-based-access-control/built-in-roles/ai-machine-learning#search-index-data-reader): This enables the container app to read the data in the Azure Cognitive Search index. This is required to search the dataset leveraging index & vector fields.
 - [Cognitive Services Open AI Contributor](https://learn.microsoft.com/azure/role-based-access-control/built-in-roles/ai-machine-learning#cognitive-services-openai-contributor): The container is making calls to the GPT 400 open AI model.
 
-These permissions are auto-assigned when the POC intent is selected.You can verify the same by going to the container app -> Identity -> System Assigned -> Azure Role Assignments  
+These permissions are auto-assigned when the POC intent is selected. You can verify the same by going to the container app -> Identity -> System Assigned -> Azure Role Assignments  
 |![Container Permissions](../media/02_ContainerAppPermissions.PNG) | ![RBAC Container](../media/02_ContainerRBAC.PNG) |
 | ----- | ----- |
 
