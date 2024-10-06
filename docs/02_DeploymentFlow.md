@@ -14,6 +14,7 @@ Under the SRC folder you will find **[api](../src/api/)** , **[spa](../src/spa/)
       1. [Data Ingestion Job](#data-ingestion-job)
       1. [Static WebApp Creation Job](#static-webapp-creation-job)
   - [Customizable Options](#customizable-options-for-website)
+  - [RBAC permissions]
  
 ## Backend Flow - Cosmos DB, Azure Search Components and Open AI Components
 
@@ -175,6 +176,7 @@ It gets created with the following environment variables which stick the FrontEn
 ### **Data Ingestion Job**
 
 ![DataJob](../media/02_DataJob.PNG)
+
 The first job is responsible for ingesting the data into CosmosDB calling the CreateIndex.py script for data ingestion. Once the network approvals is done manually go to the job and run it.
 
 ![IngestionJobRunning](../media/02_CallJobforIngestion.PNG)
@@ -217,21 +219,14 @@ $${\color{blue} FOR PROD}$$
 If you have your own container apps with custom data then you will have to come and change the environment variables below.
 
 ![Environmentvariables](../media/02_ContainerEnvironmentVariables.PNG)
-You know one is the Azure search endpoint, Cosmos DB endpoint name of the Cosmos database, Cosmos DB connection string, open AI endpoint URL and then the open AI em.
 
-<!---
-## Workflow
+## RBAC permissions for Container App
 
-The infrastructure components get deployed with a **Bicep template**.
-The **backend web API's** are in **.NET code** which run in the container app. This gets created with secrets which get auto-populated during deployment through the Bicep template.
+The container app itself needs the following permisisons : 
 
-The spa folder contains the **frontend React code**. This runs as a **static web application**. It has an API connection to the container app. No image search functionality
+- [Search Index Data Reader](https://learn.microsoft.com/azure/role-based-access-control/built-in-roles/ai-machine-learning#search-index-data-reader): This enables the container app to read the data in the Azure Cognitive Search index. This is required to search the dataset leveraging index & vector fields.
+- [Cognitive Services Open AI Contributor](https://learn.microsoft.com/azure/role-based-access-control/built-in-roles/ai-machine-learning#cognitive-services-openai-contributor): The container is making calls to the GPT 400 open AI model.
 
-![ConnectiontoConaitnerApp](../media/01_ConnectionContainerApp.PNG)
-
-**APIM** is public facing. The frontend is reactive in its layout. Furthermore it has paging and filters which let's you perform key value search. It can also cater to interactive search.
-
-![KeyValueSearch](../media/01_Keyvaluesearch.png)
-![InteractiveSearch](../media/01_InteractiveSearch.png)
-
--->
+These permissions are auto-assigned when the POC intent is selected.You can verify the same by going to the container app -> Identity -> System Assigned -> Azure Role Assignments  
+|![Container Permissions](../media/02_ContainerAppPermissions.PNG) | ![RBAC Container](../media/02_ContainerRBAC.PNG) |
+| ----- | ----- |
