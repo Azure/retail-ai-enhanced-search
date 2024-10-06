@@ -1,5 +1,13 @@
 # Key Concepts
 
+## Table of Contents
+
+- [Generative AI](#generative-ai)
+- [Vector Database](#vector-database)
+- [Generating and Searching vectors](#generating--searching-vectors)
+- [Token management](#token-management)
+- [Managing search context and history](#managing-search-context-and-history)
+
 ## Generative AI
 
 Artificial Intelligence (AI) imitates human behavior by using machine learning to interact with the environment and execute tasks without explicit directions on what to output. Generative AI describes a category of capabilities within AI that create original content. People typically interact with generative AI that has been built into chat applications.
