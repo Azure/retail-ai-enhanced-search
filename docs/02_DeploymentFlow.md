@@ -195,7 +195,8 @@ You should also be able to validate the AI Search Service reflecting an index cr
 
 ### **Static WebApp Creation Job**
 
-![ContainerJob](../media/02_ContainerJob.PNG)
+<img src='../media/02_ContainerJob.PNG' width='600' height='200'>
+
 Web job basically runs following steps:
 
 1. It executes the scripts to compile the React Web app  
