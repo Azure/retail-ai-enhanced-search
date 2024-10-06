@@ -169,6 +169,9 @@ A container apps environment is created hosting 3 container applications. One is
 
 ![ContainerAppSecrets](../media/02_ContainerSecrets.PNG)
 
+It gets created with the following environment variables which stick the FrontEnd to the Backend
+![Container App Variables](../media/02_AppEnvironmentVariables.PNG)
+
 ### **Data Ingestion Job**
 
 The first job is responsible for ingesting the data into CosmosDB calling the CreateIndex.py script for data ingestion. Once the network approvals is done manually go to the job and run it.
