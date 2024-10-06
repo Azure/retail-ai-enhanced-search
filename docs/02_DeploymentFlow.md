@@ -211,6 +211,8 @@ Web job basically runs following steps:
 |![ProductImages](../media/02_ProductImageFiles.PNG) | ![StaticWebsite](../media/02_StaticWebsite.PNG) |
 | ----- | ----- |
 
+Refer [this document](/docs/02_b_FrontendStepbyStep.md) which explains the whole script step-by-step. The diagram below depicts the steps at a high-level.
+
 ## Customizable Options for Website
 
 > :warning: Tip : We recommend you to leverage the same sample API's and React code provided under the API & SPA folders respectively at least once so as to get the hang of the flow. We recommend you not to change the context for POC at least however you are not restricted for the same.

@@ -1,3 +1,7 @@
+/* 
+#  Importing Libraries  #
+*/
+
 using ProductSearchAPI;
 using Microsoft.Extensions.Azure;
 using Microsoft.AspNetCore.Mvc;
@@ -10,6 +14,10 @@ using System.Text.Json;
 var builder = WebApplication.CreateBuilder(args);
 var config = new AppConfiguration();
 
+/* 
+#  Calling minimal API's #
+*/
+
 builder.Configuration.GetSection("AppConfiguration").Bind(config);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -18,6 +26,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddProblemDetails();
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+
+//Creating the Azure Open AI client that talks to ChatGPT.
 
 builder.Services.AddAzureClients(clientBuilder =>
 {
@@ -34,6 +44,8 @@ builder.Services.AddAzureClients(clientBuilder =>
         }
     });
 });
+
+// Creating the Azure Search client that talks to the Open AI Search service.
 
 builder.Services.AddAzureClients(clientBuilder =>
 {
