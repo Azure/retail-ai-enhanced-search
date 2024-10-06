@@ -61,7 +61,7 @@ The code is executed using a [Default Azure Credential](https://learn.microsoft.
 
 ![CreateIndex.py workflow](../media/02_createindexPyFlow.PNG)
 
-Based on the environment you are deploying please refer to the [POC Environment] & [Prod Environment] guides accordingly. They contains specific sections to modify the front end API calls and backend data sources.
+Based on the environment you are deploying please refer to the [POC Environment] & [Prod Environment] guides accordingly. 
 
 ### Customizable Options
 
