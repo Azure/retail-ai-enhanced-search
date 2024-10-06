@@ -136,23 +136,20 @@ Please ignore this section if you the services in the public endpoint. If you ar
 
 ## Frontend Flow - AI Search Service, Storage Accounts, Container Apps, Network
 
-The arm template is responsible for creating the resources based on the selection made for "Intent to Deploy". It creates a search service with Indexes and Indexers and Data source pointing to CosmosDB. 
+The arm template is responsible for creating the resources based on the selection made for "Intent to Deploy". The infrastructure components get deployed with a **Bicep template**. It creates a search service with Indexes and Indexers and Data source pointing to CosmosDB.
 
 The index name and indexer name are hard-coded for POC
 | ![Index](../media/02_IndexName.PNG) | ![Indexer](../media/02_IndexerName.PNG)|
 | ----- | ------ |
 
-These leverage the 
+It connects to the data source and uses skillset we created using the scripts in the Backend flow
+| ![Datasource](../media/02_DataSource.PNG) | ![Skillset](../media/02_Skillset.PNG)|
+| ----- | ------ |
 
-The [arm template]() is used to deploy all the resources they need to manually go into, go into Azure, open AI and approve the pending, you know spread private link coming from AI search and also go to Cosmos DB and approve the shared private link coming
-The infrastructure components get deployed with a **Bicep template**.
-The **backend web API's** are in **.NET code** which run in the container app. This gets created with secrets which get auto-populated during deployment through the Bicep template.
+
 
 <!---
 ## Workflow
-
-The CosmosDB **catalogDb** database gets created with a sample of 101 files and random images.
-This resides under the **products** container within Cosmos DB. Cosmos DB version azure-cosmos==4.7.0
 
 The infrastructure components get deployed with a **Bicep template**.
 The **backend web API's** are in **.NET code** which run in the container app. This gets created with secrets which get auto-populated during deployment through the Bicep template.
