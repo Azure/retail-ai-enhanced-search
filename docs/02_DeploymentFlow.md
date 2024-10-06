@@ -159,9 +159,17 @@ There are implicit calls from Azure AI Search to Azure Open AI [for skillset] an
 
 ### Container Environment
 
-A container apps environment is created hosting 3 container applications. One is the container app itself and the other 2 are container jobs. The first job is responsible for ingesting the data into CosmosDB calling the CreateIndex.py script for data ingestion. Once the network approvals is done manually go to the job and run it.
+A container apps environment is created hosting 3 container applications. One is the container app itself and the other 2 are container jobs. The container app gets created with the default secrets it needs to link to each of the backend component.
+
+![ContainerAppSecrets](../media/02_ContainerAppSecrets.PNG)
+
+The first job is responsible for ingesting the data into CosmosDB calling the CreateIndex.py script for data ingestion. Once the network approvals is done manually go to the job and run it.
 
 ![IngestionJobRunning](../media/02_CallJobforIngestion.PNG)
+
+Usually it takes about a few seconds to succeed. Once succeeded you will be able to verify the loaded data navigating to the CosmosDB account -> Data Explorer
+
+![IngestionJobRunning](../media//02_Dataloaded.PNG)
 
 <!---
 ## Workflow

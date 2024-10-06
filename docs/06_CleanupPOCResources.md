@@ -1,0 +1,1 @@
+AI search resource doesn't get deleted.
