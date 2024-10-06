@@ -4,7 +4,6 @@ Under the SRC folder you will find **[api](../src/api/)** and **[data](../src/da
 
 ## Backend Flow - Cosmos DB, Azure Search and Open AI Components
 
-
 The repo uses the [products.csv](../data/AzureSearch/data/products.csv) as sample data. It looks as follows
 
 <img src='/media/02_Productsample.PNG' width='950' height='150'>
@@ -31,7 +30,7 @@ It creates the following resources
 
 The code is executed using a [Default Azure Credential](https://learn.microsoft.com/python/api/azure-identity/azure.identity.defaultazurecredential?view=azure-python) from Azure Identity. 
 
-[Diagram to explain the workflow of creating components]
+![CreateIndex.py workflow](../media/02_createindexPyFlow.PNG)
 
 Based on the environment you are deploying please refer to the [POC Environment] & [Prod Environment] guides accordingly. They contains specific sections to modify the front end API calls and backend data sources.
 
