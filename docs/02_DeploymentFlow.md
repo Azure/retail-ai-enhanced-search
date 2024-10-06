@@ -5,8 +5,9 @@ Under the SRC folder you will find **[api](../src/api/)** , **[spa](../src/spa/)
 ## Table of Contents
 
 - [Backend Flow](#backend-flow---cosmos-db-azure-search-and-open-ai-components)
-  - [Customizable Options](#customizable-options)
-  - [RBAC Permissions](#rbac-permissions)
+  - [Customizable options](#customizable-options)
+  - [RBAC permissions](#rbac-permissions)
+  - [Network considerations](#network-considerations)
 
 ## Backend Flow - Cosmos DB, Azure Search and Open AI Components
 
@@ -90,9 +91,42 @@ There are two ways to implement a soft delete strategy:
 > :memo: **Note:**
 Modifying the source for data or content of data might need the implementor to manually take care of the dependencies in the config.json file and createIndex.py file. The images shown earlier reflect the fields to consider in config.json file. The createIndex.py file will have to be modified at various locations pointing to the right source and definitions. The Search & OpenAI endpoints for client will also change accordingly.
 
-### RBAC Permissions
+### RBAC permissions
 
-### Network Considerations
+- **Cosmos DB**
+  - [Cosmos DB Data Contributor Role](https://learn.microsoft.com/azure/cosmos-db/how-to-setup-rbac#built-in-role-definitions) 
+        - For the _Agent_ who is running the script. If we are running it from the Local environment, then our Object ID needs to have access to the Cosmos DB. If we are running it from Azure VM or Azure Container App, then the VM or Container App Managed Identity needs to have access to the Cosmos DB.
+    - [Cosmos DB Data Reader Role](https://learn.microsoft.com/azure/cosmos-db/how-to-setup-rbac#built-in-role-definitions)
+      - For the _Azure AI Search managed Identity_
+    - Cosmos DB Account Reader Role (roleDefinitionId: `fbdf93bf-df7d-467e-a4d2-9458aa1360c8`)
+      - For the _Azure AI Search managed Identity_
+- **Azure AI Search**
+  - Search Service Contributor (roleDefinitionId: `7ca78c08-252a-4471-8644-bb5ff32d4ba0`)
+        - The _agent_ who is running the script. If we are running it from the Local environment, then our Object ID needs to have access to the Azure AI Search. If we are running it from Azure VM or Azure Container App, then the VM or Container App Managed Identity_ needs to have access to the Azure AI Search.
+- **Azure Open AI**
+  - Azure AI Developer Role ( roleDefinitionId: `64702f94-c441-49e6-a78b-ef80e0188fee`)
+        - This is needed for the _Azure AI Search managed identity_ to access the Open AI Embedding model.
+
+To provide access to the Cosmos DB data Reader role and Cosmos DB Data Contributor Role, we can use the below code in the script. This code will assign the required roles to the Azure AI Search managed identity.
+
+```powershell
+$readOnlyRoleDefinitionId = "00000000-0000-0000-0000-000000000002" # Cosmos DB Data Contributor Role
+#$readOnlyRoleDefinitionId = "00000000-0000-0000-0000-000000000001" #- Cosmos DB Data Reader Role
+
+$principalId="<object ID of the Agent/Client ID>"
+$ResourceGroupName="< Resource Group name>"
+$accountName="< Cosmos DB Account Name>"
+
+# check if the role is present
+$roleAssignment = Get-AzCosmosDBSqlRoleAssignment -AccountName $accountName -ResourceGroupName $resourceGroupName | Where-Object { $_.PrincipalId -eq $principalId -and $_.RoleDefinitionId -match $readOnlyRoleDefinitionId }
+if (!$roleAssignment) {
+    Write-Output "Assigning role to the service principal"
+    New-AzCosmosDBSqlRoleAssignment -AccountName $accountName -ResourceGroupName $resourceGroupName -RoleDefinitionId $readOnlyRoleDefinitionId -Scope "/" -PrincipalId $principalId  
+}
+
+```
+
+### Network considerations
 
 ## Frontend Flow - Cosmos DB, Azure Search and Open AI Components
 <!---
