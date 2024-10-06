@@ -118,7 +118,7 @@ app.UseStatusCodePages(statusCodeHandlerApp =>
     });
 });
 
-// Production
+// If its Production enable Open API Swagger endpoint 
 if (app.Environment.IsProduction())
 {
     app.UseExceptionHandler(exceptionHandlerApp =>
@@ -144,6 +144,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+/* Map to the products endpoint which maps to the products returned by the database. 
+AI Search talks to database. We dont talk to database directly
+*/
 app.MapGet("/products", async Task<Results<Ok<List<Product>>, NotFound>> (
     [FromQuery(Name = "query")] string query,
     [FromServices] IProductSearchService productService

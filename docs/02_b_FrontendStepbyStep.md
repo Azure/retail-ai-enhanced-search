@@ -1,6 +1,6 @@
 ## What Program.CS file does
 
-We inject the dependencies into the application using the Program.CS file. When the application starts it uses the following definitions to call endpoints we create in the Backend scripts.
+The spa folder contains the **frontend React code**. This runs as a **static web application**. It has an API connection to the container app. The **backend web API's** are in **.NET code** which run in the container app. This gets created with secrets which get auto-populated during deployment through the Bicep template. We inject the dependencies into the application using the Program.CS file. When the application starts it uses the following definitions to call endpoints we create in the Backend scripts.
 
 |<img src='../media/02_CallingEndpoints.PNG' width='720' height='300'>|
 | ------ |
@@ -15,6 +15,10 @@ Essentially what's passed in to the environment variables of the container app g
 ![alt text](../media/02_ContainerEnvironmentVariables.PNG)
 
 The Endpoints are accessed using a [Default Azure Credential](https://learn.microsoft.com/python/api/azure-identity/azure.identity.defaultazurecredential?view=azure-python) from Azure Identity library.
+
+$${\color{red} FOR PROD}$$
+
+If its Production deployment you get the Open API Swagger endpoint is enabled, which means you get a way to test the API without having a GUI or you get a GUI in a web page. You don't need the spa
 
 ## Local Development
 
