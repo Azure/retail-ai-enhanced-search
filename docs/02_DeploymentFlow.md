@@ -176,8 +176,10 @@ Usually it takes about a few seconds to succeed. Once succeeded you will be able
 You should also be able to validate the AI Search Service reflecting an index created with random name and the indexer and the run for indexer 
 
 | ![Index](/media/02_SearchIndexField.PNG)|![IndexSemanticConfig](/media/02_SearchIndex.PNG)
-| ----- |
+| ----- | ----- |
 
+| ![Indexer](/media/02_IndexerSuccess.PNG)|![Indexer Run](/media/02_IndexerRun.PNG)
+| ----- | ----- |
 
 <!---
 ## Workflow
