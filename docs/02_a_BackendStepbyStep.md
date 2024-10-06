@@ -1,3 +1,7 @@
+## What the CreateIndex.py script does
+
+![CreateIndex.py workflow](../media/02_createindexPyFlow.PNG)
+
 ### Step 1
 It first creates a Cosmos container, database and a database partition key(In this sample the **id** field is used).
 > :bulb: **Tip:** Sample dataset should print the following result:

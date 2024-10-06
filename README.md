@@ -1,5 +1,17 @@
 # e-Retail-AI-Enhanced-Search
 
+## Table of Contents
+
+- [Introduction](#introduction)
+- [User Experience](#user-experience)
+- [Solution Architecture](#solution-architecture)
+- [Key Components](#key-components)
+- [Getting Started](#getting-started)
+  - [Pre-requisites](#prerequisites)
+- [Solution Guide](#solution-detailed-guide--explanation)
+- [Security Considerations](#security-considerations-and-guidelines)
+  - [Responsible AI](#responsible-ai)
+
 ## Introduction
 
 Highly relevant product discovery by its consumers is critical for any retailer (direct or indirect). This is the first step to drive sales (their top line), as product discovery converts into a sale through multiple channels, offers, promotions etc.
@@ -59,19 +71,19 @@ You need the following to be able to deploy the solution:
 - [Node.js](https://nodejs.org/en/download/package-manager)
 - [Dotnet 8.0 Core](https://dotnet.microsoft.com/download)
 
-### Solution Quickstart
-
-You can follow step by step guide in the [Quickstart Guide](./docs/02_Solution_Quickstart.md) document to deploy the solution.
-
 ## Solution Detailed Guide & Explanation
 
-Additional explanation for each configurations and usage pattern is in [Solution Guide](./docs/03_Solution_Guide.md) document.
+Its good to navigate to the [Deployment Flow](/docs/02_DeploymentFlow.md) section. which helps you understand how the components are created and interconnected with each other. Most of the steps are automated. For POC we highly recommend using the same sample dataset till the dependencies are understood and then go for customization if needed.
+
+## Solution Quickstart
+
+You can follow step by step guide in the [Quickstart Guide](./docs/03_Solution_Quickstart.md) document to deploy the solution for both POC or PROD intent. It provides screenshots of the various section of the deployment template and variables required for the flow. This in turn invokes the corresponding **Bicep Template** responsible for creating the infrastructure resources.
 
 ## Security Considerations and Guidelines
 
 Security is a key aspect of any solution. The [Security Considerations](./docs/04_Security_Guide.md) document provides a detailed explanation of the security aspects of the solution.
 
-## Responsible AI
+### Responsible AI
 
 ## AI Design Workshop
 

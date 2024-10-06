@@ -1,3 +1,7 @@
+/* 
+#  Importing Libraries  #
+*/
+
 using ProductSearchAPI;
 using Microsoft.Extensions.Azure;
 using Microsoft.AspNetCore.Mvc;
@@ -10,6 +14,10 @@ using System.Text.Json;
 var builder = WebApplication.CreateBuilder(args);
 var config = new AppConfiguration();
 
+/* 
+#  Calling minimal API's #
+*/
+
 builder.Configuration.GetSection("AppConfiguration").Bind(config);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -19,6 +27,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddProblemDetails();
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
+//Creating the Azure Open AI client that talks to ChatGPT.
 builder.Services.AddAzureClients(clientBuilder =>
 {
     clientBuilder.AddClient<Azure.AI.OpenAI.AzureOpenAIClient, Azure.AI.OpenAI.AzureOpenAIClientOptions>((_, _, ServiceProvider) =>
@@ -35,6 +44,7 @@ builder.Services.AddAzureClients(clientBuilder =>
     });
 });
 
+// Creating the Azure Search client that talks to the Open AI Search service.
 builder.Services.AddAzureClients(clientBuilder =>
 {
     clientBuilder.AddClient<SearchClient, SearchClientOptions>((_, _, ServiceProvider) =>
@@ -71,6 +81,8 @@ builder.Services.AddCors(o => o.AddDefaultPolicy(builder =>
     .AllowAnyHeader();
 }));
 
+// Cross origin restrictions policy
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(name: "OpenPolicy",
@@ -88,6 +100,8 @@ builder.Services.AddCors(options =>
     });
 });
 
+// App getting build
+
 var app = builder.Build();
 app.Logger.LogInformation("Application Configuration: {0}", JsonSerializer.Serialize(config));
 
@@ -104,6 +118,7 @@ app.UseStatusCodePages(statusCodeHandlerApp =>
     });
 });
 
+// If its Production enable Open API Swagger endpoint 
 if (app.Environment.IsProduction())
 {
     app.UseExceptionHandler(exceptionHandlerApp =>
@@ -129,6 +144,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+/* Map to the products endpoint which maps to the products returned by the database. 
+AI Search talks to database. We dont talk to database directly
+*/
 app.MapGet("/products", async Task<Results<Ok<List<Product>>, NotFound>> (
     [FromQuery(Name = "query")] string query,
     [FromServices] IProductSearchService productService

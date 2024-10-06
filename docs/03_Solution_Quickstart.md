@@ -11,36 +11,6 @@ This starter kit comes with API samples written in #CSharp language under the *a
     - [Bring your own Data](#bring-your-own-data)
     - [Using your existing Data Sources](#using-your-existing-data-sources)
 
-## Workflow
-
-The infrastructure components get deployed with a **Bicep template**.
-The **backend web API's** are in **.NET code** which run in the container app. This gets created with secrets which get auto-populated during deployment through the Bicep template.
-
-![ContainerAppSecrets](../media/01_ContainerAppSecrets.PNG)
-
-The spa folder contains the **frontend React code**. This runs as a **static web application**. It has an API connection to the container app.
-
-![ConnectiontoConaitnerApp](../media/01_ConnectionContainerApp.PNG)
-
-The CosmosDB **Product** database gets created with a sample of 100 files and random images.
-There is a **Product Catalog** inside the **Product** database. 
-
-![Products](../media/01_Products.PNG)
-
-The AI search components consists of **Index** that searches the cosmosDB for certain fields and a Semantic configuration for generic searches. 
-
-|![SearchIndex](../media/01_SearchServiceIndex.PNG)| ![SemanticConfig](../media/01_SemanticConfig.PNG)|
-| ------ | ---- |
-
-There is also the **Indexer** which shows the date when the CosmosDB was indexed.
-
-|![Indexer](../media/01_Indexer.PNG)| ![SemanticConfig](../media/01_IndexerDetails.PNG)|
-| ------ | ---- |
-
-**APIM** is public facing. The frontend is reactive in its layout. Furthermore it has paging and filters which let's you perform key value search. It can also cater to interactive search.
-
-![KeyValueSearch](../media/01_Keyvaluesearch.png)
-![InteractiveSearch](../media/01_InteractiveSearch.png)
 
 ## Resource Deployment & Configurations
 
@@ -48,59 +18,59 @@ There is also the **Indexer** which shows the date when the CosmosDB was indexed
 
 **Pre-requisites**: For this POC deployment you will need a Virtual Network with a subnet that is not used by any other resources in the Virtual Network. It needs to have a minimum of 507 IP addresses available (/23) and Microsoft.App/environments need to be delegated.
 
-| ![SubnetSize](../media/02_SubnetSize.PNG) | ![Subnet Delegation](../media/02_SubnetDelegation.PNG)|
+| ![SubnetSize](../media/03_SubnetSize.PNG) | ![Subnet Delegation](../media/03_SubnetDelegation.PNG)|
 | ----- | ------ |
 
 Once configured the subnet configurations looks like this:
-![Subnet Sample](../media/02_Subnet_Sample.PNG)
+![Subnet Sample](../media/03_Subnet_Sample.PNG)
 
 To deploy the E-Retail Quickstart kit in a PoC environment, follow these steps:
 
 #### (1) Follow [this link](https://ms.portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FIamVarma%2Fai-hub%2Fmain%2Finfrastructure%2Farm%2FaoaiArm.json/uiFormDefinitionUri/https%3A%2F%2Fraw.githubusercontent.com%2FIamVarma%2Fai-hub%2Fmain%2Finfrastructure%2Farm%2FEnterpriseAIPortal.json) for resource deployment and click deploy link as below
 
-![Deploy to Azure](../media/02_Deploy_to_Azure.png)
+![Deploy to Azure](../media/03_Deploy_to_Azure.png)
 
 #### (2) Choose "Proof of Concept" with Single region option and type Azure OpenAI Hub Prefix for your resources as below
 
-![ArchitectureSetup](../media/02_Architecture_Setup.png)
+![ArchitectureSetup](../media/03_Architecture_Setup.png)
 
 #### (3) Select your virtual network and subnet for the Key Vault resource, then select "No" for Customer-Managed Keys as shown below
 
-![KeyVaultSubnet](../media/02_KeyVault.PNG)
+![KeyVaultSubnet](../media//03_KeyVault.PNG)
 
 #### (4) Select your virtual network and subnet for the Storage Account resource as shown below
 
-![StorageAccountSubnet](../media/02_StorageAccount.PNG)
+![StorageAccountSubnet](../media/03_StorageAccount.PNG)
 
 #### (5) Select your virtual network and subnet for the Azure OpenAI resource as shown below
 
-![AOAISubnet](../media/02_AOAI.PNG)
+![AOAISubnet](../media/03_AOAI.PNG)
 
 #### (6) Select "GPT4o" for your model and type deployment name and content filter name
 
-![ModelDeployment](../media/02_ModelDeployment.png)
+![ModelDeployment](../media/03_ModelDeployment.png)
 
 #### (7) Select "Retail AI Enhanced Search" for the Use Case
 
-![Use Case](../media/02_UseCase.png)
+![Use Case](../media/03_UseCase.png)
 
 > :bulb: **Tip:**: Once this is selected you will find a few more options to configure options upon scrolling down further
 
 #### (8) Select "Retail AI Enhanced Search" for the Use Case
 
-![Embedding](../media/02_Embedding.png)
+![Embedding](../media/03_Embedding.png)
 
 #### (9) Select appropriate virtual network and subnet for Azure AI Search as shown below
 
-![AISearchSubnet](../media/02_AISearch.PNG)
+![AISearchSubnet](../media/03_AISearch.PNG)
 
 #### (10) Select appropriate virtual network and subnet for Azure Cosmos DB as shown below
 
-![CosmosDBSubnet](../media/02_CosmosDB.PNG)
+![CosmosDBSubnet](../media/03_CosmosDB.PNG)
 
 #### (11) Select appropriate virtual network and subnet for Azure Container Apps as shown below
 
-![ContainerAppSubnet](../media/02_ContainerApp.PNG)
+![ContainerAppSubnet](../media/03_ContainerApp.PNG)
 
 Finally you will be taken to the Review+Create  
 
@@ -108,23 +78,17 @@ Finally you will be taken to the Review+Create
 
 Goes to the Azure OpenAI resource in Azure Portal and in the network settings, approve the private endpoint connection.
 
-![PrivateEndpoint](../media/02_Approve_PE_AOAI.png)
+![PrivateEndpoint](../media/03_Approve_PE_AOAI.png)
 
 #### (13) Approve the private endpoint connection for Azure Cosmos DB
 
 Goes to the Azure Cosmos DB resource in Azure Portal and in the network settings, approve the private endpoint connection.
 
-![PrivateEndpoint](../media/02_Approve_PE_Cosmos.png)
+![PrivateEndpoint](../media/03_Approve_PE_Cosmos.png)
 
-#### (14) Create configuration file for Data Ingestion
+#### (14) Data Ingestion
 
-You need to give necessary RBAC permissions and create .env file for data ingestion. Please refer to the [guideline](../data/AzureSearch/readme_data_ingestion.md).
-
-#### (15) Run the data ingestion script
-
-```bash
-python data\AzureSearch\createIndex.py
-```
+You need to give necessary RBAC permissions and create .env file for data ingestion. Please refer to the [Deployment Flow - Backend](../docs/02_DeploymentFlow.md/#backend-flow---cosmos-db-azure-search-and-open-ai-components). Run the container job responsible for ingesting data in CosmosDB using Python script.
 
 ### Production Environment
 
@@ -138,7 +102,7 @@ To deploy the E-Retail Quickstart kit in a production environment, follow the sa
 
 You can ingest your own data into the E-Retail Quickstart kit by following these steps:
 
-##### (1) Please refer to the [guideline](../data/AzureSearch/readme_data_ingestion.md) and you need to create .env file, modify [createIndex.py](../data/AzureSearch/createIndex.py) script and [config.json](../data/AzureSearch/config/config.json) file to ingest your own data
+##### (1) Please refer to the [guideline](../docs/02_DeploymentFlow.md) and you need to create .env file, modify [createIndex.py](../data/AzureSearch/createIndex.py) script and [config.json](../data/AzureSearch/config/config.json) file to ingest your own data
 
 ##### (2) Create .env file with the following content
 
@@ -168,7 +132,7 @@ AZURE_CLIENT_ID="" - The user managed identity of the Azure agent who is running
 
 ##### (5) Modify from the line 12 to 39 in [config.json](../data/AzureSearch/config/config.json) script based on your data structure and your search pattern
 
-[Search Indexes in Azure AI Search](https://learn.microsoft.com/en-us/azure/search/search-what-is-an-index#field-attributes)
+[Search Indexes in Azure AI Search](https://learn.microsoft.com/azure/search/search-what-is-an-index#field-attributes)
 
 ```json
         "search-index-config": {
@@ -205,7 +169,7 @@ AZURE_CLIENT_ID="" - The user managed identity of the Azure agent who is running
 
 You can use your existing Cosmos DB data sources with the E-Retail Quickstart kit by following these steps:
 
-##### (1) Please refer to the [guideline](../data/AzureSearch/readme_data_ingestion.md) and you need to create .env file and neet to modify [createIndex.py](../data/AzureSearch/createIndex.py) script file to ingest your own data from Cosmos DB
+##### (1) Please refer to the [guideline](../docs/02_DeploymentFlow.md) and you need to create .env file and need to modify [createIndex.py](../data/AzureSearch/createIndex.py) script file to ingest your own data from Cosmos DB
 
 ##### (2) Create .env file with the following contents
 
@@ -269,7 +233,7 @@ def create_data_source(
 ```
 
 > :bulb: **Tip:**: You can apply CRUD change (Delta Copy) from Cosmos DB to AI Search. For this, you can utilize osft delete field with timestamp (_ts) for high water mark. </br>
-[Indexing new and changed documents](https://learn.microsoft.com/en-us/azure/search/search-howto-index-cosmosdb#indexing-new-and-changed-documents) </br>
-[Soft delete and data change detection policies](https://learn.microsoft.com/en-us/azure/search/search-howto-index-cosmosdb#indexing-deleted-documents)
+[Indexing new and changed documents](https://learn.microsoft.com/azure/search/search-howto-index-cosmosdb#indexing-new-and-changed-documents) </br>
+[Soft delete and data change detection policies](https://learn.microsoft.com/azure/search/search-howto-index-cosmosdb#indexing-deleted-documents)
 
-You can refer to the guideline [here](https://learn.microsoft.com/en-us/azure/search/search-howto-index-cosmosdb) for more information on how to index Cosmos DB data.
+You can refer to the guideline [here](https://learn.microsoft.com/azure/search/search-howto-index-cosmosdb) for more information on how to index Cosmos DB data.
