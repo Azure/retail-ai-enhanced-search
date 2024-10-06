@@ -190,14 +190,16 @@ Web job basically runs following steps:
 
 1. It executes the scripts to compile the React Web app  
 2. It then upload the outputs of that compilation into that **$web** container for the storage account.
-3. It enable static web apps on the storage container.
-4. Finally it also upload the images into that pre created **product-images** container for the storage account.
 
 | ![WebsiteContainers](../media/02_WebsiteContainers.PNG) | ![WebContents](../media/02_WebContainerfiles.PNG) |
 | ----- | ----- |
 
+3. It enable static web apps on the storage container.
+4. Finally it also upload the images into that pre created **product-images** container for the storage account.
+
 |![ProductImages](../media/02_ProductImageFiles.PNG) | ![StaticWebsite](../media/02_StaticWebsite.PNG) |
 | ----- | ----- |
+
 <!---
 ## Workflow
 
