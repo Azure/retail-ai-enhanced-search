@@ -86,9 +86,9 @@ Goes to the Azure Cosmos DB resource in Azure Portal and in the network settings
 
 ![PrivateEndpoint](../media/03_Approve_PE_Cosmos.png)
 
-#### (14) Create configuration file for Data Ingestion
+#### (14) Data Ingestion
 
-You need to give necessary RBAC permissions and create .env file for data ingestion. Please refer to the [Deployment Flow - Backend](../docs/02_DeploymentFlow.md/#backend-flow---cosmos-db-azure-search-and-open-ai-components).
+You need to give necessary RBAC permissions and create .env file for data ingestion. Please refer to the [Deployment Flow - Backend](../docs/02_DeploymentFlow.md/#backend-flow---cosmos-db-azure-search-and-open-ai-components). Run the container job responsible for ingesting data in CosmosDB using Python script.
 
 
 ### Production Environment
