@@ -42,4 +42,4 @@ Finally we create the [Indexer](https://learn.microsoft.com/azure/search/search-
 > :bulb: **Tip:**  Sample dataset should print the following result:
 "Creating the indexer.", "Indexer created successfully."
 On an initial run, when the index is empty, an indexer will read in all of the data provided in the table or container. On subsequent runs, the indexer can usually detect and retrieve just the data that has changed. Since we are using Azure CosmosDB we have already enabled the change detection. This is to enable the different stages of indexing.
-![alt text](../media/01_indexer-stages.png)
+![alt text](../media/02_IndexerStages.png)
