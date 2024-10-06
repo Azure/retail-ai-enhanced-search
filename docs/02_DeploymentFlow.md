@@ -14,7 +14,7 @@ Under the SRC folder you will find **[api](../src/api/)** , **[spa](../src/spa/)
       1. [Data Ingestion Job](#data-ingestion-job)
       1. [Static WebApp Creation Job](#static-webapp-creation-job)
   - [Customizable Options](#customizable-options-for-website)
-  - [RBAC permissions]
+  - [RBAC permissions](#rbac-permissions-for-container-environment)
  
 ## Backend Flow - Cosmos DB, Azure Search Components and Open AI Components
 
@@ -221,7 +221,9 @@ If you have your own container apps with custom data then you will have to come 
 
 ![Environmentvariables](../media/02_ContainerEnvironmentVariables.PNG)
 
-## RBAC permissions for Container App
+## RBAC permissions for Container Environment
+
+### Container App itself
 
 The container app itself needs the following permisisons : 
 
@@ -231,3 +233,21 @@ The container app itself needs the following permisisons :
 These permissions are auto-assigned when the POC intent is selected.You can verify the same by going to the container app -> Identity -> System Assigned -> Azure Role Assignments  
 |![Container Permissions](../media/02_ContainerAppPermissions.PNG) | ![RBAC Container](../media/02_ContainerRBAC.PNG) |
 | ----- | ----- |
+
+### Data Ingestion Job
+
+Likewise the following permissions are assigned to the job which is responsible for ingesting data
+
+- [Cosmos DB Data Reader Role](https://learn.microsoft.com/azure/cosmos-db/how-to-setup-rbac#built-in-role-definitions): This is required for the job to be able to read the data in the Cosmos DB account
+- [ Search Service Contributor](https://learn.microsoft.com/azure/role-based-access-control/built-in-roles/ai-machine-learning#search-service-contributor): This is required for the job to be able to create index definitions, indexers, skillset and embedding.
+
+![Data Job Permission](../media/02_DataJobPermission.PNG)
+
+### Static WebApp Creation Job
+
+The static webapp creation job gets assigned the following permissions
+
+- [Storage Account Contributor](https://learn.microsoft.com/azure/role-based-access-control/built-in-roles/storage#storage-account-contributor) : To be able to upload the content on the storage account.
+- [Storage Blob Data Contributor](https://learn.microsoft.com/azure/role-based-access-control/built-in-roles/storage#storage-blob-data-contributor): To enable static website for the storage account.
+
+![alt text](../media/02_StaticJobPermissions.PNG)
