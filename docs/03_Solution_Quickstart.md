@@ -170,7 +170,7 @@ AZURE_CLIENT_ID="" - The user managed identity of the Azure agent who is running
 
 You can use your existing Cosmos DB data sources with the E-Retail Quickstart kit by following these steps:
 
-##### (1) Please refer to the [guideline](../data/AzureSearch/readme_data_ingestion.md) and you need to create .env file and neet to modify [createIndex.py](../data/AzureSearch/createIndex.py) script file to ingest your own data from Cosmos DB
+##### (1) Please refer to the [guideline](../docs/02_DeploymentFlow.md) and you need to create .env file and need to modify [createIndex.py](../data/AzureSearch/createIndex.py) script file to ingest your own data from Cosmos DB
 
 ##### (2) Create .env file with the following contents
 
@@ -234,7 +234,7 @@ def create_data_source(
 ```
 
 > :bulb: **Tip:**: You can apply CRUD change (Delta Copy) from Cosmos DB to AI Search. For this, you can utilize osft delete field with timestamp (_ts) for high water mark. </br>
-[Indexing new and changed documents](https://learn.microsoft.com/en-us/azure/search/search-howto-index-cosmosdb#indexing-new-and-changed-documents) </br>
-[Soft delete and data change detection policies](https://learn.microsoft.com/en-us/azure/search/search-howto-index-cosmosdb#indexing-deleted-documents)
+[Indexing new and changed documents](https://learn.microsoft.com/azure/search/search-howto-index-cosmosdb#indexing-new-and-changed-documents) </br>
+[Soft delete and data change detection policies](https://learn.microsoft.com/azure/search/search-howto-index-cosmosdb#indexing-deleted-documents)
 
-You can refer to the guideline [here](https://learn.microsoft.com/en-us/azure/search/search-howto-index-cosmosdb) for more information on how to index Cosmos DB data.
+You can refer to the guideline [here](https://learn.microsoft.com/azure/search/search-howto-index-cosmosdb) for more information on how to index Cosmos DB data.
