@@ -28,7 +28,6 @@ builder.Services.AddProblemDetails();
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 //Creating the Azure Open AI client that talks to ChatGPT.
-
 builder.Services.AddAzureClients(clientBuilder =>
 {
     clientBuilder.AddClient<Azure.AI.OpenAI.AzureOpenAIClient, Azure.AI.OpenAI.AzureOpenAIClientOptions>((_, _, ServiceProvider) =>
@@ -46,7 +45,6 @@ builder.Services.AddAzureClients(clientBuilder =>
 });
 
 // Creating the Azure Search client that talks to the Open AI Search service.
-
 builder.Services.AddAzureClients(clientBuilder =>
 {
     clientBuilder.AddClient<SearchClient, SearchClientOptions>((_, _, ServiceProvider) =>
@@ -83,6 +81,8 @@ builder.Services.AddCors(o => o.AddDefaultPolicy(builder =>
     .AllowAnyHeader();
 }));
 
+// Cross origin restrictions policy
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(name: "OpenPolicy",
@@ -100,6 +100,8 @@ builder.Services.AddCors(options =>
     });
 });
 
+// App getting build
+
 var app = builder.Build();
 app.Logger.LogInformation("Application Configuration: {0}", JsonSerializer.Serialize(config));
 
@@ -116,6 +118,7 @@ app.UseStatusCodePages(statusCodeHandlerApp =>
     });
 });
 
+// Production
 if (app.Environment.IsProduction())
 {
     app.UseExceptionHandler(exceptionHandlerApp =>
