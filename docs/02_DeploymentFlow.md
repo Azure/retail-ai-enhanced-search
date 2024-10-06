@@ -195,7 +195,7 @@ You should also be able to validate the AI Search Service reflecting an index cr
 
 ### **Static WebApp Creation Job**
 
-<img src='../media/02_ContainerJob.PNG' width='600' height='200'>
+<img src='../media/02_ContainerJob.PNG' width='700' height='250'>
 
 Web job basically runs following steps:
 
