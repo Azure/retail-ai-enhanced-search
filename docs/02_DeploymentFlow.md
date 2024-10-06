@@ -161,7 +161,7 @@ There are implicit calls from Azure AI Search to Azure Open AI [for skillset] an
 
 A container apps environment is created hosting 3 container applications. One is the container app itself and the other 2 are container jobs. The container app gets created with the default secrets it needs to link to each of the backend component.
 
-![ContainerAppSecrets](../media/02_ContainerAppSecrets.PNG)
+![ContainerAppSecrets](../media/02_ContainerSecrets.PNG)
 
 The first job is responsible for ingesting the data into CosmosDB calling the CreateIndex.py script for data ingestion. Once the network approvals is done manually go to the job and run it.
 
