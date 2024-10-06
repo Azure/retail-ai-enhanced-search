@@ -4,4 +4,7 @@ We inject the dependencies into the application using the Program.CS file. When 
 
 ![Calling Endpoints](../media/02_CallingEndpoints.PNG)
 
-### Step 1
+The endpoint definitions are taken from the [AppConfiguration class](/src/api/ProductSearchAPI/Models/AppConfiguration.cs)
+
+![AppConfig](../media/02_AppConfig.PNG)
+
