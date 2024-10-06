@@ -146,8 +146,7 @@ It connects to the data source and uses skillset we created using the scripts in
 | ![Datasource](../media/02_DataSource.PNG) | ![Skillset](../media/02_Skillset.PNG)|
 | ----- | ------ |
 
-
-
+There are implicit calls from Azure AI Search to Azure Open AI [for skillset] and Azure AI Search to Azure CosmosDB [for indexer and indexing], both these calls happen over a private network using the shared private link access
 <!---
 ## Workflow
 
