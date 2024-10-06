@@ -2,9 +2,11 @@
 
 We inject the dependencies into the application using the Program.CS file. When the application starts it uses the following definitions to call endpoints we create in the Backend scripts.
 
-![Calling Endpoints](../media/02_CallingEndpoints.PNG)
+|<img src='../media/02_CallingEndpoints.PNG' width='300' height='250'>|
+| ------ |
 
 The endpoint definitions are taken from the [AppConfiguration class](/src/api/ProductSearchAPI/Models/AppConfiguration.cs)
 
-![AppConfig](../media/02_AppConfig.PNG)
+|<img src='../media/02_AppConfig.PNG' width='400' height='250'>|
+| ------ |
 
