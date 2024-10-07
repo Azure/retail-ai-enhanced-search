@@ -48,7 +48,7 @@ Based on the above structure various fields are called to integrate filtering, s
 ### Data Ingestion Python Script
 
 These configurations get called in the [createIndex.py](/src/data/AzureSearch/createIndex.py)
-It creates the following resources
+It calls the following resources
 
 1) A Cosmos Endpoint
 2) A Cosmos Database with partitioned data
@@ -69,7 +69,7 @@ Based on the environment you are deploying please refer to the [POC Environment]
 
 > :warning: Tip : We recommend you to leverage the same sample data provided under the data folder at least once so as to get the hang of the flow. However you can also choose to place the [products.csv](../data/AzureSearch/data/products.csv) inside Azure SQL (when working with structured data) or Storage Account (when working with unstructured data).
 
-$${\color{blue} FOR POC}$$
+$${\color{red} FOR PROD}$$
 
 **Azure CosmosDB**
  In the script we are setting the "dataChangeDetectionPolicy" property in your data source definition. This is done to enable [incremental indexing](https://learn.microsoft.com/azure/search/search-howto-index-cosmosdb#indexing-new-and-changed-documents). The property tells the indexer which change tracking mechanism is used on your data.
