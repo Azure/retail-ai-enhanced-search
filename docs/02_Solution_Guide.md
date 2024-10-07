@@ -142,19 +142,12 @@ The first job is responsible for ingesting the data into CosmosDB calling the Cr
 
 <img src='../media/02_ContainerJob.PNG' width='700' height='250'>
 
-Web job basically runs following steps:
+A storage account gets auto-created by the ARM template with the specific containers. A web job basically runs following steps:
 
 1. It executes the scripts to compile the React Web app  
 2. It then upload the outputs of that compilation into that **$web** container for the storage account.
-
-| ![WebsiteContainers](../media/02_WebsiteContainers.PNG) | ![WebContents](../media/02_WebContainerfiles.PNG) |
-| ----- | ----- |
-
 3. It enable static web apps on the storage container.
 4. Finally it also upload the images into that pre created **product-images** container for the storage account.
-
-|![ProductImages](../media/02_ProductImageFiles.PNG) | ![StaticWebsite](../media/02_StaticWebsite.PNG) |
-| ----- | ----- |
 
 Refer [this document](/docs/02_b_FrontendStepbyStep.md) which explains the whole script step-by-step. The diagram below depicts the steps at a high-level.
 
