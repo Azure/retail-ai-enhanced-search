@@ -145,7 +145,8 @@ Please ignore this section if you the services in the public endpoint. If you ar
 
 ## Frontend Flow - AI Search Service, Storage Accounts, Container Apps, Network
 
-The arm template is responsible for creating the resources based on the selection made for "Intent to Deploy". The infrastructure components get deployed with a **Bicep template**. It creates a search service with Indexes and Indexers and Data source pointing to CosmosDB.
+The arm template is responsible for creating the resources based on the selection made for "Intent to Deploy". The infrastructure components get deployed with a **Bicep template**. 
+It creates the Log Analytics and Managed Identities. It also spins Container environment.Finally it creates a search service with Indexes and Indexers and Data source pointing to CosmosDB.
 
 The index name and indexer name are hard-coded for POC
 
@@ -242,14 +243,15 @@ Likewise the following permissions are assigned to the job which is responsible 
 
 - [Cosmos DB Data Reader Role](https://learn.microsoft.com/azure/cosmos-db/how-to-setup-rbac#built-in-role-definitions): This is required for the job to be able to read the data in the Cosmos DB account
 - [ Search Service Contributor](https://learn.microsoft.com/azure/role-based-access-control/built-in-roles/ai-machine-learning#search-service-contributor): This is required for the job to be able to create index definitions, indexers, skillset and embedding.
-
+<!---
 ![Data Job Permission](../media/02_DataJobPermission.PNG)
-
+-->
 ### Static WebApp Creation Job
 
 The static webapp creation job gets assigned the following permissions
 
 - [Storage Account Contributor](https://learn.microsoft.com/azure/role-based-access-control/built-in-roles/storage#storage-account-contributor) : To be able to upload the content on the storage account.
 - [Storage Blob Data Contributor](https://learn.microsoft.com/azure/role-based-access-control/built-in-roles/storage#storage-blob-data-contributor): To enable static website for the storage account.
-
+<!---
 ![alt text](../media/02_StaticJobPermissions.PNG)
+-->
