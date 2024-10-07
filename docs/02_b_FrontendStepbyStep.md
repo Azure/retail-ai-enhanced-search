@@ -22,7 +22,22 @@ The Endpoints are accessed using a [Default Azure Credential](https://learn.micr
 
 ### Step 2 -> IProductSearchService.cs
 
-We make an implicit call to the **SearchProducts** method defined in [IProductSearchService.cs](/src/api/ProductSearchAPI/IProductSearchService.cs) file. This calls the Endpoints
+We make an implicit call to the **SearchProducts** method defined in [IProductSearchService.cs](/src/api/ProductSearchAPI/IProductSearchService.cs) file. The query that the user inputs for search is captured query variable. Along with query we pass several other parameters as shown below. 
+
+```c#
+{
+    List<Product> products = await productService.SearchProducts(
+     query,
+     config.AISearchClient.SemanticConfigName,
+     config.AISearchClient.VectorFieldNames,
+     config.OpenAIClient.Deployment,
+     config.AISearchClient.NearestNeighbours,
+     config.OpenAIClient.SystemPromptFile,
+     config.AISearchClient.Fields
+ );
+```
+
+This calls the Endpoints
 
 ### Step 3 -> system_prompt.txt
 
