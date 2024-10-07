@@ -1,6 +1,17 @@
 ## What the CreateIndex.py script does
 
+
 ![CreateIndex.py workflow](../media/02_createindexPyFlow.PNG)
+
+## .env file
+
+- **COSMOS_ENDPOINT**="<https://XXXXXXXXXXXXXX-cosmosdb.documents.azure.com/>"
+- **COSMOS_DATABASE**="catalogDb" - The name of the database in Cosmos DB
+- **AZURE_SEARCH_ENDPOINT**="<https://XXXXXX-search1.search.windows.net>"
+- **COSMOS_DB_CONNECTION_STRING**="ResourceId=/subscriptions/XXXXX/resourceGroups/XXXXXXXXXXXXXX/providers/Microsoft.DocumentDB/databaseAccounts/XXXXXX;Database=catalogDb;IdentityAuthType=AccessToken"
+- **OPEN_AI_ENDPOINT**="<https://XXXXXX-openai.openai.azure.com/>"
+- **OPEN_AI_EMBEDDING_DEPLOYMENT_NAME** = "embedding" - the deployment name of the Open AI Embedding model
+- **AZURE_CLIENT_ID**="" - The user managed identity of the Azure agent who is running the script ( E.g. VM or Azure container app job). If we are running the script in the local environment, we can leave it blank.
 
 ### Step 1
 It first creates a Cosmos container, database and a database partition key(In this sample the **id** field is used).
