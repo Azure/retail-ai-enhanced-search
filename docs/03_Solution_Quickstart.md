@@ -132,8 +132,10 @@ To deploy the E-Retail Quickstart kit in a production environment, follow the sa
 
 ![Production](../media/02_Production.png)
 
-#### Bring your own Data
+#### Bring your own Data and Data Source
 
+
+<!---
 You can ingest your own data into the E-Retail Quickstart kit by following these steps:
 
 ##### (1) Please refer to the [guideline](../docs/02_DeploymentFlow.md) and you need to create .env file, modify [createIndex.py](../data/AzureSearch/createIndex.py) script and [config.json](../data/AzureSearch/config/config.json) file to ingest your own data
@@ -271,3 +273,4 @@ def create_data_source(
 [Soft delete and data change detection policies](https://learn.microsoft.com/azure/search/search-howto-index-cosmosdb#indexing-deleted-documents)
 
 You can refer to the guideline [here](https://learn.microsoft.com/azure/search/search-howto-index-cosmosdb) for more information on how to index Cosmos DB data.
+---->
