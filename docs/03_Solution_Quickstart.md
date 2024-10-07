@@ -1,20 +1,33 @@
 # Overview
 
-This starter kit comes with API samples written in #CSharp language under the *api* folder. The sample data is under *data* folder. The quickstart specifically caters to E-Retail 
+This starter kit comes with API samples written in #CSharp language under the *api* folder. The sample data is under *data* folder. The quickstart specifically caters to E-Retail.
 
 ## Table of Contents
+  
+- [PoC Environment Quickstart](#poc-environment)
+  - [1: Choosing Deployment](#1-follow-this-link-for-resource-deployment-and-click-deploy-link-as-below)
+  - [2: Select POC intent](#2-choose-proof-of-concept-with-single-region-option-and-type-azure-openai-hub-prefix-for-your-resources-as-below)
+  - [3: Select VNet for KeyVault](#3-select-your-virtual-network-and-subnet-for-the-key-vault-resource-then-select-no-for-customer-managed-keys-as-shown-below)
+  - [4: Select VNet for Storage](#4-select-your-virtual-network-and-subnet-for-the-storage-account-resource-as-shown-below)
+  - [5: Select VNet for OpenAI](#5-select-your-virtual-network-and-subnet-for-the-azure-openai-resource-as-shown-below)
+  - [6: Select GPT4o Model](#6-select-gpt4o-for-your-model-and-type-deployment-name-and-content-filter-name)
+  - [7: Select "Retail AI Enhanced Search" Use case](#7-select-retail-ai-enhanced-search-for-the-use-case)
+  - [8: Select Embedding Model](#8-enter-embd-or-embedding-model-deployment)
+  - [9: Select VNet for AI Search](#9-select-appropriate-virtual-network-and-subnet-for-azure-ai-search-as-shown-below)
+  - [10: Select VNet for CosmosDB](#10-select-appropriate-virtual-network-and-subnet-for-azure-cosmos-db-as-shown-below)
+  - [11: Select VNet for Container App](#11-select-appropriate-virtual-network-and-subnet-for-azure-container-apps-as-shown-below)
+  - [12: Approve Private Endpoints on Open AI](#12-approve-the-private-endpoint-connection-for-azure-openai)
+  - [13: Approve Private Endpoints on CosmosDB](#13-approve-the-private-endpoint-connection-for-azure-cosmos-db)
+  - [14: Run Data Ingestion container app job](#14-data-ingestion---run-the-job)
+  - [15: Validate Data Ingestion](#15-cosmosdb-checks--ai-search-index-indexer-checks)
+  - [16: Run Static WebApp Creation container app job](#16-static-webapp-creation---run-the-job)
+  - [17: Validate Static WebApp](#17-static-website-checks)
+  - 
+- [Production Environment Quickstart](#production-environment)
+  - [Using your existing Data Sources]()
+  - [Bring your own Data]()
 
-- [Workflow](#workflow)
-- [Resource Deployment & Configurations](#resource-deployment--configurations)
-  - [PoC Environment](#poc-environment)
-  - [Production Environment](#production-environment)
-    - [Bring your own Data](#bring-your-own-data)
-    - [Using your existing Data Sources](#using-your-existing-data-sources)
-
-
-## Resource Deployment & Configurations
-
-### PoC Environment
+## PoC Environment
 
 **Pre-requisites**: For this POC deployment you will need a Virtual Network with a subnet that is not used by any other resources in the Virtual Network. It needs to have a minimum of 507 IP addresses available (/23) and Microsoft.App/environments need to be delegated.
 
@@ -26,61 +39,61 @@ Once configured the subnet configurations looks like this:
 
 To deploy the E-Retail Quickstart kit in a PoC environment, follow these steps:
 
-#### (1) Follow [this link](https://ms.portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FIamVarma%2Fai-hub%2Fmain%2Finfrastructure%2Farm%2FaoaiArm.json/uiFormDefinitionUri/https%3A%2F%2Fraw.githubusercontent.com%2FIamVarma%2Fai-hub%2Fmain%2Finfrastructure%2Farm%2FEnterpriseAIPortal.json) for resource deployment and click deploy link as below
+### (1) Follow [this link](https://ms.portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FIamVarma%2Fai-hub%2Fmain%2Finfrastructure%2Farm%2FaoaiArm.json/uiFormDefinitionUri/https%3A%2F%2Fraw.githubusercontent.com%2FIamVarma%2Fai-hub%2Fmain%2Finfrastructure%2Farm%2FEnterpriseAIPortal.json) for resource deployment and click deploy link as below
 
 ![Deploy to Azure](../media/03_Deploy_to_Azure.png)
 
-#### (2) Choose "Proof of Concept" with Single region option and type Azure OpenAI Hub Prefix for your resources as below
+### (2) Choose "Proof of Concept" with Single region option and type Azure OpenAI Hub Prefix for your resources as below
 
 ![ArchitectureSetup](../media/03_Architecture_Setup.png)
 
-#### (3) Select your virtual network and subnet for the Key Vault resource, then select "No" for Customer-Managed Keys as shown below
+### (3) Select your virtual network and subnet for the Key Vault resource, then select "No" for Customer-Managed Keys as shown below
 
 ![KeyVaultSubnet](../media//03_KeyVault.PNG)
 
-#### (4) Select your virtual network and subnet for the Storage Account resource as shown below
+### (4) Select your virtual network and subnet for the Storage Account resource as shown below
 
 ![StorageAccountSubnet](../media/03_StorageAccount.PNG)
 
-#### (5) Select your virtual network and subnet for the Azure OpenAI resource as shown below
+### (5) Select your virtual network and subnet for the Azure OpenAI resource as shown below
 
 ![AOAISubnet](../media/03_AOAI.PNG)
 
-#### (6) Select "GPT4o" for your model and type deployment name and content filter name
+### (6) Select "GPT4o" for your model and type deployment name and content filter name
 
 ![ModelDeployment](../media/03_ModelDeployment.png)
 
-#### (7) Select "Retail AI Enhanced Search" for the Use Case
+### (7) Select "Retail AI Enhanced Search" for the Use Case
 
 ![Use Case](../media/03_UseCase.png)
 
 > :bulb: **Tip:**: Once this is selected you will find a few more options to configure options upon scrolling down further
 
-#### (8) Select "Retail AI Enhanced Search" for the Use Case
+### (8) Enter "embd" or Embedding Model Deployment
 
 ![Embedding](../media/03_Embedding.png)
 
-#### (9) Select appropriate virtual network and subnet for Azure AI Search as shown below
+### (9) Select appropriate virtual network and subnet for Azure AI Search as shown below
 
 ![AISearchSubnet](../media/03_AISearch.PNG)
 
-#### (10) Select appropriate virtual network and subnet for Azure Cosmos DB as shown below
+### (10) Select appropriate virtual network and subnet for Azure Cosmos DB as shown below
 
 ![CosmosDBSubnet](../media/03_CosmosDB.PNG)
 
-#### (11) Select appropriate virtual network and subnet for Azure Container Apps as shown below
+### (11) Select appropriate virtual network and subnet for Azure Container Apps as shown below
 
 ![ContainerAppSubnet](../media/03_ContainerApp.PNG)
 
 Finally you will be taken to the Review+Create  
 
-#### (12) Approve the private endpoint connection for Azure OpenAI
+### (12) Approve the private endpoint connection for Azure OpenAI
 
 Goes to the Azure OpenAI resource in Azure Portal and in the network settings, approve the private endpoint connection.
 
 ![PrivateEndpoint](../media/03_Approve_PE_AOAI.png)
 
-#### (13) Approve the private endpoint connection for Azure Cosmos DB
+### (13) Approve the private endpoint connection for Azure Cosmos DB
 
 Goes to the Azure Cosmos DB resource in Azure Portal and in the network settings, approve the private endpoint connection.
 
@@ -92,7 +105,7 @@ Once the network approvals is done manually, you will notice a container job whi
 
 ![IngestionJobRunning](../media/03_CallJobforIngestion.PNG)
 
-#### (15) CosmosDB Checks + AI Search Index, Indexer Checks
+### (15) CosmosDB Checks + AI Search Index, Indexer Checks
 
 Usually it takes about a few seconds to succeed. Once succeeded you will be able to verify the loaded data navigating to the CosmosDB account -> Data Explorer
 
@@ -108,11 +121,11 @@ You will also be able to validate the indexer and the run for indexer
 | ![Indexer](/media/03_IndexerSuccess.PNG)|![Indexer Run](/media/03_IndexerRun.PNG)
 | ----- | ----- |
 
-#### (16) Static WebApp Creation -> Run the job
+### (16) Static WebApp Creation -> Run the job
 
 The ARM template also creates another job responsible for creating the static website & enabling it for public access. You run it in a similar fashion like you ran the Data Ingestion job.
 
-#### (17) Static Website Checks
+### (17) Static Website Checks
 
 Once executed successfully you should be able to verify that the storage account contains the compiled REACT application files in the **$web** folder
 
