@@ -88,7 +88,7 @@ Goes to the Azure Cosmos DB resource in Azure Portal and in the network settings
 
 #### (14) Data Ingestion -> Run the job
 
-Once the network approvals is done manually, Run the container job responsible for ingesting data in CosmosDB using Python script.
+Once the network approvals is done manually, you will notice a container job which calls the 'CreateIndex.Py' script for data ingestion. Run the container job responsible for ingesting data in CosmosDB using Python script.
 
 ![IngestionJobRunning](../media/03_CallJobforIngestion.PNG)
 
@@ -98,19 +98,31 @@ Usually it takes about a few seconds to succeed. Once succeeded you will be able
 
 ![IngestionJobRunning](../media/03_DataLoaded.PNG)
 
-You should also be able to validate the AI Search Service reflecting an index created with random name and the indexer and the run for indexer
+You should also be able to validate the AI Search Service reflecting an index created with random name 
 
 | ![Index](/media//03_SearchIndexField.PNG)|![IndexSemanticConfig](/media/03_SearchIndex.PNG)
 | ----- | ----- |
 
+You will also be able to validate the indexer and the run for indexer
+
 | ![Indexer](/media/03_IndexerSuccess.PNG)|![Indexer Run](/media/03_IndexerRun.PNG)
 | ----- | ----- |
 
+#### (16) Static WebApp Creation -> Run the job
 
-#### (16) Static Website Ingestion -> Run the job
+The ARM template also creates another job responsible for creating the static website & enabling it for public access. You run it in a similar fashion like you ran the Data Ingestion job.
 
 #### (17) Static Website Checks
 
+Once executed successfully you should be able to verify that the storage account contains the compiled REACT application files in the **$web** folder
+
+| ![WebsiteContainers](../media/02_WebsiteContainers.PNG) | ![WebContents](../media/02_WebContainerfiles.PNG) |
+| ----- | ----- |
+
+You will also see that the job has ingested some images in the **$product-images** folder. 
+
+|![ProductImages](../media/02_ProductImageFiles.PNG) | ![StaticWebsite](../media/02_StaticWebsite.PNG) |
+| ----- | ----- |
 
 ### Production Environment
 
