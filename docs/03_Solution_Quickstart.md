@@ -86,9 +86,31 @@ Goes to the Azure Cosmos DB resource in Azure Portal and in the network settings
 
 ![PrivateEndpoint](../media/03_Approve_PE_Cosmos.png)
 
-#### (14) Data Ingestion
+#### (14) Data Ingestion -> Run the job
 
-You need to give necessary RBAC permissions and create .env file for data ingestion. Please refer to the [Deployment Flow - Backend](../docs/02_DeploymentFlow.md/#backend-flow---cosmos-db-azure-search-and-open-ai-components). Run the container job responsible for ingesting data in CosmosDB using Python script.
+Once the network approvals is done manually, Run the container job responsible for ingesting data in CosmosDB using Python script.
+
+![IngestionJobRunning](../media/03_CallJobforIngestion.PNG)
+
+#### (15) CosmosDB Checks + AI Search Index, Indexer Checks
+
+Usually it takes about a few seconds to succeed. Once succeeded you will be able to verify the loaded data navigating to the CosmosDB account -> Data Explorer
+
+![IngestionJobRunning](../media/03_DataLoaded.PNG)
+
+You should also be able to validate the AI Search Service reflecting an index created with random name and the indexer and the run for indexer
+
+| ![Index](/media//03_SearchIndexField.PNG)|![IndexSemanticConfig](/media/03_SearchIndex.PNG)
+| ----- | ----- |
+
+| ![Indexer](/media/03_IndexerSuccess.PNG)|![Indexer Run](/media/03_IndexerRun.PNG)
+| ----- | ----- |
+
+
+#### (16) Static Website Ingestion -> Run the job
+
+#### (17) Static Website Checks
+
 
 ### Production Environment
 

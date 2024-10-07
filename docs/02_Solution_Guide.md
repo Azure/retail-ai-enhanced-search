@@ -125,7 +125,7 @@ It connects to the data source and uses skillset we created using the scripts in
 
 ## Container Environment
 
-A container apps environment is created hosting 3 container applications. One is the container app itself and the other 2 are container jobs. The container app gets created with the default secrets it needs to link to each of the backend component.
+A container apps environment is created hosting 3 components. One is the container app itself and the other 2 are container jobs. The container app gets created with the default secrets it needs to link to each of the backend component.
 
 ![ContainerAppSecrets](../media/02_ContainerSecrets.PNG)
 
@@ -136,21 +136,7 @@ It gets created with the following environment variables which stick the FrontEn
 
 <img src='../media/02_DataJob.PNG' width='400' height='150'>
 
-The first job is responsible for ingesting the data into CosmosDB calling the CreateIndex.py script for data ingestion. Once the network approvals is done manually go to the job and run it.
-
-![IngestionJobRunning](../media/02_CallJobforIngestion.PNG)
-
-Usually it takes about a few seconds to succeed. Once succeeded you will be able to verify the loaded data navigating to the CosmosDB account -> Data Explorer
-
-![IngestionJobRunning](../media/02_Dataloaded.PNG)
-
-You should also be able to validate the AI Search Service reflecting an index created with random name and the indexer and the run for indexer
-
-| ![Index](/media/02_SearchIndexField.PNG)|![IndexSemanticConfig](/media/02_SearchIndex.PNG)
-| ----- | ----- |
-
-| ![Indexer](/media/02_IndexerSuccess.PNG)|![Indexer Run](/media/02_IndexerRun.PNG)
-| ----- | ----- |
+The first job is responsible for ingesting the data into CosmosDB calling the CreateIndex.py script for data ingestion. Usually it takes about a few seconds to succeed. Once succeeded you will be able to verify the loaded data navigating to the CosmosDB account -> Data Explorer
 
 ### **Static WebApp Creation Job**
 

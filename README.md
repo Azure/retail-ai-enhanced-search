@@ -8,7 +8,7 @@
 - [Key Components](#key-components)
 - [Getting Started](#getting-started)
   - [Pre-requisites](#prerequisites)
-- [Solution Guide](#solution-detailed-guide--explanation)
+- [Solution Guide](#solution-detailed-guide)
 - [Security Considerations](#security-considerations-and-guidelines)
   - [Responsible AI](#responsible-ai)
 
@@ -71,9 +71,9 @@ You need the following to be able to deploy the solution:
 - [Node.js](https://nodejs.org/en/download/package-manager)
 - [Dotnet 8.0 Core](https://dotnet.microsoft.com/download)
 
-## Solution Detailed Guide & Explanation
+## Solution Detailed Guide 
 
-Its good to navigate to the [Deployment Flow](/docs/02_DeploymentFlow.md) section. which helps you understand how the components are created and interconnected with each other. Most of the steps are automated. For POC we highly recommend using the same sample dataset till the dependencies are understood and then go for customization if needed.
+Its good to navigate to the [Solution Guide](/docs/02_Solution_Guide.md) which helps you understand how the components are created and interconnected with each other. Most of the steps are automated. For POC we highly recommend using the same sample dataset till the dependencies are understood and then go for customization if needed.
 
 ## Solution Quickstart
 
