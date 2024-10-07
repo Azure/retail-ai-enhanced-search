@@ -2,7 +2,7 @@
 
 The spa folder contains the **frontend React code**. This runs as a **static web application**. It has an API connection to the container app. The **backend web API's** are in **.NET code** which run in the container app. This gets created with secrets which get auto-populated during deployment through the Bicep template. We inject the dependencies into the application using the Program.CS file.
 
-### Step 1
+### Step 1 -> Invoking Program.CS file
 When the application starts it uses the following definitions to call endpoints we create in the Backend scripts.
 
 |<img src='../media/02_CallingEndpoints.PNG' width='720' height='300'>|
@@ -77,6 +77,8 @@ VectorSearch = new()
 
 ### Step 6 -> Processing results via DataCard.jsx
 The results are returned to **[DataCard.jsx](/src/spa/src/components/DataCard.jsx)** file that is responsible to show the JSON results of the search in a readable format for the website.
+
+The [SPA Folder](../src/spa/src/components/)contains various components to implement the frontend interface of a REACT website. To modify these components it implicit that the developer is familiar working on REACT code and working with SPA components.The [dockerfile](/src/spa/Dockerfile)is responsible for creating the API container.
 
 $${\color{red} FOR PROD}$$
 
