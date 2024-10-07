@@ -22,11 +22,11 @@ This starter kit comes with API samples written in #CSharp language under the *a
   - [15: Validate Data Ingestion](#15-cosmosdb-checks--ai-search-index-indexer-checks)
   - [16: Run Static WebApp Creation container app job](#16-static-webapp-creation---run-the-job)
   - [17: Validate Static WebApp](#17-static-website-checks)
-  - 
 - [Production Environment Quickstart](#production-environment)
   - [Using your existing Data Sources](#use-existing-data-sources)
   - [Bring your own Data](#bring-your-own-data--data-sources)
-
+  - [Front end modification](#front-end-modification)
+ 
 ## PoC Environment
 
 **Pre-requisites**: For this POC deployment you will need a Virtual Network with a subnet that is not used by any other resources in the Virtual Network. It needs to have a minimum of 507 IP addresses available (/23) and Microsoft.App/environments need to be delegated.
