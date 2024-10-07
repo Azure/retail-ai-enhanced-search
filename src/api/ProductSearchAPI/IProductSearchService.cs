@@ -1,4 +1,8 @@
-﻿using Azure.Search.Documents;
+﻿/* 
+#  Importing Libraries  #
+*/
+
+using Azure.Search.Documents;
 using Azure.Search.Documents.Indexes;
 using Azure.Search.Documents.Models;
 using Azure.Search.Documents.Indexes.Models;
@@ -21,6 +25,7 @@ namespace ProductSearchAPI
         private readonly SearchIndexClient _searchIndexClient;
         private readonly AzureOpenAIClient _openAIClient;
 
+// Calling the Endpoints
         public ProductSearchService(ILogger<ProductSearchService> logger, SearchClient searchClient, SearchIndexClient searchIndexClient, AzureOpenAIClient openAIClient)
         {
             _logger = logger;
@@ -29,6 +34,7 @@ namespace ProductSearchAPI
             _openAIClient = openAIClient;
         }
 
+// Accessing system_prompt.txt file for examples to ChatGPT
         private async Task<System.ClientModel.ClientResult<ChatCompletion>> GetGPTChatResponse(string chatMessage, string systemPrompt, string chatDeploymentName)
         {
             ChatClient chatClient = _openAIClient.GetChatClient(chatDeploymentName);
@@ -95,6 +101,7 @@ namespace ProductSearchAPI
                     _logger.LogError($"Error parsing chatGptResponse: {e}");
                 }
 
+// Performing the Vector Search
                 var options = new SearchOptions
                 {
                     VectorSearch = new()
