@@ -116,12 +116,12 @@ The ARM template also creates another job responsible for creating the static we
 
 Once executed successfully you should be able to verify that the storage account contains the compiled REACT application files in the **$web** folder
 
-| ![WebsiteContainers](../media/02_WebsiteContainers.PNG) | ![WebContents](../media/02_WebContainerfiles.PNG) |
+| ![WebsiteContainers](../media/03_WebsiteContainers.PNG) | ![WebContents](../media/03_WebContainerFiles.PNG) |
 | ----- | ----- |
 
-You will also see that the job has ingested some images in the **$product-images** folder. 
+You will also see that the job has ingested some images in the **$product-images** folder.
 
-|![ProductImages](../media/02_ProductImageFiles.PNG) | ![StaticWebsite](../media/02_StaticWebsite.PNG) |
+|![ProductImages](../media/03_ProductImageFiles.PNG) | ![StaticWebsite](../media/03_StaticWebsite.PNG) |
 | ----- | ----- |
 
 ### Production Environment
