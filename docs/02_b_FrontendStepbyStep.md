@@ -51,7 +51,32 @@ Within the [IProductSearchService.cs](/src/api/ProductSearchAPI/IProductSearchSe
 We also see references to the system_prompt.txt files
 
 ### Step 3 -> system_prompt.txt
-We have the [system_prompt.txt](/src/api/ProductSearchAPI/system_prompt.txt) file that contains some system messages. A system message is a feature-specific set of instructions or contextual frameworks given to a generative AI model (e.g. GPT4-o, GPT3.5 Turbo, etc.) to direct and improve the quality and safety of a model’s output. This is particularly helpful in situations that need certain degrees of formality, technical language, or industry-specific terms.
+We have the [system_prompt.txt](/src/api/ProductSearchAPI/system_prompt.txt) file that contains some system messages. A system message is a feature-specific set of instructions or contextual frameworks given to a generative AI model (e.g. GPT4-o, GPT3.5 Turbo, etc.) to direct and improve the quality and safety of a model’s output. This is particularly helpful in situations that need certain degrees of formality, technical language, or industry-specific terms.If you wish to modify this refer the [advanced prompt engineering](https://learn.microsoft.com/azure/ai-services/openai/concepts/advanced-prompt-engineering) document for guidance.
+
+### Step 4 -> ChatGPT leveraging systemprompt,search query and deployment name
+Finally we pass in the text the system prompt and the deployment name, and we ask it to essentially return a AI serach filter.
+
+```c#
+var chatGptResponse = await GetGPTChatResponse(queryText, systemPrompt, chatGptDeploymentName);
+```
+
+### Step 5 -> Performing vector search
+Finally the vector search returns the results in JSON
+
+```c#
+VectorSearch = new()
+                    {
+                        Queries = {
+                            new VectorizableTextQuery(queryText) {
+                                KNearestNeighborsCount = nearestNeighbours,
+                                Weight = 1,
+                                Exhaustive = true,
+                            }
+                        }
+```
+
+### Step 6 -> Processing results via DataCard.jsx
+The results are returned to **[DataCard.jsx](/src/spa/src/components/DataCard.jsx)** file that is responsible to show the JSON results of the search in a readable format for the website.
 
 $${\color{red} FOR PROD}$$
 
