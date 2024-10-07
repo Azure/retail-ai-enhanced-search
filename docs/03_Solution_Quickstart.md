@@ -208,7 +208,15 @@ If you are changing the data source the Cosmos_Enpoint becomes AzureSQL or Stora
 #### Step 2: Modify the [config.json](/src/data/AzureSearch/config/config.json) files to the correct index fields and structures
 
 ![alt text](../media/02_SearchFields.PNG)
+
 ![alt text](../media/02_SearchIndexStructure.PNG)
+
+#### Step 2: Modify the [data folder](/src/data/AzureSearch/data/) to reflect your CSV files
+#### Step 3: Modify the actual [CreateIndex.py](/src/data/AzureSearch/createIndex.py) script to point to right files
+
+```bash
+products_df = pd.read_csv(f"{os.getcwd()}/AzureSearch/data/products.csv")
+```
 
 <!---
 You can ingest your own data into the E-Retail Quickstart kit by following these steps:
