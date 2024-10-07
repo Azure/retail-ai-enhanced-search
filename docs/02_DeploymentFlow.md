@@ -116,24 +116,6 @@ Modifying the source for data or content of data might need the implementor to m
   - Azure AI Developer Role ( roleDefinitionId: `64702f94-c441-49e6-a78b-ef80e0188fee`)
         - This is needed for the _Azure AI Search managed identity_ to access the Open AI Embedding model.
 
-To provide access to the Cosmos DB data Reader role and Cosmos DB Data Contributor Role, we can use the below code in the script. This code will assign the required roles to the Azure AI Search managed identity.
-
-```powershell
-$readOnlyRoleDefinitionId = "00000000-0000-0000-0000-000000000002" # Cosmos DB Data Contributor Role
-#$readOnlyRoleDefinitionId = "00000000-0000-0000-0000-000000000001" #- Cosmos DB Data Reader Role
-
-$principalId="<object ID of the Agent/Client ID>"
-$ResourceGroupName="< Resource Group name>"
-$accountName="< Cosmos DB Account Name>"
-
-# check if the role is present
-$roleAssignment = Get-AzCosmosDBSqlRoleAssignment -AccountName $accountName -ResourceGroupName $resourceGroupName | Where-Object { $_.PrincipalId -eq $principalId -and $_.RoleDefinitionId -match $readOnlyRoleDefinitionId }
-if (!$roleAssignment) {
-    Write-Output "Assigning role to the service principal"
-    New-AzCosmosDBSqlRoleAssignment -AccountName $accountName -ResourceGroupName $resourceGroupName -RoleDefinitionId $readOnlyRoleDefinitionId -Scope "/" -PrincipalId $principalId  
-}
-
-```
 
 ## Network considerations
 
