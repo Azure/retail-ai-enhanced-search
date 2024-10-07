@@ -110,7 +110,7 @@ Once the network approvals is done manually, you will notice a container job whi
 Usually it takes about a few seconds to succeed. Once succeeded you will be able to verify the loaded data navigating to the CosmosDB account -> Data Explorer.
 ![IngestionJobRunning](../media/03_DataLoaded.PNG)
 
-You should also be able to validate the AI Search Service reflecting an index & indexer created
+**Index, Indexer creation**: You should also be able to validate the AI Search Service reflecting an index & indexer created
 | ![Index](../media/03_IndexName.PNG) | ![Indexer](../media/03_IndexerName.PNG)|
 | ----- | ------ |
 
@@ -122,7 +122,7 @@ You should also be able to validate the AI Search Service reflecting an index & 
 | ![Datasource](../media/03_DataSource.PNG) | ![Skillset](../media/03_Skillset.PNG)|
 | ----- | ------ |
 
-You will also be able to validate the indexer and the run for indexer
+**Indexer Run**: You will also be able to validate the indexer and the run for indexer
 | ![Indexer](/media/03_IndexerSuccess.PNG)|![Indexer Run](/media/03_IndexerRun.PNG)
 | ----- | ----- |
 

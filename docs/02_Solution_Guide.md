@@ -115,12 +115,7 @@ It creates the Log Analytics Workspace and Managed Identities. It also spins the
 
 ![Backend Flow](../media/02_BackendFlow.PNG)
 
-Upon running jobs in the Container environment it creates a search service with Indexes and Indexers and Data source pointing to CosmosDB.
-
-The index name and indexer name are hard-coded for POC. It connects to the data source and uses skillset we created using the scripts in the backend flow
-
-| ![Datasource](../media/02_DataSource.PNG) | ![Skillset](../media/02_Skillset.PNG)|
-| ----- | ------ |
+Upon running jobs in the Container environment it creates a search service with Indexes and Indexers and data source pointing to CosmosDB. The index name and indexer name are hard-coded for POC. It connects to the data source and uses skillset we created using the scripts in the backend flow
 
 ## Container Environment
 
