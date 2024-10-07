@@ -78,7 +78,7 @@ VectorSearch = new()
 ### Step 6 -> Processing results via DataCard.jsx
 The results are returned to **[DataCard.jsx](/src/spa/src/components/DataCard.jsx)** file that is responsible to show the JSON results of the search in a readable format for the website.
 
-The [SPA Folder](../src/spa/src/components/)contains various components to implement the frontend interface of a REACT website. To modify these components it implicit that the developer is familiar working on REACT code and working with SPA components.The [dockerfile](/src/spa/Dockerfile)is responsible for creating the API container.
+The [SPA Folder](../src/spa/src/components/)contains various components to implement the frontend interface of a REACT website. To modify these components it implicit that the developer is familiar working on REACT code and working with SPA components.
 
 $${\color{red} FOR PROD}$$
 
