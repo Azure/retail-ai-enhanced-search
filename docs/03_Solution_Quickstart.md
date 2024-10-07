@@ -173,6 +173,7 @@ AZURE_CLIENT_ID="" - The user managed identity of the Azure agent who is running
 products_df = pd.read_csv(f"{os.getcwd()}/AzureSearch/data/products.csv")
 ```
 
+Once done follow **Steps 14-17** from POC guide
 > :bulb: **Tip:**: You can apply CRUD change (Delta Copy) from Cosmos DB to AI Search. For this, you can utilize osft delete field with timestamp (_ts) for high water mark. </br>
 [Indexing new and changed documents](https://learn.microsoft.com/azure/search/search-howto-index-cosmosdb#indexing-new-and-changed-documents) </br>
 [Soft delete and data change detection policies](https://learn.microsoft.com/azure/search/search-howto-index-cosmosdb#indexing-deleted-documents)
@@ -217,6 +218,12 @@ If you are changing the data source the Cosmos_Enpoint becomes AzureSQL or Stora
 ```bash
 products_df = pd.read_csv(f"{os.getcwd()}/AzureSearch/data/products.csv")
 ```
+
+Once done follow **Steps 14-17** from POC guide
+
+### Front end modification
+
+Please refer to [Frontend Guide](/docs/02_b_FrontendStepbyStep.md) and make the changes locally before deploying to production. [Security Guide](/docs/04_Security_Guide.md) has additional guidance for Prod environments specifically
 
 <!---
 You can ingest your own data into the E-Retail Quickstart kit by following these steps:
