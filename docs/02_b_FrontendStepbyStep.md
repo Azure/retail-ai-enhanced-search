@@ -2,7 +2,7 @@
 
 The spa folder contains the **frontend React code**. This runs as a **static web application**. It has an API connection to the container app. The **backend web API's** are in **.NET code** which run in the container app. This gets created with secrets which get auto-populated during deployment through the Bicep template. We inject the dependencies into the application using the Program.CS file.
 
-### Step 1
+### Step 1 -> Invoking Program.CS file
 When the application starts it uses the following definitions to call endpoints we create in the Backend scripts.
 
 |<img src='../media/02_CallingEndpoints.PNG' width='720' height='300'>|
@@ -20,7 +20,8 @@ Essentially what's passed in to the environment variables of the container app g
 The Endpoints are accessed using a [Default Azure Credential](https://learn.microsoft.com/python/api/azure-identity/azure.identity.defaultazurecredential?view=azure-python) from Azure Identity library.
 
 ### Step 2 -> IProductSearchService.cs
-We make an implicit call to the **SearchProducts** method defined in [IProductSearchService.cs](/src/api/ProductSearchAPI/IProductSearchService.cs) file. The query that the user inputs for search is captured query variable. Along with query we pass several other parameters as shown below. 
+
+the **Program.cs** file make an implicit call to the **SearchProducts** method defined in [IProductSearchService.cs](/src/api/ProductSearchAPI/IProductSearchService.cs) file. The query that the user inputs for search is captured query variable. Along with query we pass several other parameters as shown below. 
 
 ```c#
 {
@@ -34,11 +35,50 @@ We make an implicit call to the **SearchProducts** method defined in [IProductSe
      config.AISearchClient.Fields
  );
 ```
+Within the [IProductSearchService.cs](/src/api/ProductSearchAPI/IProductSearchService.cs) file we can see that it calls the Endpoints. 
 
-This calls the Endpoints
+```c#
+// Calling the Endpoints
+        public ProductSearchService(ILogger<ProductSearchService> logger, SearchClient searchClient, SearchIndexClient searchIndexClient, AzureOpenAIClient openAIClient)
+        {
+            _logger = logger;
+            _searchClient = searchClient;
+            _searchIndexClient = searchIndexClient;
+            _openAIClient = openAIClient;
+        }
+```
+
+We also see references to the system_prompt.txt files
 
 ### Step 3 -> system_prompt.txt
-We have the [system_prompt.txt](/src/api/ProductSearchAPI/system_prompt.txt) file that contains some system messages. A system message is a feature-specific set of instructions or contextual frameworks given to a generative AI model (e.g. GPT4-o, GPT3.5 Turbo, etc.) to direct and improve the quality and safety of a model’s output. This is particularly helpful in situations that need certain degrees of formality, technical language, or industry-specific terms.
+We have the [system_prompt.txt](/src/api/ProductSearchAPI/system_prompt.txt) file that contains some system messages. A system message is a feature-specific set of instructions or contextual frameworks given to a generative AI model (e.g. GPT4-o, GPT3.5 Turbo, etc.) to direct and improve the quality and safety of a model’s output. This is particularly helpful in situations that need certain degrees of formality, technical language, or industry-specific terms.If you wish to modify this refer the [advanced prompt engineering](https://learn.microsoft.com/azure/ai-services/openai/concepts/advanced-prompt-engineering) document for guidance.
+
+### Step 4 -> ChatGPT leveraging systemprompt,search query and deployment name
+Finally we pass in the text the system prompt and the deployment name, and we ask it to essentially return a AI serach filter.
+
+```c#
+var chatGptResponse = await GetGPTChatResponse(queryText, systemPrompt, chatGptDeploymentName);
+```
+
+### Step 5 -> Performing vector search
+Finally the vector search returns the results in JSON
+
+```c#
+VectorSearch = new()
+                    {
+                        Queries = {
+                            new VectorizableTextQuery(queryText) {
+                                KNearestNeighborsCount = nearestNeighbours,
+                                Weight = 1,
+                                Exhaustive = true,
+                            }
+                        }
+```
+
+### Step 6 -> Processing results via DataCard.jsx
+The results are returned to **[DataCard.jsx](/src/spa/src/components/DataCard.jsx)** file that is responsible to show the JSON results of the search in a readable format for the website.
+
+The [SPA Folder](../src/spa/src/components/)contains various components to implement the frontend interface of a REACT website. To modify these components it implicit that the developer is familiar working on REACT code and working with SPA components.The [dockerfile](/src/spa/Dockerfile)is responsible for creating the API container.
 
 $${\color{red} FOR PROD}$$
 
