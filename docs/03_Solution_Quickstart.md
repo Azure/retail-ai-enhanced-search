@@ -99,7 +99,7 @@ Goes to the Azure Cosmos DB resource in Azure Portal and in the network settings
 
 ![PrivateEndpoint](../media/03_Approve_PE_Cosmos.png)
 
-#### (14) Data Ingestion -> Run the job
+### (14) Data Ingestion -> Run the job
 
 Once the network approvals is done manually, you will notice a container job which calls the 'CreateIndex.Py' script for data ingestion. Run the container job responsible for ingesting data in CosmosDB using Python script.
 

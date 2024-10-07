@@ -111,7 +111,11 @@ Please ignore this section if you the services in the public endpoint. If you ar
 ## Frontend Flow - AI Search Service, Storage Accounts, Container Apps, Network
 
 The arm template is responsible for creating the resources based on the selection made for "Intent to Deploy". The infrastructure components get deployed with a **ARM template**.
-It creates the Log Analytics Workspace and Managed Identities. It also spins the Container environment and Storage accounts needed. Upon running jobs in the Container environment it creates a search service with Indexes and Indexers and Data source pointing to CosmosDB.
+It creates the Log Analytics Workspace and Managed Identities. It also spins the Container environment and Storage accounts needed.
+
+![Backend Flow](../media/02_BackendFlow.PNG)
+
+Upon running jobs in the Container environment it creates a search service with Indexes and Indexers and Data source pointing to CosmosDB.
 
 The index name and indexer name are hard-coded for POC
 
