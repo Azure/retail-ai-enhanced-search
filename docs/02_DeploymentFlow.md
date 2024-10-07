@@ -5,32 +5,25 @@ Under the SRC folder you will find **[api](../src/api/)** , **[spa](../src/spa/)
 ## Table of Contents
 
 - [Backend Flow](#backend-flow---cosmos-db-azure-search-components-and-open-ai-components)
+  - [CosmosDB Environment](#cosmosdb-environment)
   - [Customizable options](#customizable-options)
   - [RBAC permissions](#rbac-permissions)
   - [Network considerations](#network-considerations)
 - [Frontend Flow](#frontend-flow---ai-search-service-storage-accounts-container-apps-network)
-  - [Network approvals](#network-approvals)
   - [Container Environment](#container-environment)
       1. [Data Ingestion Job](#data-ingestion-job)
       1. [Static WebApp Creation Job](#static-webapp-creation-job)
   - [Customizable Options](#customizable-options-for-website)
   - [RBAC permissions](#rbac-permissions-for-container-environment)
- 
+  - [Network approvals](#network-approvals)
+  
 ## Backend Flow - Cosmos DB, Azure Search Components and Open AI Components
 
 Here we are going to focus mainly on **[data](../src/data/)** folder. The **[requirements.txt](../src/data/requirements.txt)** contain some pre-requisite information. We have two configurations files here
 
-### .env file
+## CosmosDB Environment
 
-- **COSMOS_ENDPOINT**="<https://XXXXXXXXXXXXXX-cosmosdb.documents.azure.com/>"
-- **COSMOS_DATABASE**="catalogDb" - The name of the database in Cosmos DB
-- **AZURE_SEARCH_ENDPOINT**="<https://XXXXXX-search1.search.windows.net>"
-- **COSMOS_DB_CONNECTION_STRING**="ResourceId=/subscriptions/XXXXX/resourceGroups/XXXXXXXXXXXXXX/providers/Microsoft.DocumentDB/databaseAccounts/XXXXXX;Database=catalogDb;IdentityAuthType=AccessToken"
-- **OPEN_AI_ENDPOINT**="<https://XXXXXX-openai.openai.azure.com/>"
-- **OPEN_AI_EMBEDDING_DEPLOYMENT_NAME** = "embedding" - the deployment name of the Open AI Embedding model
-- **AZURE_CLIENT_ID**="" - The user managed identity of the Azure agent who is running the script ( E.g. VM or Azure container app job). If we are running the script in the local environment, we can leave it blank.
-
-### Search Config
+The [config.json file](/src/data/AzureSearch/config/config.json) contains definitions for the following configurations
 
 `AzureSearch\config\config.json`
 
@@ -52,6 +45,8 @@ Based on the above structure various fields are called to integrate filtering, s
 
 <img src='/media/02_SearchFields.PNG' width='850' height='550'>
 
+### Data Ingestion Python Script
+
 These configurations get called in the [createIndex.py](/src/data/AzureSearch/createIndex.py)
 It creates the following resources
 
@@ -72,7 +67,7 @@ Based on the environment you are deploying please refer to the [POC Environment]
 
 ## Customizable Options
 
-> :warning: Tip : We recommend you to leverage the same sample data provided under the data folder at least once so as to get the hang of the flow.
+> :warning: Tip : We recommend you to leverage the same sample data provided under the data folder at least once so as to get the hang of the flow. However you can also choose to place the [products.csv](../data/AzureSearch/data/products.csv) inside Azure SQL (when working with structured data) or Storage Account (when working with unstructured data).
 
 $${\color{blue} FOR POC}$$
 
@@ -80,8 +75,6 @@ $${\color{blue} FOR POC}$$
  In the script we are setting the "dataChangeDetectionPolicy" property in your data source definition. This is done to enable [incremental indexing](https://learn.microsoft.com/azure/search/search-howto-index-cosmosdb#indexing-new-and-changed-documents). The property tells the indexer which change tracking mechanism is used on your data.
 
 - For Azure Cosmos DB indexers, the only supported policy is the "HighWaterMarkChangeDetectionPolicy" using the “_ts (timestamp)” property provided by Azure Cosmos DB.
-
-However you can also choose to place the [products.csv](../data/AzureSearch/data/products.csv) inside Azure SQL (when working with structured data) or Storage Account (when working with unstructured data).
 
 > :memo: **Note:**
 Modifying the source for data or content of data might need the implementor to manually take care of the dependencies in the config.json file and createIndex.py file. The images shown earlier reflect the fields to consider in config.json file. The createIndex.py file will have to be modified at various locations pointing to the right source and definitions. The Search & OpenAI endpoints for client will also change accordingly.
@@ -100,12 +93,11 @@ There are two ways to implement a soft delete strategy:
 - [Native blob soft delete, applies to Blob Storage only](https://learn.microsoft.com/azure/search/search-howto-index-changed-deleted-blobs?tabs=portal#configure-native-soft-delete)
 - [Soft delete using custom metadata](https://learn.microsoft.com/azure/search/search-howto-index-changed-deleted-blobs?tabs=portal#soft-delete-strategy-using-custom-metadata)
 
-
 ## RBAC permissions
 
 - **Cosmos DB**
   - [Cosmos DB Data Contributor Role](https://learn.microsoft.com/azure/cosmos-db/how-to-setup-rbac#built-in-role-definitions) : This access gets provided to the Container App Managed Identity to write data in CosmosDb and create indexes and search
-    - [Cosmos DB Data Reader Role](https://learn.microsoft.com/azure/cosmos-db/how-to-setup-rbac#built-in-role-definitions) : This access gets provided to the Container
+  - [Cosmos DB Data Reader Role](https://learn.microsoft.com/azure/cosmos-db/how-to-setup-rbac#built-in-role-definitions) : This access gets provided to the Container
 App Managed Identity to read the data in CosmosDB
 
 ## Network considerations
@@ -118,8 +110,8 @@ Please ignore this section if you the services in the public endpoint. If you ar
 
 ## Frontend Flow - AI Search Service, Storage Accounts, Container Apps, Network
 
-The arm template is responsible for creating the resources based on the selection made for "Intent to Deploy". The infrastructure components get deployed with a **Bicep template**. 
-It creates the Log Analytics and Managed Identities. It also spins Container environment.Finally it creates a search service with Indexes and Indexers and Data source pointing to CosmosDB.
+The arm template is responsible for creating the resources based on the selection made for "Intent to Deploy". The infrastructure components get deployed with a **ARM template**.
+It creates the Log Analytics Workspace and Managed Identities. It also spins the Container environment and Storage accounts needed. Upon running jobs in the Container environment it creates a search service with Indexes and Indexers and Data source pointing to CosmosDB.
 
 The index name and indexer name are hard-coded for POC
 
@@ -130,13 +122,6 @@ It connects to the data source and uses skillset we created using the scripts in
 
 | ![Datasource](../media/02_DataSource.PNG) | ![Skillset](../media/02_Skillset.PNG)|
 | ----- | ------ |
-
-### Network approvals
-
-There are implicit calls from Azure AI Search to Azure Open AI [for skillset] and Azure AI Search to Azure CosmosDB [for indexer and indexing], both these calls happen over a private network using the shared private link access. The deployment scripts are responsible for creating the link but approval process is manual. For this you manually have to go to Azure AI Search service - > Network -> Shared Link Access -> Approve. Once approved the status would reflect as follows:
-
-| ![Datasource](../media/02_ApproveSQL.PNG) |
-| ----- |
 
 ## Container Environment
 
@@ -228,3 +213,10 @@ The static webapp creation job gets assigned the following permissions
 <!---
 ![alt text](../media/02_StaticJobPermissions.PNG)
 -->
+
+### Network approvals
+
+There are implicit calls from Azure AI Search to Azure Open AI [for skillset] and Azure AI Search to Azure CosmosDB [for indexer and indexing], both these calls happen over a private network using the shared private link access. The deployment scripts are responsible for creating the link but approval process is manual. For this you manually have to go to Azure AI Search service - > Network -> Shared Link Access -> Approve. Once approved the status would reflect as follows:
+
+| ![Datasource](../media/02_ApproveSQL.PNG) |
+| ----- |
