@@ -24,8 +24,8 @@ This starter kit comes with API samples written in #CSharp language under the *a
   - [17: Validate Static WebApp](#17-static-website-checks)
   - 
 - [Production Environment Quickstart](#production-environment)
-  - [Using your existing Data Sources]()
-  - [Bring your own Data]()
+  - [Using your existing Data Sources](#use-existing-data-sources)
+  - [Bring your own Data](#bring-your-own-data--data-sources)
 
 ## PoC Environment
 
@@ -176,6 +176,39 @@ products_df = pd.read_csv(f"{os.getcwd()}/AzureSearch/data/products.csv")
 > :bulb: **Tip:**: You can apply CRUD change (Delta Copy) from Cosmos DB to AI Search. For this, you can utilize osft delete field with timestamp (_ts) for high water mark. </br>
 [Indexing new and changed documents](https://learn.microsoft.com/azure/search/search-howto-index-cosmosdb#indexing-new-and-changed-documents) </br>
 [Soft delete and data change detection policies](https://learn.microsoft.com/azure/search/search-howto-index-cosmosdb#indexing-deleted-documents)
+
+### Bring your own Data & Data sources
+
+You can use other data sources like Azure SQL or Storage Containers too with the E-Retail Quickstart kit by following these steps:
+Please refer to the [Backend Guide](/docs/02_a_BackendStepbyStep.md) and you need to modify all the environment specifics
+
+```bash
+COSMOS_ENDPOINT="https://XXXXXXXXXXXXXX-cosmosdb.documents.azure.com/"
+COSMOS_DATABASE="catalogDb" - The name of the database in Cosmos DB
+AZURE_SEARCH_ENDPOINT="https://XXXXXX-search1.search.windows.net"
+COSMOS_DB_CONNECTION_STRING="ResourceId=/subscriptions/XXXXX/resourceGroups/XXXXXXXXXXXXXX/providers/Microsoft.DocumentDB/databaseAccounts/XXXXXX;Database=catalogDb;IdentityAuthType=AccessToken"
+OPEN_AI_ENDPOINT="https://XXXXXX-openai.openai.azure.com/"
+OPEN_AI_EMBEDDING_DEPLOYMENT_NAME = "embedding" - the deployment name of the Open AI Embedding model
+AZURE_CLIENT_ID="" - The user managed identity of the Azure agent who is running the script ( E.g. VM or Azure container app job). If we are running the script in the local environment, we can leave it blank.
+```
+
+If you are changing the data source the Cosmos_Enpoint becomes AzureSQL or Storage Endpoint. Likewise all the environment variables pointing to CosmosDB.
+
+#### Step 1: Modify the [config.json](/src/data/AzureSearch/config/config.json) files to reflect the right source information(Azure SQL or Storage Account)
+
+``` bash
+{
+    "cosmos-config":{
+        "cosmos_db_name" : "catalogDb",
+        "cosmos_db_container_name" : "products",
+        "cosmos_db_partition_key" : "/id"
+    },
+```
+
+#### Step 2: Modify the [config.json](/src/data/AzureSearch/config/config.json) files to the correct index fields and structures
+
+![alt text](../media/02_SearchFields.PNG)
+![alt text](../media/02_SearchIndexStructure.PNG)
 
 <!---
 You can ingest your own data into the E-Retail Quickstart kit by following these steps:
