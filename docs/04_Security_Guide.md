@@ -4,7 +4,12 @@ This document provides guidance on how to secure the solution and best practices
 
 $${\color{blue} FOR POC}$$
 
-From POC prespective the entire 
+From POC prespective the entire most of the security considerations are taken care of through the ARM template deployment itself. Calling out the important ones
+
+*[Default Azure Credential](https://learn.microsoft.com/python/api/azure-identity/azure.identity.defaultazurecredential?view=azure-python) : The frontend and backend codes are deployed using Default Azure Credentials from Azure Identity eliminating the need to map or manage individual user/s.
+
+* [RBAC Permission](https://learn.microsoft.com/azure/role-based-access-control/role-assignments-template) : ARM template also takes care of the permissions required for the various components like CosmosDB, Azure Search, Open AI and Static Website to interact with each other without any manual intervention.
+* [Private Network Config]
 
 $${\color{red} FOR PROD}$$
 
@@ -17,7 +22,7 @@ The expectation is customers would have forked the **ai-hub** Public repository 
 Once in your forked repository go to the **Security** tab 
 ![Security Tab](../media/04_RepoSecurity.PNG)
 
-## Step 2: Validate Security Options
+## Step 2: Validate security options
 
 There are various defualt options provided in the repository which you can enable. Recommendation is to have all the Security options that you see under security Overview enabled.
 
