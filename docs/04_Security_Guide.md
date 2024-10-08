@@ -22,7 +22,6 @@ From POC prespective the security considerations are taken care of through the A
 $${\color{red} FOR PROD}$$
 
 # Repo Security
-
 The expectation is customers would have forked the **ai-hub** Public repository for production deployment in their environment.
 
  ![AI Hub](../media/04_AIHub.PNG)
@@ -72,13 +71,11 @@ All these options can also be found under Settings tab of a Repo
 ![Setting Tab](../media/04_Settings.PNG)
 
 # Windows Defender
-
 You can now integrate [Microsoft Defender for Cloud](https://learn.microsoft.com/azure/defender-for-cloud/defender-for-cloud-introduction) (preview when this article is written) with your Azure resources to protect your applications. Microsoft Defender for Cloud protects your applications with [threat protection for AI workloads](https://learn.microsoft.com/azure/defender-for-cloud/ai-threat-protection) , providing teams with evidence-based security alerts enriched with Microsoft threat intelligence signals and enables teams to strengthen their [security posture](https://learn.microsoft.com/azure/defender-for-cloud/ai-security-posture) with integrated security best-practice recommendations.
 
 Use [this form](https://forms.office.com/pages/responsepage.aspx?id=v4j5cvGGr0GRqy180BHbR9EXzLewuFRArQPJzR1tntlURThQR0hYU1MyRVRNODNMV1hBOUEzVlk3NC4u) to apply for access.
 
 # Microsoft Purview
-
 [Microsoft Purview AI Hub](https://learn.microsoft.com/purview/ai-microsoft-purview) (preview when this article is written) provides easy-to-use graphical tools and reports to quickly gain insights into AI use within your organization.
 
 ![Purview](../media/04_Purview.png)
