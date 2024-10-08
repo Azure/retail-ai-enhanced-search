@@ -83,6 +83,7 @@ You can follow step by step guide in the [Quickstart Guide](./docs/03_Solution_Q
 
 Security is a key aspect of any solution. The [Security Considerations](./docs/04_Security_Guide.md) document provides a detailed explanation of the security aspects of the solution. Securing the various AI Architecture Layer **[AI platform,AI application,AI usage]**
 is a shared responsibility between customers and Microsoft.
+
 ![Shared Responsibility](media/00_sharedrespondibility.PNG)
 
 ## Responsible AI
@@ -102,13 +103,16 @@ To help make your experience of AI positive and human-centered, Microsoft has es
 
 ![Responsible AI Guidelines](media/00_ResponsibleAIGuidelines.png)
 
-> :memo: **Note:**Learn more: https://aka.ms/aiguidelines. 
+> :memo: **Note:**Learn more: https://aka.ms/aiguidelines.
 
 You can leverage the existing [tools and processes](https://www.microsoft.com/ai/tools-practices) to incorporate Responsible AI in your workloads
+We recommend you visit [Responsible AI Dashboard](https://responsibleaitoolbox.ai/?culture=en-us&country=us) which help with Model Building and Debugging
 
 ## AI Design Workshop
 
-You can also avail [workshops](https://azuremarketplace.microsoft.com/marketplace/consulting-services/category/ai-plus-machine-learning?page=1&filters=workshop) 
+You can also avail [workshops](https://azuremarketplace.microsoft.com/marketplace/consulting-services/category/ai-plus-machine-learning?page=1&filters=workshop) to gain deeper knowledge into AI. 
+
+> :memo: **Note:**.[More Azure Open AI Samples](https://github.com/Azure/azure-openai-samples)
 
 ## Contributing
 
