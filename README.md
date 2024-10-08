@@ -100,7 +100,9 @@ To help make your experience of AI positive and human-centered, Microsoft has es
 
 ![Responsible AI Guidelines](media/00_ResponsibleAIGuidelines.png)
 
+> :memo: **Note:**Learn more: https://aka.ms/aiguidelines. 
 
+You can leverage the existing [tools and processes](https://www.microsoft.com/ai/tools-practices) to incorporate Responsible AI in your workloads
 
 ## AI Design Workshop
 
