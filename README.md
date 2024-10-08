@@ -10,7 +10,7 @@
   - [Pre-requisites](#prerequisites)
 - [Solution Guide](#solution-detailed-guide)
 - [Security Considerations](#security-considerations-and-guidelines)
-  - [Responsible AI](#responsible-ai)
+- [Responsible AI](#responsible-ai)
 
 ## Introduction
 
@@ -81,9 +81,11 @@ You can follow step by step guide in the [Quickstart Guide](./docs/03_Solution_Q
 
 ## Security Considerations and Guidelines
 
-Security is a key aspect of any solution. The [Security Considerations](./docs/04_Security_Guide.md) document provides a detailed explanation of the security aspects of the solution.
+Security is a key aspect of any solution. The [Security Considerations](./docs/04_Security_Guide.md) document provides a detailed explanation of the security aspects of the solution. Securing the various AI Architecture Layer **[AI platform,AI application,AI usage]**
+is a shared responsibility between customers and Microsoft.
+![Shared Responsibility](media/00_sharedrespondibility.PNG)
 
-### Responsible AI
+## Responsible AI
 
 The 6 guiding principles of responsible AI are :
 
@@ -106,6 +108,7 @@ You can leverage the existing [tools and processes](https://www.microsoft.com/ai
 
 ## AI Design Workshop
 
+You can also avail [workshops](https://azuremarketplace.microsoft.com/marketplace/consulting-services/category/ai-plus-machine-learning?page=1&filters=workshop) 
 
 ## Contributing
 
