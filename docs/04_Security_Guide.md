@@ -36,7 +36,7 @@ Once in your forked repository go to the **Security** tab.
 
 There are various defualt options provided in the repository which you can enable. Recommendation is to have all the Security options that you see under security Overview enabled.
 
-<img src='/media/04_SecurityOptions.PNG' width='850' height='370'>
+<img src='/media/04_SecurityOptions.PNG' width='900' height='370'>
 
 You can also enable alerting in the left hand side panel.
 
@@ -75,7 +75,7 @@ You can now integrate [Microsoft Defender for Cloud](https://learn.microsoft.com
 
 Use [this form](https://forms.office.com/pages/responsepage.aspx?id=v4j5cvGGr0GRqy180BHbR9EXzLewuFRArQPJzR1tntlURThQR0hYU1MyRVRNODNMV1hBOUEzVlk3NC4u) to apply for access.
 
-<img src='/media/04_Defender.png' width='850' height='370'>
+<img src='/media/04_Defender.png' width='850' height='350'>
 
 # Microsoft Purview
 [Microsoft Purview AI Hub](https://learn.microsoft.com/purview/ai-microsoft-purview) (preview when this article is written) provides easy-to-use graphical tools and reports to quickly gain insights into AI use within your organization.
