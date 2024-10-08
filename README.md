@@ -87,6 +87,8 @@ is a shared responsibility between customers and Microsoft.
 
 ![Shared Responsibility](media/00_sharedrespondibility.PNG)
 
+You might find the [Govern and protect sensitive information in the age of AI](https://learn.microsoft.com/raining/paths/purview-protect-govern-ai/) particularly helpful for the same.
+
 ## Responsible AI
 
 The 6 guiding principles of responsible AI are :
