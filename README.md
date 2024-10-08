@@ -10,7 +10,8 @@
   - [Pre-requisites](#prerequisites)
 - [Solution Guide](#solution-detailed-guide)
 - [Security Considerations](#security-considerations-and-guidelines)
-  - [Responsible AI](#responsible-ai)
+- [Responsible AI](#responsible-ai)
+- [AI Workshops](#ai-design-workshop)
 
 ## Introduction
 
@@ -81,11 +82,40 @@ You can follow step by step guide in the [Quickstart Guide](./docs/03_Solution_Q
 
 ## Security Considerations and Guidelines
 
-Security is a key aspect of any solution. The [Security Considerations](./docs/04_Security_Guide.md) document provides a detailed explanation of the security aspects of the solution.
+Security is a key aspect of any solution. The [Security Considerations](./docs/04_Security_Guide.md) document provides a detailed explanation of the security aspects of the solution. Securing the various AI Architecture Layer **[AI platform,AI application,AI usage]**
+is a shared responsibility between customers and Microsoft.
 
-### Responsible AI
+![Shared Responsibility](media/00_sharedrespondibility.PNG)
+
+You might find the [Govern and protect sensitive information in the age of AI](https://learn.microsoft.com/raining/paths/purview-protect-govern-ai/) particularly helpful for the same.
+
+## Responsible AI
+
+The 6 guiding principles of responsible AI are :
+
+1. **Fairness** : How might an AI system allocate opportunities, resources, or information in ways that are fair to the humans who use it?
+2. **Reliability & safety** : How might the system function well for people across different use conditions and contexts, including ones it was not originally intended for?
+3. **Privacy & security** : How might the system be designed to support privacy and security?
+4. **Inclusiveness** : How might the system be designed to be inclusive of people of all abilities?
+5. **Transparency** : How might people misunderstand, misuse, or incorrectly estimate the capabilities of the system?
+6. **Accountability** : How can we create oversight so that humans can be accountable and in control?
+
+Here is a video link to [explore Responsible Generative AI](https://learn.microsoft.com/shows/on-demand-instructor-led-training-series/generative-ai-module-3/)
+
+To help make your experience of AI positive and human-centered, Microsoft has established guidelines for human-AI interactions.The guidelines are grouped into four categories.
+
+![Responsible AI Guidelines](media/00_ResponsibleAIGuidelines.png)
+
+> :memo: **Note:**Learn more: https://aka.ms/aiguidelines.
+
+You can leverage the existing [tools and processes](https://www.microsoft.com/ai/tools-practices) to incorporate Responsible AI in your workloads
+We recommend you visit [Responsible AI Dashboard](https://responsibleaitoolbox.ai/?culture=en-us&country=us) which help with Model Building and Debugging
 
 ## AI Design Workshop
+
+You can also avail [workshops](https://azuremarketplace.microsoft.com/marketplace/consulting-services/category/ai-plus-machine-learning?page=1&filters=workshop) to gain deeper knowledge into AI. 
+
+> :memo: **Note:**.[More Azure Open AI Samples](https://github.com/Azure/azure-openai-samples)
 
 ## Contributing
 
