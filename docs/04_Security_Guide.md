@@ -4,12 +4,15 @@ This document provides guidance on how to secure the solution and best practices
 
 $${\color{blue} FOR POC}$$
 
-From POC prespective the entire most of the security considerations are taken care of through the ARM template deployment itself. Calling out the important ones
+From POC prespective the entire most of the security considerations are taken care of through the ARM template deployment itself. Calling out the important ones :
 
-*[Default Azure Credential](https://learn.microsoft.com/python/api/azure-identity/azure.identity.defaultazurecredential?view=azure-python) : The frontend and backend codes are deployed using Default Azure Credentials from Azure Identity eliminating the need to map or manage individual user/s.
+* [Default Azure Credential](https://learn.microsoft.com/python/api/azure-identity/azure.identity.defaultazurecredential?view=azure-python) : The frontend and backend codes are deployed using Default Azure Credentials from Azure Identity eliminating the need to map or manage individual user/s.
 
 * [RBAC Permission](https://learn.microsoft.com/azure/role-based-access-control/role-assignments-template) : ARM template also takes care of the permissions required for the various components like CosmosDB, Azure Search, Open AI and Static Website to interact with each other without any manual intervention.
-* [Private Network Config]
+
+* [Private Network Config]: While the POC does not restrict you but its better to **deploy it as is** so that the communication between these services happen via private endpoint. Explicit approval are required during deployment to enable the same **[Steps 12-13 in Quickstart]**. The private link is created for the outbound connectivity from the Azure AI Search to the Cosmos DB, and Azure AI Search to the Azure Open AI Service. The only public endpoint that gets enabled is for the Static Website **[Step 16 in Quickstart]**.
+
+* [Cleanup for POC] : Once tested ensure you leverage the [Cleanup Guide for POC](06_CleanupPOCResources.md) to clean an unwanted resources in your subscription
 
 $${\color{red} FOR PROD}$$
 
