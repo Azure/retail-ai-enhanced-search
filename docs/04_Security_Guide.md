@@ -38,10 +38,14 @@ You can also enable alerting in the left hand side panel.
 
 > :bulb: **For More Information**: [About Dependabot alerts](https://docs.github.com/code-security/dependabot/dependabot-alerts/about-dependabot-alerts#dependabot-alerts-for-vulnerable-dependencies) [About Dependabot auto-triage rules](https://docs.github.com/code-security/dependabot/dependabot-auto-triage-rules/about-dependabot-auto-triage-rules)
 
-**Code-scanning** : Code scanning leverages a third-party tool CodeQL analysis workflow to identify vulnerabilities and errors in the code stored in your repository. By default this is disabled. You manually have to Configure and Enable it.
+**Code-scanning** : Code scanning leverages a third-party tool CodeQL analysis workflow to identify vulnerabilities and errors in the code stored in your repository.Code scanning is available for all public repositories, and for private repositories owned by organizations.By default this is disabled. You manually have to Configure and Enable it.
 
 | ![Configure](/media/04_Configuring.PNG)|![Enable](/media/04_Enabling.PNG) |
-| ------ | ------ |
+| ----- | ------ |
+
+Once you have gone through the [Code Scanning Guide](https://docs.github.com/code-security/code-scanning/enabling-code-scanning/configuring-default-setup-for-code-scanning) you can enable the same by hitting the acknowledgement buttong as shown below
+
+<img src='/media/04_Acknowledge.PNG' width='750' height='300'>
 
 ### Reference Templates
 
