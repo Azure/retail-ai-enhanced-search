@@ -12,13 +12,18 @@ The expectation is customers would have forked the **ai-hub** Public repository 
 
  ![AI Hub](../media/04_AIHub.PNG)
 
-## Step 1: Once in your forked repository go to the **Security** tab 
+## Step 1: Security tab of repository
 
+Once in your forked repository go to the **Security** tab 
 ![Security Tab](../media/04_RepoSecurity.PNG)
 
 ## Step 2: Validate Security Options
 
+There are various defualt options provided in the repository which you can enable. Recommendation is to have all the Security options that you see under security Overview enabled.
+
 <img src='/media/04_SecurityOptions.PNG' width='850' height='400'>
+
+You can also enable alerting in the left hand side panel.
 
 Dependabot : Dependabot alerts tell you when your code depends on a package that is insecure. Often, software is built using open-source code packages from a large variety of sources.you may unknowingly be using dependencies that have security flaws, also known as vulnerabilities.Dependabot performs a scan of the default branch of your repository to detect insecure dependencies, and sends Dependabot alerts. 
 
