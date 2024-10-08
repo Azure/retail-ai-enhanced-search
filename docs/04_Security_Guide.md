@@ -12,6 +12,11 @@ The expectation is customers would have forked the **ai-hub** Public repository 
 
  ![AI Hub](../media/04_AIHub.PNG)
 
-Once in your forked repository go to the **Security** tab 
+Step 1: Once in your forked repository go to the **Security** tab 
 
 ![Security Tab](../media/04_RepoSecurity.PNG)
+
+Step 2: Validate Security Options
+
+<img src='/media/04_SecurityOptions.PNG' width='750' height='550'>
+
