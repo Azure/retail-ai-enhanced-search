@@ -11,6 +11,7 @@
 - [Solution Guide](#solution-detailed-guide)
 - [Security Considerations](#security-considerations-and-guidelines)
 - [Responsible AI](#responsible-ai)
+- [AI Workshops](#ai-design-workshop)
 
 ## Introduction
 
