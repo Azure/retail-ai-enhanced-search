@@ -75,7 +75,7 @@ You can now integrate [Microsoft Defender for Cloud](https://learn.microsoft.com
 
 Use [this form](https://forms.office.com/pages/responsepage.aspx?id=v4j5cvGGr0GRqy180BHbR9EXzLewuFRArQPJzR1tntlURThQR0hYU1MyRVRNODNMV1hBOUEzVlk3NC4u) to apply for access.
 
-<img src='/media/04_Defender.png' width='850' height='350'>
+<img src='/media/04_Defender.png' width='800' height='400'>
 
 # Microsoft Purview
 [Microsoft Purview AI Hub](https://learn.microsoft.com/purview/ai-microsoft-purview) (preview when this article is written) provides easy-to-use graphical tools and reports to quickly gain insights into AI use within your organization.
