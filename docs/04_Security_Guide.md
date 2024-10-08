@@ -79,7 +79,9 @@ Use [this form](https://forms.office.com/pages/responsepage.aspx?id=v4j5cvGGr0GR
 
 # Microsoft Purview
 
-Microsoft Purview AI Hub(https://learn.microsoft.com/purview/ai-microsoft-purview) (preview when this article is written) provides easy-to-use graphical tools and reports to quickly gain insights into AI use within your organization.
+[Microsoft Purview AI Hub](https://learn.microsoft.com/purview/ai-microsoft-purview) (preview when this article is written) provides easy-to-use graphical tools and reports to quickly gain insights into AI use within your organization.
+
+![Purview](../media/04_Purview.png)
 
 ### Reference Templates
 
