@@ -47,7 +47,7 @@ You can also enable alerting in the left hand side panel.
 
 Once you have gone through the [Code Scanning Guide](https://docs.github.com/code-security/code-scanning/enabling-code-scanning/configuring-default-setup-for-code-scanning) you can enable the same by hitting the acknowledgement buttong as shown below
 
-<img src='/media/04_Acknowledge.PNG' width='600' height='300'>
+<img src='/media/04_Acknowledge.PNG' width='650' height='300'>
 
 **Secret-scanning** : Secret scanning helps detect and prevent the accidental inclusion of sensitive information such as API keys, passwords, tokens, and other secrets in your repository. It scans your entire Git history on all branches present in your GitHub repository for secrets, even if the repository is archived. GitHub will also periodically run a full Git history scan of existing content in GitHub Advanced Security repositories where secret scanning is enabled.
 
