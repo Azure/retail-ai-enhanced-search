@@ -85,7 +85,7 @@ Security is a key aspect of any solution. The [Security Considerations](./docs/0
 
 ### Responsible AI
 
-The 6 guiding principles of responsible AI are 
+The 6 guiding principles of responsible AI are :
 
 1. **Fairness** : How might an AI system allocate opportunities, resources, or information in ways that are fair to the humans who use it?
 2. **Reliability & safety** : How might the system function well for people across different use conditions and contexts, including ones it was not originally intended for?
@@ -94,7 +94,16 @@ The 6 guiding principles of responsible AI are
 5. **Transparency** : How might people misunderstand, misuse, or incorrectly estimate the capabilities of the system?
 6. **Accountability** : How can we create oversight so that humans can be accountable and in control?
 
+Here is a video link[to explore Responsible Generative AI](https://learn.microsoft.com/shows/on-demand-instructor-led-training-series/generative-ai-module-3/)
+
+To help make your experience of AI positive and human-centered, Microsoft has established guidelines for human-AI interactions.The guidelines are grouped into four categories.
+
+![Responsible AI Guidelines](media/00_ResponsibleAIGuidelines.png)
+
+
+
 ## AI Design Workshop
+
 
 ## Contributing
 
