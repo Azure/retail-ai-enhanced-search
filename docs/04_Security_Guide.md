@@ -24,7 +24,7 @@ The expectation is customers would have forked the **ai-hub** Public repository 
 
 Once in your forked repository go to the **Security** tab.
 
-<img src='../media/04_RepoSecurity.PNG' width='750' height='200'>
+<img src='../media/04_RepoSecurity.PNG' width='700' height='200'>
 
 ## Step 2: Validate security options
 
@@ -40,7 +40,7 @@ You can also enable alerting in the left hand side panel.
 
 **Code-scanning** : Code scanning leverages a third-party tool CodeQL analysis workflow to identify vulnerabilities and errors in the code stored in your repository. By default this is disabled. You manually have to Configure and Enable it.
 
-| ![Configure](media/04_Configuring.PNG)|![Enable](media/04_Enabling.PNG) |
+| ![Configure](/media/04_Configuring.PNG)|![Enable](/media/04_Enabling.PNG) |
 | ------ | ------ |
 
 ### Reference Templates
