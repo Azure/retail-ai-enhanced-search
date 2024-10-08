@@ -36,7 +36,7 @@ Once in your forked repository go to the **Security** tab.
 
 There are various defualt options provided in the repository which you can enable. Recommendation is to have all the Security options that you see under security Overview enabled.
 
-<img src='/media/04_SecurityOptions.PNG' width='850' height='400'>
+<img src='/media/04_SecurityOptions.PNG' width='850' height='370'>
 
 You can also enable alerting in the left hand side panel.
 
@@ -75,7 +75,7 @@ You can now integrate [Microsoft Defender for Cloud](https://learn.microsoft.com
 
 Use [this form](https://forms.office.com/pages/responsepage.aspx?id=v4j5cvGGr0GRqy180BHbR9EXzLewuFRArQPJzR1tntlURThQR0hYU1MyRVRNODNMV1hBOUEzVlk3NC4u) to apply for access.
 
-![Defender](../media/04_Defender.png)
+<img src='/media/04_Defender.png' width='850' height='370'>
 
 # Microsoft Purview
 [Microsoft Purview AI Hub](https://learn.microsoft.com/purview/ai-microsoft-purview) (preview when this article is written) provides easy-to-use graphical tools and reports to quickly gain insights into AI use within your organization.
@@ -91,3 +91,4 @@ Use [this form](https://forms.office.com/pages/responsepage.aspx?id=v4j5cvGGr0GR
 * [Discover, protect, and govern AI usage with Microsoft Security](https://techcommunity.microsoft.com/t5/security-compliance-and-identity/discover-protect-and-govern-ai-usage-with-microsoft-security/ba-p/4078883)
 * [Securing data in an AI-first world with Microsoft Purview](https://techcommunity.microsoft.com/t5/microsoft-security-copilot-blog/securing-data-in-an-ai-first-world-with-microsoft-purview/ba-p/3981279)
 * [Secure your AI applications from code to runtime with Microsoft Defender for Cloud](https://techcommunity.microsoft.com/t5/microsoft-defender-for-cloud/secure-your-ai-applications-from-code-to-runtime-with-microsoft/ba-p/4127665)
+* [Secure your AI transformation with Microsoft Security](https://techcommunity.microsoft.com/t5/security-compliance-and-identity/secure-your-ai-transformation-with-microsoft-security/ba-p/4126214)
