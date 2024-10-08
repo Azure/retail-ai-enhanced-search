@@ -6,6 +6,8 @@ $${\color{blue} FOR POC}$$
 
 From POC prespective the security considerations are taken care of through the ARM template deployment itself. Calling out the important ones :
 
+> :warning: **Warning: If you are modifying the repo for POC then follow the PROD guidelines**
+
 * [Default Azure Credential](https://learn.microsoft.com/python/api/azure-identity/azure.identity.defaultazurecredential?view=azure-python) : The frontend and backend codes are deployed using Default Azure Credentials from Azure Identity eliminating the need to map or manage individual user/s.
 
 * [RBAC Permission](https://learn.microsoft.com/azure/role-based-access-control/role-assignments-template) : ARM template also takes care of the permissions required for the various components like CosmosDB, Azure Search, Open AI and Static Website to interact with each other without any manual intervention.
