@@ -85,6 +85,15 @@ Security is a key aspect of any solution. The [Security Considerations](./docs/0
 
 ### Responsible AI
 
+The 6 guiding principles of responsible AI are 
+
+1. **Fairness** : How might an AI system allocate opportunities, resources, or information in ways that are fair to the humans who use it?
+2. **Reliability & safety** : How might the system function well for people across different use conditions and contexts, including ones it was not originally intended for?
+3. **Privacy & security** : How might the system be designed to support privacy and security?
+4. **Inclusiveness** : How might the system be designed to be inclusive of people of all abilities?
+5. **Transparency** : How might people misunderstand, misuse, or incorrectly estimate the capabilities of the system?
+6. **Accountability** : How can we create oversight so that humans can be accountable and in control?
+
 ## AI Design Workshop
 
 ## Contributing
