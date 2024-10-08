@@ -100,7 +100,7 @@ The 6 guiding principles of responsible AI are :
 5. **Transparency** : How might people misunderstand, misuse, or incorrectly estimate the capabilities of the system?
 6. **Accountability** : How can we create oversight so that humans can be accountable and in control?
 
-Here is a video link[to explore Responsible Generative AI](https://learn.microsoft.com/shows/on-demand-instructor-led-training-series/generative-ai-module-3/)
+Here is a video link to [explore Responsible Generative AI](https://learn.microsoft.com/shows/on-demand-instructor-led-training-series/generative-ai-module-3/)
 
 To help make your experience of AI positive and human-centered, Microsoft has established guidelines for human-AI interactions.The guidelines are grouped into four categories.
 
