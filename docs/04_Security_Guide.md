@@ -18,5 +18,5 @@ Step 1: Once in your forked repository go to the **Security** tab
 
 Step 2: Validate Security Options
 
-<img src='/media/04_SecurityOptions.PNG' width='800' height='400'>
+<img src='/media/04_SecurityOptions.PNG' width='850' height='400'>
 
