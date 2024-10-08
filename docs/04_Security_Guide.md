@@ -45,9 +45,26 @@ You can also enable alerting in the left hand side panel.
 
 Once you have gone through the [Code Scanning Guide](https://docs.github.com/code-security/code-scanning/enabling-code-scanning/configuring-default-setup-for-code-scanning) you can enable the same by hitting the acknowledgement buttong as shown below
 
-<img src='/media/04_Acknowledge.PNG' width='750' height='300'>
+<img src='/media/04_Acknowledge.PNG' width='550' height='300'>
+
+**Secret-scanning** : Secret scanning helps detect and prevent the accidental inclusion of sensitive information such as API keys, passwords, tokens, and other secrets in your repository. It scans your entire Git history on all branches present in your GitHub repository for secrets, even if the repository is archived. GitHub will also periodically run a full Git history scan of existing content in GitHub Advanced Security repositories where secret scanning is enabled.
+
+Additionally, secret scanning scans:
+
+* Descriptions and comments in issues
+* Titles, descriptions, and comments, in open and closed historical issues. A notification is sent to the relevant partner when a historical partner pattern is detected.
+* Titles, descriptions, and comments in pull requests
+* Titles, descriptions, and comments in GitHub Discussions
+* Wikis
+
+This additional scanning is free for public repositories.
+> :bulb: **For More Information**: [About secret scanning](https://docs.github.com/enterprise-cloud@latest/code-security/secret-scanning/introduction/about-secret-scanning) [Customize Secret Scanning](https://docs.github.com/enterprise-cloud@latest/code-security/secret-scanning/introduction/about-secret-scanning#customizing-secret-scanning)
+
+All these options can also be found under Settings tab of a Repo
+![Setting Tab](../media/04_Settings.PNG)
 
 ### Reference Templates
 
 * [GitHub Security Lab](https://securitylab.github.com/)
 * [Quickstart for securing your repository](https://docs.github.com/code-security/getting-started/quickstart-for-securing-your-repository)
+* [Code Security Main Page](https://docs.github.com/code-security)
