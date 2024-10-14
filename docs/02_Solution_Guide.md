@@ -189,7 +189,11 @@ The static webapp creation job gets assigned the following permissions
 
 ### Network approvals
 
-There are implicit calls from Azure AI Search to Azure Open AI [for skillset] and Azure AI Search to Azure CosmosDB [for indexer and indexing], both these calls happen over a private network using the shared private link access. The deployment scripts are responsible for creating the link but approval process is manual. For this you manually have to go to Azure AI Search service - > Network -> Shared Link Access -> Approve. Once approved the status would reflect as follows:
+There are implicit calls from Azure AI Search to Azure Open AI [for skillset] and Azure AI Search to Azure CosmosDB [for indexer and indexing], both these calls happen over a private network using the shared private link access. The deployment scripts are responsible for creating the link but approval process is manual. 
+- You need to go to Azure OpenAI resource in Azure Portal and in the network settings, approve the private endpoint connection.
+- You also need to go to the Azure Cosmos DB resource in Azure Portal and in the network settings, approve the private endpoint connection.
+
+Once approved you will be able to see the following status messages, Azure AI Search service - > Network -> Shared Link Access. 
 
 | ![Datasource](../media/02_ApproveSQL.PNG) |
 | ----- |
